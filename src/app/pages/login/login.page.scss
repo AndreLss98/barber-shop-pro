@@ -1,0 +1,153 @@
+ion-content {
+    --ion-background-color: #313131;
+    #detalhe-rodape {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        z-index: 0;
+    }
+
+    form {
+        height: 100%;
+        padding-top: 30%;
+        min-width: 300px;
+        @media(max-height: 500px) {
+            padding-top: 10%;
+        }
+        z-index: 9;
+    }
+
+    ion-grid {
+        width: 80%;
+        max-width: 400px;
+        padding: 0 15px;
+    }
+
+    .login-content {
+        background-color: white;
+        border-radius: 25px 25px 0 0;
+        display: flex;
+        flex-direction: column;
+        padding: 0 25px;
+
+        #logo {
+            margin: 15px  auto 15px auto;
+            align-self: center;
+            img {
+                width: 100%;
+                max-width: 300px;
+                min-height: 100px;
+                height: auto;
+            }
+        }
+
+        div.item {
+            position: relative;
+            img.iconLeft {
+                position: absolute;
+                z-index: 10;
+                bottom: 13px;
+                left: 10px;
+                width: 15px;
+            }
+            img.iconLeft.II {
+                bottom: 11px;
+            }
+            img.iconRight {
+                position: absolute;
+                z-index: 10;
+                bottom: 12px;
+                right: 10px;
+                width: 15px;
+            }
+        }
+
+        input {
+            width: 100%;
+            height: 40px;
+            border: 2px solid #E0E0E0;
+            border-radius: 25px;
+            padding-left: 30px;
+            position: relative;
+            padding-right: 10px;
+        }
+
+        input.inputSenha {
+            padding-right: 30px;
+            font-family: 'Avenir', sans-serif !important;
+            font-weight: 500;
+            font-size: 12px;
+            color: #909090;
+        }
+
+        input.inputEmail {
+            font-family: 'Avenir', sans-serif !important;
+            font-size: 12px;
+            color: #909090;
+        }
+
+        .item:nth-child(3) {
+            margin-top: 5%;
+        }
+
+        ion-note {
+            align-self: flex-end;
+            margin-top: 5px;
+            padding-right: 1.3vw;
+        }
+    }
+
+    .noteForm{
+        font-family: 'Avenir', sans-serif !important;
+        font-weight: normal;
+        font-size: 10px;
+        color: #909090;
+    }
+
+    .noteFooter{
+        font-family: 'Poppins', sans-serif !important;
+        font-weight: lighter;
+        font-size: 10px;
+        color: white;
+    }
+
+    .signin-col {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-top: -5px;
+        margin-right: -.2px;
+        background: url(./../../../assets/box_footer.svg) top center;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        max-width: 400px;
+        height: 185px;
+        padding: 20px 20px 10px 0;
+        ion-button {
+            width: 50px;
+            height: 50px;
+            --background: linear-gradient(152deg, rgba(246,202,112,1) 0%, rgba(218,172,100,1) 75%);
+            --border-radius: 25px;
+            --padding-end: 0.4em;
+            --padding-start: 0.4em;
+        }
+        @media (max-width: 350px) {
+            padding: 10px 20px 10px 0;
+            ion-button {
+                width: 45px;
+                height: 45px;
+            }
+        }
+        @media (max-width: 760px) {
+            height: 27vw;
+        }
+    }
+
+    #cadastro {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 6vh;
+    }
+}
