@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ModalController } from '@ionic/angular';
+import { IntroModalPage } from '../modals/intro-modal/intro-modal.page';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private modalCtrl: ModalController
+  ) {
+
+  }
 
   ngOnInit() {
+
+  }
+
+  public login(): void {
+    this.modalCtrl.create({ component: IntroModalPage }).then((modal) => modal.present());
   }
 
 }
