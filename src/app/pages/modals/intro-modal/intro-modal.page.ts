@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IntroModalPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private route: Router,
+    private modalCtrl: ModalController
+  ) {
+
+  }
 
   ngOnInit() {
+
+  }
+
+  public goToAgenda(): void {
+    this.route.navigateByUrl("agenda").then(() => this.modalCtrl.dismiss());
   }
 
 }

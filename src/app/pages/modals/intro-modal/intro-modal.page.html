@@ -2,7 +2,7 @@
   <div id="imgContainer"></div>
   <img id="detalhe-rodape" src="assets/detalhe_rodaPe_login_2.svg" />
   <ion-grid>
-    <ion-row align-self-center>
+    <ion-row class="ion-align-self-center">
       <ion-col>
         <img src="assets/logo.svg" />
       </ion-col>
@@ -18,7 +18,7 @@
           <ion-note class="bemVindo">Bem vindo de volta!</ion-note>
         </div>
         <div align="center">
-          <ion-button shape="round">Vamos lá</ion-button>
+          <ion-button shape="round" (click)="goToAgenda()">Vamos lá</ion-button>
         </div>
       </ion-col>
     </ion-row>
