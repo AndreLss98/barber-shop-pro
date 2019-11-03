@@ -17,7 +17,8 @@ import { IntroModalPage } from './pages/modals/intro-modal/intro-modal.page';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    
   ],
   providers: [
     StatusBar,

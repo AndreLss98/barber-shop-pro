@@ -8,5 +8,40 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-grid id="calendario">
+    <ion-row>
+      <ion-col>
+        <div id="mes">{{ nameCurrentMoth }} <ion-icon (click)="presentPopOver($event)" name="ios-arrow-down"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div>{{ currentYear }}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-slides [options]="slidesConfig">
+        <ion-slide *ngFor="let day of month; let i = index" (click)="selectDay(day, i)">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <div class="dayWeekend">{{ day.nameDay }}</div>
+            <div class="dayMonth" [class.selected]="selectedDay === i">{{ day.day }}</div>
+            <div class="hasService" *ngIf="day.hasService"></div>
+          </div>
+        </ion-slide>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col id="whiteLine">
+        <div></div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of agendaFiltrada">
+      <ion-col>
+        <item-agenda [local]="item.local" [horario]="item.horario" [servico]="item.servico" [valor]="item.valor" [nome]="item.nome"></item-agenda>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
