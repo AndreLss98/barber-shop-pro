@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { ItemAgendaComponent } from './item-agenda/item-agenda.component';
+import { MesAgendaComponent } from './popovers/mes-agenda/mes-agenda.component';
 
 @NgModule({
   declarations: [
-    ItemAgendaComponent
+    MesAgendaComponent,
+    ItemAgendaComponent,
   ],
   imports: [
     CommonModule,
@@ -15,7 +17,8 @@ import { ItemAgendaComponent } from './item-agenda/item-agenda.component';
     IonicModule
   ],
   exports: [
-    ItemAgendaComponent
+    MesAgendaComponent,
+    ItemAgendaComponent,
   ]
 })
 export class ComponentsModule { }

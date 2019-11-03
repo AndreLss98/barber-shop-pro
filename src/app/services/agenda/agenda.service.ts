@@ -59,7 +59,7 @@ export class AgendaService {
     return this.currentYear;
   }
 
-  public getMoths() {
+  public getMonths() {
     return nameMonths;
   }
 

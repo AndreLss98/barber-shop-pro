@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
 
 import { itemDateAgenda, itemAgenda } from 'src/app/models/itemAgenda.model';
 
 import { AgendaService } from 'src/app/services/agenda/agenda.service';
+
+import { MesAgendaComponent } from 'src/app/components/popovers/mes-agenda/mes-agenda.component';
 
 @Component({
   selector: 'app-agenda',
@@ -25,7 +28,8 @@ export class AgendaPage implements OnInit {
   public selectedDay: number = null;
 
   constructor(
-    private agendaService: AgendaService
+    private agendaService: AgendaService,
+    private popoverCtrl: PopoverController
   ) {
 
   }
@@ -47,6 +51,19 @@ export class AgendaPage implements OnInit {
       this.nameCurrentMoth = this.agendaService.getMonthName(month);
       this.month = this.agendaService.constructMonth(this.agendaService.getDate());
     }
+  }
+
+  public async presentPopOver(ev: Event) {
+    let popover = await this.popoverCtrl.create({
+      component: MesAgendaComponent,
+      event: ev
+    });
+
+    popover.present();
+
+    popover.onDidDismiss().then(popoverdata => {
+      this.setMonth(popoverdata.data);
+    });
   }
 
   public checkAgenda() {

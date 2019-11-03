@@ -1,8 +1,9 @@
+import { Router } from '@angular/router';
+import { Platform, MenuController } from '@ionic/angular';
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 @Component({
   selector: 'app-root',
@@ -24,9 +25,11 @@ export class AppComponent {
   ];
 
   constructor(
+    private route: Router,
     private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private menuCtrl: MenuController,
+    private splashScreen: SplashScreen
   ) {
     this.initializeApp();
   }
@@ -37,4 +40,24 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
+  public toggleMenu() {
+    this.menuCtrl.toggle();
+  }
+
+  public navigatePage(page: string) {
+    if (page === "perfil") {
+      this.route.navigateByUrl("perfil");
+    } else if (page === "cartao") {
+      this.route.navigateByUrl("cartoes");
+    } else if (page === "historico") {
+      this.route.navigateByUrl("historico");
+    } else if (page === 'agenda') {
+      this.route.navigateByUrl("agenda");
+    }else if (page === "chat") {
+      this.route.navigateByUrl("home-chat");
+    }
+    this.toggleMenu();
+  }
+
 }

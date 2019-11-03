@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
 import { IntroModalPage } from '../modals/intro-modal/intro-modal.page';
+import { RecuperarSenhaPage } from '../modals/recuperar-senha/recuperar-senha.page';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,11 @@ export class LoginPage implements OnInit {
 
   public login(): void {
     this.modalCtrl.create({ component: IntroModalPage }).then((modal) => modal.present());
+  }
+
+  public recuperarSenha() {
+    this.modalCtrl.create({ component: RecuperarSenhaPage }).then((modal) => modal.present());
+    
   }
 
 }

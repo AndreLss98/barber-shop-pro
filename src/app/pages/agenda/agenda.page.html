@@ -1,9 +1,9 @@
 <ion-header mode="ios">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="login"></ion-back-button>
+      <ion-menu-button color="primary"></ion-menu-button>
     </ion-buttons>
-    <ion-title>agenda</ion-title>
+    <ion-title>Agenda</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -40,7 +40,8 @@
     </ion-row>
     <ion-row *ngFor="let item of agendaFiltrada">
       <ion-col>
-        <item-agenda [local]="item.local" [horario]="item.horario" [servico]="item.servico" [valor]="item.valor" [nome]="item.nome"></item-agenda>
+        <item-agenda [local]="item.local" [horario]="item.horario" [servico]="item.servico" [valor]="item.valor"
+          [nome]="item.nome"></item-agenda>
       </ion-col>
     </ion-row>
   </ion-grid>
