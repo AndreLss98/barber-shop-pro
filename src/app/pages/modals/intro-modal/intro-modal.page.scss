@@ -1,11 +1,9 @@
 ion-content {
     position: relative;
-    #backgroundImg {
-        position: absolute;
-        height: 100%;
-        filter: grayscale(50%) brightness(25%);
-    }
     ion-grid {
+        position: absolute;
+        top: 0;
+        left: 4px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -29,4 +27,14 @@ ion-content {
         width: 100%;
         z-index: 0;
     }
+}
+
+#imgContainer {
+    height: 100%;
+    background-image: url(./../../../../assets/imgs/business.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: grayscale(25%) brightness(50%);
+    position: relative;
 }
