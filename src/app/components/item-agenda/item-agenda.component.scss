@@ -1,0 +1,55 @@
+ion-grid.selected {
+    border-left: 3px solid #facf72;
+}
+
+#colImg {
+    margin-right: 15px;
+}
+
+div.circularImg {
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+#gridDetails {
+    padding-top: 0;
+    ion-grid {
+        padding-top: 0;
+        color: white;
+        ion-row ion-col ion-icon {
+            font-size: 1.7em;
+            color: #ff5050;
+        }
+    }
+}
+
+div.header {
+    color: #facf72;
+    font-size: 1.3em;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+span.cifrao {
+    font-size: 1.6em;
+    vertical-align: super;
+}
+
+span.valor {
+    color: var(--ion-color-primary);
+    font-size: 2.6em;
+    font-weight: 700;
+}
+
+ion-button {
+    --color: white;
+    --border-radius: 25px !important;
+    --background: linear-gradient(152deg, #eb5161 0%, #d7293a 75%);
+}
