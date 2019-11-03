@@ -1,6 +1,5 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-
-import { AgendaService } from 'src/app/services/agenda.service';
 
 @Component({
   selector: 'app-intro',
@@ -9,21 +8,16 @@ import { AgendaService } from 'src/app/services/agenda.service';
 })
 export class IntroPage implements OnInit {
 
-  public days: string[] = [];
-  public slideDaysConfig = {
-    spaceBetween: 5,
-    centeredSlides: true,
-    slidesPerView: 3
-  };
-
-  constructor(
-    private agendaServices: AgendaService
-  ) {
+  constructor(private route: Router) {
 
   }
 
   ngOnInit() {
-    this.days = this.agendaServices.getWeekDays();
+    
+  }
+
+  public goToLogin(): void {
+    this.route.navigateByUrl('/login');
   }
 
 }
