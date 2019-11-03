@@ -1,0 +1,83 @@
+ion-header {
+    --ion-background-color: #313131;
+    color: white;
+    border: none;
+    box-shadow: none;
+    ion-toolbar {
+        --border-width: 0;
+        --color: white;
+        display: flex;
+        justify-content: center;
+        ion-back-button {
+            --icon-font-size: 24px;
+        }
+        ion-title {
+            font-size: 14px;
+        }
+    }
+}
+
+ion-content {
+    --ion-background-color: #313131;
+    --color: gray;
+}
+
+#calendario {
+    box-shadow: 0 7px 4px -2px #2c2c2c;
+}
+
+#mes {
+    text-transform: uppercase;
+    font-size: 20px;
+    color: #facf72;
+    ion-icon {
+        color: gray;
+        position: absolute;
+        bottom: 5px;
+        padding-left: 5px;
+    }
+}
+
+div.dayWeekend {
+    font-size: .65em;
+    margin-bottom: .5em;
+}
+
+div.dayMonth {
+    height: 1.7em;
+    width: 1.7em;
+    border-radius: 1em;
+    padding: .2em .3em .2em .2em;
+    font-size: .7em;
+    margin-bottom: .4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.dayMonth.selected {
+    background-color: var(--ion-color-primary);
+    color: white;
+}
+
+div.hasService {
+    background-color: gray;
+    height: .4em;
+    width: .4em;
+    border-radius: 1em;
+}
+
+ion-col.diaSemana {
+    font-size: 10px;
+}
+
+#whiteLine {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    div {
+        width: 20%;
+        height: 1px;
+        background-color: white;
+    }
+}
