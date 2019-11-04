@@ -30,7 +30,9 @@ const routes: Routes = [
   },
   { path: 'historico', loadChildren: './pages/historico/historico.module#HistoricoPageModule' },
   { path: 'ganhos', loadChildren: './pages/ganhos/ganhos.module#GanhosPageModule' },
-  { path: 'pagamentos', loadChildren: './pages/pagamentos/pagamentos.module#PagamentosPageModule' },  { path: 'prices', loadChildren: './pages/prices/prices.module#PricesPageModule' }
+  { path: 'pagamentos', loadChildren: './pages/pagamentos/pagamentos.module#PagamentosPageModule' },
+  { path: 'prices', loadChildren: './pages/prices/prices.module#PricesPageModule' },
+  { path: 'cadastro-dados-pessoais', loadChildren: './pages/cadastro-dados-pessoais/cadastro-dados-pessoais.module#CadastroDadosPessoaisPageModule' }
 
 
 

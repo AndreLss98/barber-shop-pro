@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
@@ -12,6 +13,7 @@ import { RecuperarSenhaPage } from '../modals/recuperar-senha/recuperar-senha.pa
 export class LoginPage implements OnInit {
 
   constructor(
+    private route: Router,
     private modalCtrl: ModalController
   ) {
 
@@ -27,7 +29,10 @@ export class LoginPage implements OnInit {
 
   public recuperarSenha() {
     this.modalCtrl.create({ component: RecuperarSenhaPage }).then((modal) => modal.present());
-    
+  }
+
+  public goToCadastro(): void {
+    this.route.navigateByUrl('cadastro-dados-pessoais');
   }
 
 }
