@@ -1,0 +1,91 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="agenda"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Histórico</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="cabecalho">
+    <div class="aba" (click)="abaSelecionada = 'realizado'">
+      <ion-label [class.selecionado]="abaSelecionada === 'realizado'">Realizados</ion-label>
+    </div>
+    <div class="aba" (click)="abaSelecionada = 'avaliacoes'">
+      <ion-label [class.selecionado]="abaSelecionada === 'avaliacoes'">Avaliações</ion-label>
+    </div>
+    <div class="aba" (click)="abaSelecionada = 'cancelado'">
+      <ion-label [class.selecionado]="abaSelecionada === 'cancelado'">Cancelados</ion-label>
+    </div>
+  </div>
+
+  <div id="historicoRealizado" *ngIf="abaSelecionada === 'realizado'">
+    <div *ngIf="historicoCancelados && historicoRealizados.length > 0">
+      <div class="itemList" *ngFor="let hist of historicoRealizados">
+        <div>
+          <p>{{ hist.dia }}</p>
+          <div *ngFor="let item of hist.data">
+            <historico-item [nome]="item.barberName" [local]="item.local" [valor]="item.valor" [horario]="item.horas"></historico-item>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="avaliacoes" *ngIf="abaSelecionada === 'avaliacoes'">
+
+  </div>
+
+  <div id="historicoCancelado" *ngIf="abaSelecionada === 'cancelado'">
+    <div class="itemList" *ngFor="let hist of historicoCancelados">
+      <div>
+        <p>{{ hist.dia }}</p>
+        <div *ngFor="let item of hist.data">
+          <historico-item [nome]="item.barberName" [local]="item.local" [valor]="item.valor" [horario]="item.horas">
+          </historico-item>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="listaVazia" *ngIf="((abaSelecionada == 'realizado' && (!historicoRealizados || historicoRealizados.length == 0)) || (abaSelecionada == 'cancelado' && (!historicoCancelados || historicoCancelados.length == 0)))">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col class="ion-text-center">
+          <img src="assets/NoHistory.svg" />
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-col class="ion-text-center">
+          <span class="title">Sem histórico</span>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-col class="ion-text-center">
+          <span>Você não tem histórico registrado.</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div id="listaVaziaAva" *ngIf="(abaSelecionada === 'avaliacoes' && (!avaliacoes || avaliacoes.length === 0))">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="9" class="ion-text-center">
+          <img src="assets/NoAva.svg" />
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="9" class="ion-text-center">
+          <span class="title">Não há avaliações</span>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="11" class="ion-text-center">
+          <span>Irão aparecer aqui assim que existir</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

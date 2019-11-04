@@ -1,68 +1,76 @@
 <ion-app>
-    <ion-split-pane>
-      <ion-menu type="overlay">
-        <ion-content>
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                <ion-note>Andre Luis<br></ion-note>
-                <ion-note>+55 9 8124 2373</ion-note>
-              </ion-col>
-              <ion-col size="1" (click)="toggleMenu()">
-                <ion-icon name="close"></ion-icon>
-              </ion-col>
-            </ion-row>
-            <ion-row (click)="navigatePage('perfil')">
-              <ion-col size="1">
-                <ion-icon name="ios-contact"></ion-icon>
-              </ion-col>
-              <ion-col>
-                <ion-note>Perfil</ion-note>
-              </ion-col>
-            </ion-row>
-            <ion-row (click)="navigatePage('cartao')">
-              <ion-col size="1">
-                <ion-icon name="card"></ion-icon>
-              </ion-col>
-              <ion-col>
-                <ion-note>Forma de Pagamento</ion-note>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="1">
-                <ion-icon name="bookmarks"></ion-icon>
-              </ion-col>
-              <ion-col>
-                <ion-note>Termo de uso</ion-note>
-              </ion-col>
-            </ion-row>
-            <ion-row (click)="navigatePage('agenda')">
-              <ion-col size="1">
-                <ion-icon name="calendar"></ion-icon>
-              </ion-col>
-              <ion-col>
-                <ion-note>Agenda</ion-note>
-              </ion-col>
-            </ion-row>
-            <ion-row (click)="navigatePage('historico')">
-              <ion-col size="1">
-                <ion-icon name="pin"></ion-icon>
-              </ion-col>
-              <ion-col>
-                <ion-note>Histórico</ion-note>
-              </ion-col>
-            </ion-row>
-            <ion-row (click)="navigatePage('chat')">
-              <ion-col size="1">
-                <ion-icon name="chatboxes"></ion-icon>
-              </ion-col>
-              <ion-col>
-                <ion-note>Chat</ion-note>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-content>
-      </ion-menu>
-      <ion-router-outlet main></ion-router-outlet>
-    </ion-split-pane>
-  </ion-app>
+  <ion-split-pane>
+    <ion-menu type="overlay">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <span>Andre Luis<br></span>
+            <span>+55 9 8124 2373</span>
+          </ion-col>
+          <ion-col size="1" (click)="toggleMenu()">
+            <ion-icon name="close"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row (click)="navigatePage('perfil')">
+          <ion-col size="1" class="iconCol">
+            <ion-icon src="assets/perfil.svg"></ion-icon>
+          </ion-col>
+          <ion-col class="ion-align-self-center">
+            <ion-note>Perfil</ion-note>
+          </ion-col>
+        </ion-row>
+        <ion-row (click)="navigatePage('cartao')">
+          <ion-col size="1" class="iconCol">
+            <ion-icon src="assets/gains.svg"></ion-icon>
+          </ion-col>
+          <ion-col class="ion-align-self-center">
+            <ion-note>Forma de Pagamento</ion-note>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="1" class="iconCol">
+            <ion-icon src="assets/terms.svg"></ion-icon>
+          </ion-col>
+          <ion-col class="ion-align-self-center">
+            <ion-note>Termo de uso</ion-note>
+          </ion-col>
+        </ion-row>
+        <ion-row (click)="navigatePage('agenda')">
+          <ion-col size="1" class="iconCol">
+            <ion-icon src="assets/calendar.svg"></ion-icon>
+          </ion-col>
+          <ion-col class="ion-align-self-center">
+            <ion-note>Agenda</ion-note>
+          </ion-col>
+        </ion-row>
+        <ion-row (click)="navigatePage('historico')">
+          <ion-col size="1" class="iconCol">
+            <ion-icon src="assets/history.svg"></ion-icon>
+          </ion-col>
+          <ion-col class="ion-align-self-center">
+            <ion-note>Histórico</ion-note>
+          </ion-col>
+        </ion-row>
+        <ion-row (click)="navigatePage('chat')">
+          <ion-col size="1" class="iconCol">
+            <ion-icon src="assets/chat.svg"></ion-icon>
+          </ion-col>
+          <ion-col class="ion-align-self-center">
+            <ion-note>Chat</ion-note>
+          </ion-col>
+        </ion-row>
+        <ion-row (click)="navigatePage('prices')">
+          <ion-col size="1" class="iconCol">
+            <ion-icon src="assets/prices.svg"></ion-icon>
+          </ion-col>
+          <ion-col class="ion-align-self-center">
+            <ion-note>Preços dos Cortes</ion-note>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+<!--       <ion-content>
+      </ion-content> -->
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

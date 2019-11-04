@@ -1,17 +1,31 @@
 // @import "../theme/fonts.scss";
 
 ion-menu {
-    background-color: rgba(128, 128, 128, .5);
     --min-width: 100% !important;
-    --max-height: 300px;
+    --max-height: 55% !important;
+    --background: transparent;
 }
 
-ion-content {
-    --ion-background-color: #313131;
-    ion-icon {
-        color: white;
-    }
-    ion-note {
-        color: white;
-    }
+ion-grid {
+    width: 100%;
+    padding: 0 1em;
+    background-color: #313131;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+ion-icon {
+    color: white;
+    font-size: 1.5em;
+}
+
+ion-col.iconCol {
+    margin-right: .5em;
+}
+span {
+    color: white;
+}
+
+ion-note {
+    color: white;
+    font-size: 1em;
 }

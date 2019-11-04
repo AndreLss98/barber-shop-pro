@@ -1,7 +1,7 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col align="center">
+      <ion-col class="ion-text-center">
         <img src="assets/logo.svg" />
       </ion-col>
     </ion-row>
@@ -15,7 +15,7 @@
         <input #inputEmail formControlName="email" type="email" />
       </ion-row>
       <ion-row>
-        <ion-col align-self-end>
+        <ion-col class="ion-align-self-end">
           <ion-button type="submit" [disabled]="formGroup.invalid || !inputEmail.value">
             <ion-icon name="arrow-forward"></ion-icon>
           </ion-button>
