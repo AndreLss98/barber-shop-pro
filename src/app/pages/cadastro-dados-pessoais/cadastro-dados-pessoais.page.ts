@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -11,6 +12,7 @@ export class CadastroDadosPessoaisPage implements OnInit {
   public cadastroForm: FormGroup;
 
   constructor(
+    private route: Router,
     private formBuilder: FormBuilder
   ) {
     this.cadastroForm = this.formBuilder.group({
@@ -23,6 +25,10 @@ export class CadastroDadosPessoaisPage implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  public goToDocumentos(): void {
+    this.route.navigateByUrl('selecao-documento');
   }
 
 }

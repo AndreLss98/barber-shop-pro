@@ -1,0 +1,29 @@
+ion-content {
+    --ion-background-color: #313131;
+}
+
+ion-item {
+    --border-color: var(--ion-color-primary);
+    --detail-icon-color: #fefefe;
+    --inner-padding-end: 0;
+}
+
+ion-icon {
+    font-size: 1.5em;
+}
+
+ion-item ion-label {
+    color: white;
+}
+
+ion-item ion-icon {
+    color: gray;
+}
+
+span.text {
+    color: var(--ion-color-primary);
+}
+
+span.obs {
+    color: #666666;
+}

@@ -1,0 +1,35 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <img src="assets/logo.svg" />
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <span class="text">Confirme para nós que você está com um desses documentos:<br></span>
+        <span class="obs">*Dados obrigatorios</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="1" class="ion-align-self-center ion-text-center">
+        <ion-icon src="assets/rg.svg"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-item (click)="initializeCadastro()" detail>
+          <ion-label>Estou com o RG</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="1" class="ion-align-self-center ion-text-center">
+        <ion-icon src="assets/cnh.svg"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-item (click)="initializeCadastro()" detail>
+          <ion-label>Estou com o RG</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
