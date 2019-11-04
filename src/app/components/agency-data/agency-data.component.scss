@@ -1,0 +1,22 @@
+ion-content {
+    ion-icon {
+        color: white;
+        font-size: 2em;
+    }
+    span {
+        color: white;
+    }
+}
+#card {
+    border-radius: 15px;
+    box-shadow: 0 0 10px 1px #191919;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    ion-icon {
+        font-size: 4em;
+    }
+    span {
+        color: white;
+    }
+}

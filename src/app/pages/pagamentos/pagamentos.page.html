@@ -1,0 +1,18 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-butttons slot="start">
+      <ion-back-button defaultHref="ganhos"></ion-back-button>
+    </ion-butttons>
+    <ion-title>Todos os Registros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center" *ngFor="let pag of ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']">
+      <ion-col size="11" class="ion-text-center">
+        <pagamentos></pagamentos>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -28,7 +28,7 @@ export class AgendaPage implements OnInit {
   public selectedDay: number = null;
 
   constructor(
-    private agendaService: AgendaService,
+    public agendaService: AgendaService,
     private popoverCtrl: PopoverController
   ) {
 

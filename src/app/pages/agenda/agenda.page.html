@@ -8,7 +8,24 @@
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="ion-text-center ion-align-self-center">
+        <span class="title">Dias de Trabalho</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="ion-text-center ion-align-self-center" *ngFor="let day of agendaService.getWeekDays()">
+        {{ day }}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-grid id="calendario">
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="ion-align-self-center ion-text-center">
+        <span class="title">Mês</span>
+      </ion-col>
+    </ion-row>
     <ion-row>
       <ion-col>
         <div id="mes">{{ nameCurrentMoth }} <ion-icon (click)="presentPopOver($event)" name="ios-arrow-down"></ion-icon>

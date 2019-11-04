@@ -28,7 +28,9 @@ const routes: Routes = [
     },
     loadChildren: './pages/chat/chat.module#ChatPageModule'
   },
-  { path: 'historico', loadChildren: './pages/historico/historico.module#HistoricoPageModule' },
+  { path: 'historico', loadChildren: './pages/historico/historico.module#HistoricoPageModule' },  { path: 'ganhos', loadChildren: './pages/ganhos/ganhos.module#GanhosPageModule' },
+  { path: 'pagamentos', loadChildren: './pages/pagamentos/pagamentos.module#PagamentosPageModule' },
+
 
 
 ];

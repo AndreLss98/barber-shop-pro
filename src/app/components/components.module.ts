@@ -7,13 +7,17 @@ import { ItemAgendaComponent } from './item-agenda/item-agenda.component';
 import { MesAgendaComponent } from './popovers/mes-agenda/mes-agenda.component';
 import { ChatItemComponent } from './chat-item/chat-item.component';
 import { HistoricoItemComponent } from './historico-item/historico-item.component';
+import { PagamentosComponent } from './pagamentos/pagamentos.component';
+import { AgencyDataComponent } from './agency-data/agency-data.component';
 
 @NgModule({
   declarations: [
     ChatItemComponent,
     MesAgendaComponent,
+    AgencyDataComponent,
     ItemAgendaComponent,
-    HistoricoItemComponent
+    PagamentosComponent,
+    HistoricoItemComponent,
   ],
   imports: [
     CommonModule,
@@ -23,7 +27,9 @@ import { HistoricoItemComponent } from './historico-item/historico-item.componen
   exports: [
     ChatItemComponent,
     MesAgendaComponent,
+    AgencyDataComponent,
     ItemAgendaComponent,
+    PagamentosComponent,
     HistoricoItemComponent
   ]
 })

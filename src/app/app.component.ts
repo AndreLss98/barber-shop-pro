@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
+import { NetworkService } from './services/network/network.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -28,16 +30,18 @@ export class AppComponent {
     private route: Router,
     private platform: Platform,
     private statusBar: StatusBar,
+    private network: NetworkService,
     private menuCtrl: MenuController,
-    private splashScreen: SplashScreen
+    private splashScreen: SplashScreen,
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      this.statusBar.hide();
       this.splashScreen.hide();
+      this.network.initializeNetworkEvents();
     });
   }
 
@@ -48,8 +52,8 @@ export class AppComponent {
   public navigatePage(page: string) {
     if (page === "perfil") {
       this.route.navigateByUrl("perfil");
-    } else if (page === "cartao") {
-      this.route.navigateByUrl("cartoes");
+    } else if (page === "ganhos") {
+      this.route.navigateByUrl("ganhos");
     } else if (page === "historico") {
       this.route.navigateByUrl("historico");
     } else if (page === 'agenda') {

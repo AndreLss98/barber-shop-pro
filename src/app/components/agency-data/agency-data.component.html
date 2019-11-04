@@ -1,0 +1,30 @@
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-between">
+      <ion-col class="ion-align-self-center ion-text-start">
+        <span>Banco Cadastrado</span>
+      </ion-col>
+      <ion-col class="ion-text-end" (click)="openActionSheet()">
+        <ion-icon name="md-more"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <div id="card">
+          <ion-grid>
+            <ion-row class="ion-justify-content-center">
+              <ion-col class="ion-text-center">
+                <ion-icon src="assets/emptyWallet.svg"></ion-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-justify-content-center">
+              <ion-col class="ion-text-center">
+                <span>Não há banco cadastrado</span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,53 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="agenda"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ganhos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-between">
+      <ion-col size="5" class="ion-text-start" (click)="typeView = 'saldo'">
+        <span [class.selected]="typeView === 'saldo'">Saldo</span>
+      </ion-col>
+      <ion-col size="5" class="ion-text-end" (click)="typeView = 'dados'">
+        <span [class.selected]="typeView === 'dados'">Dados Bancários</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="typeView === 'saldo'">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11">
+        <div id="saldo">
+          <div>
+            <span class="cifrao">R$ </span>
+            <span class="valor">30,00</span>
+          </div>
+          <div style="margin-top: 10px">
+            <span>Seu Saldo</span>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="typeView === 'saldo'">
+    <ion-row class="ion-justify-content-between">
+      <ion-col size="5" class="ion-text-start">
+        <span>Últimos Registros</span>
+      </ion-col>
+      <ion-col size="5" class="ion-text-end" (click)="seeAllPayments()">
+        <span>Ver todos</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center" *ngFor="let pag of ['a', 'b', 'c']">
+      <ion-col size="11" class="ion-text-center">
+        <pagamentos></pagamentos>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <agency-data *ngIf="typeView === 'dados'"></agency-data>
+</ion-content>
