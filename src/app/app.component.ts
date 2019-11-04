@@ -50,18 +50,7 @@ export class AppComponent {
   }
 
   public navigatePage(page: string) {
-    if (page === "perfil") {
-      this.route.navigateByUrl("perfil");
-    } else if (page === "ganhos") {
-      this.route.navigateByUrl("ganhos");
-    } else if (page === "historico") {
-      this.route.navigateByUrl("historico");
-    } else if (page === 'agenda') {
-      this.route.navigateByUrl("agenda");
-    }else if (page === "chat") {
-      this.route.navigateByUrl("home-chat");
-    }
-    this.toggleMenu();
+    this.route.navigateByUrl(page).then(() => this.toggleMenu());
   }
 
 }

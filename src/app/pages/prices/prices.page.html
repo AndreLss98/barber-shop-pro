@@ -1,0 +1,76 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-butttons slot="start">
+      <ion-back-button defaultHref="agenda"></ion-back-button>
+    </ion-butttons>
+    <ion-title>Todos os Registros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3" class="ion-text-start">
+        <span class="title">Barba</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="rowPrice ion-justify-content-center">
+      <ion-col size="11" class="ion-text-center">
+        <div class="price">
+          <div>
+            <span class="cifrao">R$ </span>
+            <span class="valor">30,00</span>
+          </div>
+          <div class="priceTag">
+            <ion-icon src="assets/beard_black.svg"></ion-icon>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3" class="ion-text-start">
+        <span class="title">Cabelo</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="rowPrice ion-justify-content-center">
+      <ion-col size="11" class="ion-text-center">
+        <div class="price">
+          <div>
+            <span class="cifrao">R$ </span>
+            <span class="valor">30,00</span>
+          </div>
+          <div class="priceTag">
+            <ion-icon src="assets/hair_black.svg"></ion-icon>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3" class="ion-text-start">
+        <span class="title">Bigode</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="11" class="ion-text-center">
+        <div class="price">
+          <div>
+            <span class="cifrao">R$ </span>
+            <span class="valor">30,00</span>
+          </div>
+          <div class="priceTag">
+            <ion-icon src="assets/mustache_black.svg"></ion-icon>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center" id="rowBtn">
+      <ion-col class="ion-text-center">
+        <ion-button shape="round" color="primary" (click)="savePrices()">Salvar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
