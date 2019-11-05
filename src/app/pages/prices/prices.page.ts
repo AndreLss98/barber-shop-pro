@@ -18,7 +18,7 @@ export class PricesPage implements OnInit {
 
   public savePrices(): void {
     this.alertCtrl.create({
-      header: 'Preços cadastrados com sucesso',
+      message: 'Preços cadastrados com sucesso',
       mode: 'ios',
       backdropDismiss: false,
       buttons: [

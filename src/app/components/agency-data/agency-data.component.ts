@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
+import { BankService } from 'src/app/services/bank/bank.service';
 
 @Component({
   selector: 'agency-data',
@@ -8,7 +9,10 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class AgencyDataComponent implements OnInit {
 
-  constructor(private actionCtrl: ActionSheetController) {
+  constructor(
+    public bankService: BankService,
+    private actionCtrl: ActionSheetController,
+  ) {
 
   }
 
@@ -16,12 +20,23 @@ export class AgencyDataComponent implements OnInit {
 
   }
 
-  public openActionSheet(): void {
+  public moreOptions(): void {
+    if (!this.bankService.myBank) {
+      this.openCadastro();
+    } else {
+      this.openCadastroOptions();
+    }
+  }
+
+  public openCadastro(): void {
     this.actionCtrl.create({
       mode: 'ios',
       buttons: [
         {
-          text: 'Cadastrar'
+          text: 'Cadastrar',
+          handler: () => {
+            this.bankService.isCadastro = true;
+          }
         },
         {
           text: 'Cancelar',
@@ -29,6 +44,34 @@ export class AgencyDataComponent implements OnInit {
         }
       ]
     }).then((action) => action.present());
+  }
+
+  public openCadastroOptions(): void {
+    this.actionCtrl.create({
+      mode: 'ios',
+      buttons: [
+        {
+          text: 'Editar',
+          handler: () => {
+            this.bankService.isCadastro = true;
+          }
+        },
+        {
+          text: 'Excluir',
+          role: 'destructive',
+          handler: () => {
+            this.bankService.myBank = null;
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+
+          }
+        }
+      ]
+    }).then((moda) => moda.present());
   }
 
 }

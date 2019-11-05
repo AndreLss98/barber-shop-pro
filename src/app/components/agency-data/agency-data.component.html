@@ -4,13 +4,13 @@
       <ion-col class="ion-align-self-center ion-text-start">
         <span>Banco Cadastrado</span>
       </ion-col>
-      <ion-col class="ion-text-end" (click)="openActionSheet()">
+      <ion-col class="ion-text-end" (click)="moreOptions()">
         <ion-icon name="md-more"></ion-icon>
       </ion-col>
     </ion-row>
-    <ion-row class="ion-justify-content-center">
+    <ion-row *ngIf="!bankService.myBank" class="ion-justify-content-center">
       <ion-col size="11">
-        <div id="card">
+        <div class="card">
           <ion-grid>
             <ion-row class="ion-justify-content-center">
               <ion-col class="ion-text-center">
@@ -20,6 +20,41 @@
             <ion-row class="ion-justify-content-center">
               <ion-col class="ion-text-center">
                 <span>Não há banco cadastrado</span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="bankService.myBank" class="ion-justify-content-center">
+      <ion-col size="11">
+        <div class="card">
+          <ion-grid>
+            <ion-row class="ion-justify-content-center">
+              <ion-col class="ion-text-center">
+                <img src="assets/wallet_full.svg" />
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-justify-content-center">
+              <ion-col class="ion-text-center">
+                <span class="bankName">BANCO {{ bankService.myBank.bank | uppercase }}</span>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-justify-content-around data">
+              <ion-col class="ion-text-start">
+                <span>Agência:</span>
+              </ion-col>
+              <ion-col class="ion-text-end">
+                <span>{{ bankService.myBank.agency }}</span>
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-justify-content-between data">
+              <ion-col class="ion-text-start">
+                <span>Conta:</span>
+              </ion-col>
+              <ion-col class="ion-text-end">
+                <span>{{ bankService.myBank.contaCorrente }}</span>
               </ion-col>
             </ion-row>
           </ion-grid>

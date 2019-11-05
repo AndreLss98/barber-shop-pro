@@ -49,5 +49,38 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <agency-data *ngIf="typeView === 'dados'"></agency-data>
+  <agency-data *ngIf="typeView === 'dados' && !bankService.isCadastro"></agency-data>
+  <ion-content id="secondContent" *ngIf="bankService.isCadastro && typeView === 'dados'">
+    <form [formGroup]="bankForm">
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Nome do titular da conta*</ion-label>
+          <ion-input formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Banco*</ion-label>
+          <ion-input formControlName="bank"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Agência*</ion-label>
+          <ion-input formControlName="agency" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Conta Corrente*</ion-label>
+          <ion-input formControlName="contaCorrente" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">CPF/CNPJ do Titular*</ion-label>
+          <ion-input formControlName="cpf" type="number"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <ion-col class="ion-text-center">
+            <ion-button type="submit" shape="round" (click)="saveCard()" [disabled]="bankForm.invalid">Salvar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-content>
 </ion-content>

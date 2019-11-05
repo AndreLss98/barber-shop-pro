@@ -50,3 +50,17 @@ span.selected {
     border-bottom: 2px solid var(--ion-color-primary);
     padding-bottom: 3px;
 }
+
+#secondContent {
+    --padding-start: 30px;
+    --padding-end: 30px;
+    ion-item {
+        --color: #666666;
+        --border-color: white;
+        --padding-start: 0;
+        --padding-end: 0;
+        ion-input {
+            --color: white !important;
+        }
+    }
+}

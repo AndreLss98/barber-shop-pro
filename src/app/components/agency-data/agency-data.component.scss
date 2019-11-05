@@ -7,7 +7,7 @@ ion-content {
         color: white;
     }
 }
-#card {
+div.card {
     border-radius: 15px;
     box-shadow: 0 0 10px 1px #191919;
     min-height: 250px;
@@ -16,7 +16,17 @@ ion-content {
     ion-icon {
         font-size: 4em;
     }
+    ion-icon.full {
+        font-size: 13em;
+    }
     span {
         color: white;
+    }
+    span.bankName {
+        color: var(--ion-color-primary);
+        font-weight: 600;
+    }
+    ion-row.data {
+        padding: 0 1em;
     }
 }

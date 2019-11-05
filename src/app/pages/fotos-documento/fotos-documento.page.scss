@@ -1,0 +1,21 @@
+ion-content {
+    --ion-background-color: #313131;
+}
+
+div.square {
+    border-radius: 15px;
+    box-shadow: 0 0 2px 2px #191919;
+}
+
+span.svgLabel {
+    font-size: .8em;
+    color: white;
+}
+
+span.text {
+    color: var(--ion-color-primary);
+}
+
+span.obs {
+    color: #666666;
+}

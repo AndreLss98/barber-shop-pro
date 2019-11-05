@@ -17,7 +17,7 @@ export class SelecaoTipoDocumentoPage implements OnInit {
   }
 
   public initializeCadastro(): void {
-    this.route.navigateByUrl('');
+    this.route.navigateByUrl('fotos-documento');
   }
 
 }
