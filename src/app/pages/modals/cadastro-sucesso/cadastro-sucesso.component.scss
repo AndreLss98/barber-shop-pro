@@ -1,0 +1,21 @@
+ion-content {
+    --ion-background-color: #313131;
+    span {
+        color: white;
+    }
+    ion-grid {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}
+
+span.aviso {
+    font-weight: 600;
+}
+
+span.obs {
+    font-size: .8em;
+    color: #666666 !important;
+}

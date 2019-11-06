@@ -34,7 +34,13 @@
   </div>
 
   <div id="avaliacoes" *ngIf="abaSelecionada === 'avaliacoes'">
-
+    <ion-grid>
+      <ion-row class="ion-justify-content-center" *ngFor="let rating of avaliacoes">
+        <ion-col size="10">
+          <avaliacao [ava]="rating.score"></avaliacao>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 
   <div id="historicoCancelado" *ngIf="abaSelecionada === 'cancelado'">

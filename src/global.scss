@@ -27,5 +27,9 @@
 
 
 ion-modal {
-    --background: transparent !important;
-  }
+  --background: transparent !important;
+}
+
+ion-fab-button.fab-button-disabled {
+  --background: linear-gradient(to right, #d8d7d5, #9b9b9b) !important;
+}

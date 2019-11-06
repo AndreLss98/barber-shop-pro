@@ -4,7 +4,7 @@ ion-content {
 
 div.square {
     border-radius: 15px;
-    box-shadow: 0 0 2px 2px #191919;
+    box-shadow: 0 0 5px 1px #191919;
 }
 
 span.svgLabel {
@@ -16,6 +16,21 @@ span.text {
     color: var(--ion-color-primary);
 }
 
+span.text.aviso {
+    font-size: .9em;
+}
+
 span.obs {
     color: #666666;
+}
+
+div.imgContainer {
+    display: inline-block;
+    position: relative;
+}
+
+div.checkMark {
+    position: absolute;
+    top: -5px;
+    right: -15px;
 }

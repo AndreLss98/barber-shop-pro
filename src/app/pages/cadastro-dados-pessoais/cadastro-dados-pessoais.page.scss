@@ -1,63 +1,34 @@
 ion-content {
-    --background: #313131;
+    --ion-background-color: #313131;
 }
 
-#cadastro-btn {
-    float: right;
-    margin-top: 40px;
-    padding: 4px 0 0 2px;
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    color: white;
-    font-size: 30px;
-    background-image: linear-gradient(to right, #fbd072, #d8a964);
+span.text {
+    color: var(--ion-color-primary);
+}
+span.obs {
+    color: #666666;
 }
 
-#cadastro-btn[disabled] {
-    background-image: linear-gradient(to right, #d8d7d5, #9b9b9b);
-}
-
-img path {
-    fill: #fbd072;
-}
-
-p {
-    color: white;
-}
-
-#p1 {
-    color: #fbd072;
-}
-
-#paddingDiv {
+#form {
     padding: 0 25px;
 }
 
-#logo {
-    display: flex;
-    justify-content: center;
-}
-
-ion-icon {
-    color: #fbd072;
-}
-
-button ion-icon {
-    color: white;
-}
-
 ion-item {
-    --background: #313131;
-    --border-color: white !important;
+    --color: #666666;
+    --border-color: #666666;
+    --padding-start: 0;
+    --padding-end: 0;
 }
 
-ion-label {
-    --color: white !important;
+ion-col.btnCol {
+    display: inline-block;
+    padding: 0;
 }
 
 ion-input {
-    --placeholder-color: white;
-    --color: white;
-    caret-color: #d8a964;
+    color: white;
+}
+
+ion-fab-button {
+    display: inline-block;
 }

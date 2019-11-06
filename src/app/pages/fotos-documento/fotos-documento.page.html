@@ -16,11 +16,16 @@
       <ion-col>
         <ion-row>
           <ion-col>
-            <div class="square">
+            <div class="square" (click)="takePhotoFront()">
               <ion-grid>
                 <ion-row class="ion-justify-content-center">
                   <ion-col class="ion-text-center">
-                    <img src="assets/docFront.svg" />
+                    <div class="imgContainer">
+                      <img src="assets/docFront.svg" />
+                      <div class="checkMark" *ngIf="isPhotoFront">
+                        <img src="assets/greenCheck.svg" />
+                      </div>
+                    </div>
                   </ion-col>
                 </ion-row>
                 <ion-row>
@@ -42,11 +47,16 @@
       <ion-col>
         <ion-row>
           <ion-col>
-            <div class="square">
+            <div class="square" (click)="takePhotoBack()">
               <ion-grid>
                 <ion-row class="ion-justify-content-center">
                   <ion-col class="ion-text-center">
-                    <img src="assets/docBack.svg" />
+                    <div class="imgContainer">
+                      <img src="assets/docBack.svg" />
+                      <div class="checkMark" *ngIf="isPhotoBack">
+                        <img src="assets/greenCheck.svg" />
+                      </div>
+                    </div>
                   </ion-col>
                 </ion-row>
                 <ion-row>
@@ -63,7 +73,7 @@
             <span class="obs">Verso</span>
           </ion-col>
         </ion-row>
-      </ion-col>      
+      </ion-col>
     </ion-row>
   </ion-grid>
   <ion-grid>
@@ -74,17 +84,22 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <span class="text">- Observe se você consegue ler os textos nas fotos</span>
+        <span class="text aviso">- Observe se você consegue ler os textos nas fotos</span>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <span class="text">- Se possível, retire o documento do plástico</span>
+        <span class="text aviso">- Se possível, retire o documento do plástico</span>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <span class="text">- Não aceitamos CNH vencida</span>
+        <span class="text aviso">- Não aceitamos CNH vencida</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="ion-text-center">
+        <ion-button shape="round" (click)="goToSelfie()" [disabled]="!isPhotoFront || !isPhotoBack">Continuar</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -1,0 +1,27 @@
+<ion-grid>
+  <ion-row>
+    <ion-col size="2" class="ion-align-self-center">
+        <ion-icon class="info" src="assets/info.svg"></ion-icon> 
+    </ion-col>
+    <ion-col>
+      <ion-row class="ion-justify-content-center">
+        <ion-col class="ion-text-start label">
+          <span class="label">Um cliente avaliou seu
+            trabalho</span>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-ceter">
+        <ion-col class="ion-tex-start starsCol">
+          <ion-row class="ion-justify-content-end">
+            <ion-col class="ion-text-start ion-align-self-center" *ngFor="let star of stars">
+              <ion-icon class="stars" [src]="star.iconSrc"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="2" class="ion-align-self-center ion-text-center">
+          <ion-icon class="face" [src]="iconFace"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+</ion-grid>

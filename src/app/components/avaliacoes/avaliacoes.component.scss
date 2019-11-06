@@ -1,0 +1,31 @@
+ion-grid {
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px 15px;
+}
+
+ion-col {
+    padding: 0;
+}
+
+ion-col.label {
+    margin-bottom: .5em;
+}
+
+ion-col.starsCol {
+    border-right: 1px solid #c0c0c0;
+    margin-right: 5px;
+}
+
+ion-icon {
+    font-size: 1.4em;
+}
+
+ion-icon.info {
+    font-size: 1.5em;
+    margin-right: 4px;
+}
+
+span.label {
+    font-size: .8em;
+}

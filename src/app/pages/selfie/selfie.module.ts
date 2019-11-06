@@ -5,22 +5,24 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginPage } from './login.page';
+import { SelfiePage } from './selfie.page';
+import { CadastroSucessoComponent } from '../modals/cadastro-sucesso/cadastro-sucesso.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginPage
+    component: SelfiePage
   }
 ];
 
 @NgModule({
   imports: [
-    CommonModule,
     FormsModule,
     IonicModule,
+    CommonModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [LoginPage]
+  declarations: [SelfiePage, CadastroSucessoComponent],
+  entryComponents: [CadastroSucessoComponent]
 })
-export class LoginPageModule {}
+export class SelfiePageModule {}
