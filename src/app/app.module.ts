@@ -4,10 +4,12 @@ import { RouteReuseStrategy } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
+import { Camera } from '@ionic-native/camera/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { Camera } from '@ionic-native/camera/ngx';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -38,10 +40,12 @@ import { InfoComponent } from './pages/modals/info/info.component';
     IonicModule.forRoot()
   ],
   providers: [
+    Camera,
     Network,
     StatusBar,
+    Geolocation,
     SplashScreen,
-    Camera,
+    LocationAccuracy,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

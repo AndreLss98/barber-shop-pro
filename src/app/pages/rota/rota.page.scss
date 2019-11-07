@@ -1,0 +1,13 @@
+ion-header {
+    position: absolute;
+    --border-width: 0 !important;
+}
+
+ion-toolbar {
+    --background: transparent;
+    --border-width: 0 !important;
+}
+
+#mapContent {
+    height: 100%;
+}

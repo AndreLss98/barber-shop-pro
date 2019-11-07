@@ -48,8 +48,18 @@ span.valor {
     font-weight: 700;
 }
 
+#btnsRow {
+    ion-col {
+        padding: 0;
+    }
+}
+
 ion-button {
+    font-size: .8em;
+    --border-radius: 25px;
+}
+
+ion-button.cancel {
     --color: white;
-    --border-radius: 25px !important;
     --background: linear-gradient(152deg, #eb5161 0%, #d7293a 75%);
 }

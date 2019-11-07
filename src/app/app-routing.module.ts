@@ -34,7 +34,8 @@ const routes: Routes = [
   { path: 'prices', loadChildren: './pages/prices/prices.module#PricesPageModule' },
   { path: 'cadastro-dados-pessoais', loadChildren: './pages/cadastro-dados-pessoais/cadastro-dados-pessoais.module#CadastroDadosPessoaisPageModule' },
   { path: 'selecao-documento', loadChildren: './pages/selecao-tipo-documento/selecao-tipo-documento.module#SelecaoTipoDocumentoPageModule' },
-  { path: 'fotos-documento', loadChildren: './pages/fotos-documento/fotos-documento.module#FotosDocumentoPageModule' },  { path: 'selfie', loadChildren: './pages/selfie/selfie.module#SelfiePageModule' }
+  { path: 'fotos-documento', loadChildren: './pages/fotos-documento/fotos-documento.module#FotosDocumentoPageModule' },  { path: 'selfie', loadChildren: './pages/selfie/selfie.module#SelfiePageModule' },
+  { path: 'rota', loadChildren: './pages/rota/rota.module#RotaPageModule' }
 
 ];
 

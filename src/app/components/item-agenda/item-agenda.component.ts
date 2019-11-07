@@ -1,5 +1,6 @@
 import { ActionSheetController } from '@ionic/angular';
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'item-agenda',
@@ -16,7 +17,10 @@ export class ItemAgendaComponent implements OnInit {
 
   public isInverted: boolean = false;
 
-  constructor(private actionSheetCtrl: ActionSheetController) {
+  constructor(
+    private route: Router,
+    private actionSheetCtrl: ActionSheetController
+  ) {
 
   }
 
@@ -44,6 +48,10 @@ export class ItemAgendaComponent implements OnInit {
     }).then((action) => {
       action.present();
     });
+  }
+
+  public initializeService() {
+    this.route.navigateByUrl('rota');
   }
 
 }

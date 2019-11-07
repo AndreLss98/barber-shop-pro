@@ -19,15 +19,17 @@ export class IntroModalPage implements OnInit {
 
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.statusbar.hide();
   }
 
+  ngOnInit() {
+    this.route.navigateByUrl("agenda");
+  }
+
   public goToAgenda(): void {
-    this.route.navigateByUrl("agenda").then(() => {
-        this.statusbar.show();
-        this.modalCtrl.dismiss();
-    });
+    this.statusbar.show();
+    this.modalCtrl.dismiss();
   }
 
 }
