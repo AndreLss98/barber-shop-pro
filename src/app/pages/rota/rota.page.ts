@@ -23,7 +23,8 @@ export class RotaPage implements OnInit {
     this.content = document.getElementById('content');
     this.content.appendChild(this.mapService.mapElement);
     this.mapService.configMap();
-    this.mapService.initializeMyMarker();
+    this.mapService.initializeMapMarkers();
+    this.mapService.initializeRoute();
   }
 
   ionViewDidEnter() {
