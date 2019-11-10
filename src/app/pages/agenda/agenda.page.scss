@@ -1,20 +1,12 @@
 ion-header {
-    --ion-background-color: #313131;
-    color: white;
-    border: none;
-    box-shadow: none;
-    ion-toolbar {
-        --border-width: 0;
-        --color: white;
-        display: flex;
-        justify-content: center;
-        ion-back-button {
-            --icon-font-size: 24px;
-        }
-        ion-title {
-            font-size: 14px;
-        }
+    background-color: #313131;
+    ion-icon {
+        font-size: 1.3em;
     }
+}
+
+ion-title {
+    color: white;
 }
 
 ion-content {

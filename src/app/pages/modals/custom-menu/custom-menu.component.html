@@ -1,0 +1,74 @@
+<ion-header>
+
+  <ion-grid>
+      <ion-row>
+        <ion-col>
+          <span>Andre Luis<br></span>
+          <span>+55 9 8124 2373</span>
+        </ion-col>
+        <ion-col size="1" (click)="closeMenu()">
+          <ion-icon name="close"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="navigateMenu('perfil')">
+        <ion-col size="1" class="iconCol">
+          <ion-icon src="assets/perfil.svg"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-align-self-center">
+          <ion-note>Perfil</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="navigateMenu('ganhos')">
+        <ion-col size="1" class="iconCol">
+          <ion-icon src="assets/gains.svg"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-align-self-center">
+          <ion-note>Ganhos</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="1" class="iconCol">
+          <ion-icon src="assets/terms.svg"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-align-self-center">
+          <ion-note>Termo de uso</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="navigateMenu('agenda')">
+        <ion-col size="1" class="iconCol">
+          <ion-icon src="assets/calendar.svg"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-align-self-center">
+          <ion-note>Agenda</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="navigateMenu('historico')">
+        <ion-col size="1" class="iconCol">
+          <ion-icon src="assets/history.svg"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-align-self-center">
+          <ion-note>Histórico</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="navigateMenu('home-chat')">
+        <ion-col size="1" class="iconCol">
+          <ion-icon src="assets/chat.svg"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-align-self-center">
+          <ion-note>Chat</ion-note>
+        </ion-col>
+      </ion-row>
+      <ion-row (click)="navigateMenu('prices')">
+        <ion-col size="1" class="iconCol">
+          <ion-icon src="assets/prices.svg"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-align-self-center">
+          <ion-note>Preços dos Cortes</ion-note>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-header>
+
+<ion-content (click)="closeMenu()">
+
+</ion-content>

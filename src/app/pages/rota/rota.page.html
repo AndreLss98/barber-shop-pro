@@ -1,8 +1,10 @@
 <ion-header mode="ios">
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-menu-button color="primary"></ion-menu-button>
-        </ion-buttons>
-    </ion-toolbar>
+   <ion-grid>
+       <ion-row>
+           <ion-col>
+               <ion-icon src="assets\menu.svg" (click)="openMenu()"></ion-icon>
+           </ion-col>
+       </ion-row>
+   </ion-grid>
 </ion-header>
 <ion-content id="content"></ion-content>

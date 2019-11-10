@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular';
 
 import { itemDateAgenda, itemAgenda } from 'src/app/models/itemAgenda.model';
 
 import { AgendaService } from 'src/app/services/agenda/agenda.service';
 
 import { MesAgendaComponent } from 'src/app/components/popovers/mes-agenda/mes-agenda.component';
+import { CustomMenuComponent } from '../modals/custom-menu/custom-menu.component';
+import { topDownAnimation } from 'src/app/animations/top-down-animation';
+import { downTopAnimation } from 'src/app/animations/down-top-animation';
 
 @Component({
   selector: 'app-agenda',
@@ -28,8 +31,9 @@ export class AgendaPage implements OnInit {
   public selectedDay: number = null;
 
   constructor(
+    private modalCtrl: ModalController,
     public agendaService: AgendaService,
-    private popoverCtrl: PopoverController
+    private popoverCtrl: PopoverController,
   ) {
 
   }
@@ -88,6 +92,14 @@ export class AgendaPage implements OnInit {
         this.agendaFiltrada = [];
       }
     })
+  }
+
+  public openMenu() {
+    this.modalCtrl.create({ 
+      component: CustomMenuComponent,
+      enterAnimation: topDownAnimation,
+      leaveAnimation: downTopAnimation
+    }).then((modal) => modal.present());
   }
 
 }

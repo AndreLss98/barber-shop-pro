@@ -19,6 +19,7 @@ import { InfoComponent } from './pages/modals/info/info.component';
 import { IntroModalPage } from './pages/modals/intro-modal/intro-modal.page';
 import { RecuperarSenhaPage } from './pages/modals/recuperar-senha/recuperar-senha.page';
 import { ConnectionStatusComponent } from './pages/modals/connection-status/connection-status.component';
+import { CustomMenuComponent } from './pages/modals/custom-menu/custom-menu.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +27,14 @@ import { ConnectionStatusComponent } from './pages/modals/connection-status/conn
     InfoComponent,
     IntroModalPage,
     RecuperarSenhaPage,
-    ConnectionStatusComponent
+    CustomMenuComponent,
+    ConnectionStatusComponent,
   ],
   entryComponents: [
     InfoComponent,
     IntroModalPage,
     RecuperarSenhaPage,
+    CustomMenuComponent,
     ConnectionStatusComponent
   ],
   imports: [
