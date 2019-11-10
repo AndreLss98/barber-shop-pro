@@ -5,6 +5,7 @@ import { MapService } from 'src/app/services/map/map.service';
 import { CustomMenuComponent } from '../modals/custom-menu/custom-menu.component';
 import { topDownAnimation } from 'src/app/animations/top-down-animation';
 import { downTopAnimation } from 'src/app/animations/down-top-animation';
+import { NotificacaoAgendaComponent } from '../modals/notificacao-agenda/notificacao-agenda.component';
 
 @Component({
   selector: 'app-rota',
@@ -43,6 +44,10 @@ export class RotaPage implements OnInit {
       enterAnimation: topDownAnimation,
       leaveAnimation: downTopAnimation
     }).then((modal) => modal.present());
+  }
+
+  public testModal() {
+    this.modalCtrl.create({ component: NotificacaoAgendaComponent }).then((modal) => modal.present());
   }
 
 }

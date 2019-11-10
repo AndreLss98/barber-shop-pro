@@ -1,3 +1,4 @@
+import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,8 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AvisoAgendamentoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private modalCtrl: ModalController
+  ) {
 
-  ngOnInit() {}
+  }
+
+  ngOnInit() {
+
+  }
+
+  public closeModal() {
+    this.modalCtrl.dismiss();
+  }
 
 }

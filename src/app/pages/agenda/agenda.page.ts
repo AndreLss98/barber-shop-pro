@@ -7,6 +7,7 @@ import { AgendaService } from 'src/app/services/agenda/agenda.service';
 
 import { MesAgendaComponent } from 'src/app/components/popovers/mes-agenda/mes-agenda.component';
 import { CustomMenuComponent } from '../modals/custom-menu/custom-menu.component';
+
 import { topDownAnimation } from 'src/app/animations/top-down-animation';
 import { downTopAnimation } from 'src/app/animations/down-top-animation';
 

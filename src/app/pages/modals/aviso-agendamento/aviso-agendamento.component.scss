@@ -1,0 +1,42 @@
+ion-content {
+    --ion-background-color: transparent;
+}
+
+#endContainer {
+    top: 30px;
+    left: 5%;
+    width: 90%;
+    position: absolute;
+    border-radius: 5px;
+    background-color: white;
+}
+
+#cardContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#card {
+    border-radius: 20px;
+    position: relative;
+    background-color: #313131;
+}
+
+span.text {
+    color: var(--ion-color-primary);
+    font-size: 1em;
+}
+
+span.obs {
+    color: white;
+    font-size: .9em;
+}
+
+span.endText {
+    font-size: .7em;
+}
+
+span.label {
+    color: var(--ion-color-primary);
+}

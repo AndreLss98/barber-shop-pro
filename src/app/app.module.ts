@@ -18,8 +18,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { InfoComponent } from './pages/modals/info/info.component';
 import { IntroModalPage } from './pages/modals/intro-modal/intro-modal.page';
 import { RecuperarSenhaPage } from './pages/modals/recuperar-senha/recuperar-senha.page';
-import { ConnectionStatusComponent } from './pages/modals/connection-status/connection-status.component';
 import { CustomMenuComponent } from './pages/modals/custom-menu/custom-menu.component';
+import { ConnectionStatusComponent } from './pages/modals/connection-status/connection-status.component';
+import { AvisoAgendamentoComponent } from './pages/modals/aviso-agendamento/aviso-agendamento.component';
+import { NotificacaoAgendaComponent } from './pages/modals/notificacao-agenda/notificacao-agenda.component';
 
 @NgModule({
   declarations: [
@@ -28,14 +30,18 @@ import { CustomMenuComponent } from './pages/modals/custom-menu/custom-menu.comp
     IntroModalPage,
     RecuperarSenhaPage,
     CustomMenuComponent,
+    AvisoAgendamentoComponent,
     ConnectionStatusComponent,
+    NotificacaoAgendaComponent
   ],
   entryComponents: [
     InfoComponent,
     IntroModalPage,
     RecuperarSenhaPage,
     CustomMenuComponent,
-    ConnectionStatusComponent
+    AvisoAgendamentoComponent,
+    ConnectionStatusComponent,
+    NotificacaoAgendaComponent
   ],
   imports: [
     BrowserModule,

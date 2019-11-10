@@ -1,3 +1,45 @@
-<p>
-  aviso-agendamento works!
-</p>
+<ion-content>
+  <ion-grid id="cardContainer">
+    <ion-row>
+      <ion-col>
+        <ion-grid id="card">
+          <ion-row class="ion-justify-content-center">
+            <ion-col class="ion-text-center">
+              <img src="assets/miniMap.svg" />
+              <div id="endContainer">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="1" class="ion-text-start">
+                      <ion-icon src="assets/pin2.svg"></ion-icon>
+                    </ion-col>
+                    <ion-col>
+                      <span class="endText">Rua Recife - QD 05 LT 13</span>
+                    </ion-col>
+                    <ion-col size="5" class="ion-text-end">
+                      <span class="endText label">VER NO MAPA</span>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-center">
+            <ion-col class="ion-text-center">
+              <span class="text">Agendamento está confirmado</span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-center">
+            <ion-col class="ion-text-center">
+              <span class="obs">Por favor, certifique-se de chegar no horário agendado.</span>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-center">
+            <ion-col class="ion-text-center">
+              <ion-button shape="round" (click)="closeModal()">Fechar</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
