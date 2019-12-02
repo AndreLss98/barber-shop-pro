@@ -152,7 +152,7 @@ export class MapService {
 
   public configMap(): void {
     this._map.setCenter([this.gpsService.myPosition.coords.longitude, this.gpsService.myPosition.coords.latitude]);
-    this.map.resize();
+    this._map.resize();
   }
 
   public getRoute({ coords }) {
