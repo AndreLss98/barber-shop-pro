@@ -7,7 +7,7 @@ ion-content {
         z-index: 0;
     }
 
-    form {
+    #form {
         height: 100%;
         padding-top: 30%;
         min-width: 300px;
@@ -70,6 +70,7 @@ ion-content {
             padding-left: 30px;
             position: relative;
             padding-right: 10px;
+            outline: none;
         }
 
         input.inputSenha {

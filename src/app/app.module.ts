@@ -14,14 +14,17 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-import { InfoComponent } from './pages/modals/info/info.component';
 import { IntroModalPage } from './pages/modals/intro-modal/intro-modal.page';
 import { RecuperarSenhaPage } from './pages/modals/recuperar-senha/recuperar-senha.page';
+
+import { InfoComponent } from './pages/modals/info/info.component';
 import { CustomMenuComponent } from './pages/modals/custom-menu/custom-menu.component';
 import { ConnectionStatusComponent } from './pages/modals/connection-status/connection-status.component';
 import { AvisoAgendamentoComponent } from './pages/modals/aviso-agendamento/aviso-agendamento.component';
 import { NotificacaoAgendaComponent } from './pages/modals/notificacao-agenda/notificacao-agenda.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import { NotificacaoAgendaComponent } from './pages/modals/notificacao-agenda/no
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    IonicModule.forRoot()
+    IonicModule.forRoot(),
+    SocketIoModule.forRoot(environment.socketIoConfig)
   ],
   providers: [
     Camera,

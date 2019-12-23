@@ -3,9 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  socketIoConfig: {
+    url: 'http://localhost:8081',
+    options: {}
+  }
 };
 
+export const BASE_URL = 'http://localhost:8080/api';
 export const MAPBOX_TOKEN = 'pk.eyJ1IjoiZGlvbmltIiwiYSI6ImNqejA0Mm54OTA0MHkzb3Fpemo5cnhmYWcifQ.gbYcjV1OcISZp1Ym1xw8pw';
 export const MAP_STYLE = 'mapbox://styles/dionim/cjzwtgft014k41csdy9xmjcyq';
 export const MAPBOX_SERVICE_BASE_URL = 'https://api.mapbox.com/';
