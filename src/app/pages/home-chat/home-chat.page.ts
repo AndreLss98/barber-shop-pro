@@ -1,8 +1,7 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { ChatService } from 'src/app/services/chat/chat.service';
-import { chat } from 'src/app/models/chat.model';
 
 @Component({
   selector: 'app-home-chat',
@@ -11,21 +10,22 @@ import { chat } from 'src/app/models/chat.model';
 })
 export class HomeChatPage implements OnInit {
 
-  public conversas: chat[];
-
   constructor(
-    private route: Router,
-    private chatService: ChatService,
+    private router: Router,
+    private route: ActivatedRoute,
+    public chatService: ChatService,
   ) {
 
   }
 
   ngOnInit() {
-    this.conversas = this.chatService.getConversas();
+    if (this.route.snapshot.data.chats) {
+      this.chatService.chats = this.route.snapshot.data.chats.data.profissionalChats;
+    }
   }
 
   public viewChat(pos: number) {
-    this.route.navigateByUrl(`chat/${pos}`);
+    this.router.navigateByUrl(`chat/${this.chatService.chats[pos].cliente.idcliente}/${this.chatService.chats[pos].cliente.idsocket}`);
   }
 
 }

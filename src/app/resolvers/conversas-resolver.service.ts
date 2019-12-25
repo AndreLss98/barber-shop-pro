@@ -1,5 +1,5 @@
-import { Resolve } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 
 import { UserService } from '../services/user.service';
 import { ChatService } from '../services/chat/chat.service';
@@ -7,7 +7,7 @@ import { ChatService } from '../services/chat/chat.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ChatResolverService implements Resolve<any>{
+export class ConversasResolverService implements Resolve<any>{
 
   constructor(
     private chatService: ChatService,
@@ -16,8 +16,9 @@ export class ChatResolverService implements Resolve<any>{
 
   }
 
-  resolve() {
-    return this.chatService.getChats(this.userService.user);
+  resolve(route: ActivatedRouteSnapshot) {
+    const idcliente: number = +route.paramMap.get('id');
+    return this.chatService.getConversas(this.userService.user, idcliente);
   }
 
 }

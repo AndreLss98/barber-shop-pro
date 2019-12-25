@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { ChatPage } from './chat.page';
 
+import { AutosizeModule } from 'ngx-autosize';
+
 const routes: Routes = [
   {
     path: '',
@@ -16,9 +18,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
     FormsModule,
     IonicModule,
+    CommonModule,
+    AutosizeModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ChatPage]

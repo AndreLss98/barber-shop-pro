@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+
 import { ChatResolverService } from './resolvers/chat-resolver.service';
+import { ConversasResolverService } from './resolvers/conversas-resolver.service';
 
 const routes: Routes = [
   {
@@ -20,11 +22,17 @@ const routes: Routes = [
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
   { path: 'agenda', loadChildren: './pages/agenda/agenda.module#AgendaPageModule' },
   { path: 'perfil', loadChildren: './pages/perfil/perfil.module#PerfilPageModule' },
-  { path: 'home-chat', loadChildren: './pages/home-chat/home-chat.module#HomeChatPageModule' },
   { 
-    path: 'chat/:id',
+    path: 'home-chat',
     resolve: {
-      chat: ChatResolverService
+      chats: ChatResolverService
+    },
+    loadChildren: './pages/home-chat/home-chat.module#HomeChatPageModule'
+  },
+  { 
+    path: 'chat/:id/:idsocket',
+    resolve: {
+      conversas: ConversasResolverService
     },
     loadChildren: './pages/chat/chat.module#ChatPageModule'
   },
@@ -34,7 +42,8 @@ const routes: Routes = [
   { path: 'prices', loadChildren: './pages/prices/prices.module#PricesPageModule' },
   { path: 'cadastro-dados-pessoais', loadChildren: './pages/cadastro-dados-pessoais/cadastro-dados-pessoais.module#CadastroDadosPessoaisPageModule' },
   { path: 'selecao-documento', loadChildren: './pages/selecao-tipo-documento/selecao-tipo-documento.module#SelecaoTipoDocumentoPageModule' },
-  { path: 'fotos-documento', loadChildren: './pages/fotos-documento/fotos-documento.module#FotosDocumentoPageModule' },  { path: 'selfie', loadChildren: './pages/selfie/selfie.module#SelfiePageModule' },
+  { path: 'fotos-documento', loadChildren: './pages/fotos-documento/fotos-documento.module#FotosDocumentoPageModule' },
+  { path: 'selfie', loadChildren: './pages/selfie/selfie.module#SelfiePageModule' },
   { path: 'rota', loadChildren: './pages/rota/rota.module#RotaPageModule' }
 
 ];

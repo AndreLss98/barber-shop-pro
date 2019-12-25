@@ -20,9 +20,12 @@ ion-header {
 ion-content {
     --ion-background-color: #313131;
     --color: white;
+    ion-row.text-row {
+        margin: 0 0 1em 0;
+    }
 }
 
-div.barbeiro {
+div.cliente {
     background-color: #424343;
     color: #fbd072;
     display: inline;
@@ -31,7 +34,7 @@ div.barbeiro {
     border-bottom-left-radius: 0;
 }
 
-div.cliente {
+div.barbeiro {
     background-color: #fbd072;
     color: #424343;
     float: right;

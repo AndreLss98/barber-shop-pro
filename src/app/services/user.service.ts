@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { profissional } from '../models/user.model';
+import { profissional } from '../models/profissional.model';
 
 @Injectable({
   providedIn: 'root'
