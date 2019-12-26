@@ -34,9 +34,9 @@ export class ChatPage implements OnInit {
   ngOnInit() {
     this.idcliente = +this.route.snapshot.params.id;
     this.currentChat = this.chatService.getCurrentChat(this.idcliente);
-    if (this.route.snapshot.data['conversas']) {
+    /* if (this.route.snapshot.data['conversas']) {
       this.chatService.setConversas(this.route.snapshot.data['conversas'].data.conversas, this.idcliente);
-    }
+    } */
     this.updateScreen();
     this.socket.fromEvent('private-message').subscribe((message) => { this.updateScreen() });
   }
@@ -68,7 +68,7 @@ export class ChatPage implements OnInit {
         if (response.error) {
           console.log(response.error);
         } else {
-          this.currentChat.conversas.push({ idcliente: this.idcliente, idprofissional: this.userService.user.idprofissional, iscliente: false, texto: tempMessage });
+          this.currentChat.conversas.push(response.data.sendMessage);
           this.updateScreen();
         }
       });

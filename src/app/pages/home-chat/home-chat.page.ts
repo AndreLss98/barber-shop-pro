@@ -22,6 +22,7 @@ export class HomeChatPage implements OnInit {
     if (this.route.snapshot.data.chats) {
       this.chatService.chats = this.route.snapshot.data.chats.data.profissionalChats;
     }
+    console.log(this.chatService.chats);
   }
 
   public viewChat(pos: number) {

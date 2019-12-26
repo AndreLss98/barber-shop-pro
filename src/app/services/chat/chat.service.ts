@@ -37,9 +37,9 @@ export class ChatService {
 
   set chats(chats: chat[]) {
     this._chats = chats;
-    this._chats.forEach(chat => {
+    /* this._chats.forEach(chat => {
       chat.conversas = [];
-    })
+    }) */
   }
 
   get currentChat(): chat {
@@ -85,6 +85,9 @@ export class ChatService {
         cliente {
           idcliente nome sobrenome idsocket
         }
+        conversas {
+          iscliente texto dthorario
+        }
       }
     }`;
     return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
@@ -94,7 +97,7 @@ export class ChatService {
     const body = 
     `{
       conversas(idcliente: ${idcliente}, idprofissional: ${idprofissional}) {
-        iscliente texto
+        iscliente texto dthorario
       }
     }`;
     return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
@@ -106,7 +109,9 @@ export class ChatService {
     }
     const body = 
     `mutation {
-      sendMessage(idcliente: ${idcliente}, idprofissional: ${idprofissional}, iscliente: false, texto: "${message}")
+      sendMessage(idcliente: ${idcliente}, idprofissional: ${idprofissional}, iscliente: false, texto: "${message}") {
+        idprofissional idcliente iscliente dthorario texto
+      }
     }`;
     return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }

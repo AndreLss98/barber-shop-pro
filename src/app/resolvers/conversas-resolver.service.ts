@@ -17,8 +17,8 @@ export class ConversasResolverService implements Resolve<any>{
   }
 
   resolve(route: ActivatedRouteSnapshot) {
-    const idcliente: number = +route.paramMap.get('id');
-    return this.chatService.getConversas(this.userService.user, idcliente);
+    /* const idcliente: number = +route.paramMap.get('id');
+    return this.chatService.getConversas(this.userService.user, idcliente); */
   }
 
 }
