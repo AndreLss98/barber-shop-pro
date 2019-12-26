@@ -11,7 +11,7 @@ export class ItemAgendaComponent implements OnInit {
 
   @Input() local: string;
   @Input() horario: string;
-  @Input() servico: string;
+  @Input() servicos: any[];
   @Input() valor: string;
   @Input() nome: string;
 
@@ -26,6 +26,7 @@ export class ItemAgendaComponent implements OnInit {
 
   ngOnInit() {
     this.valor = Number(this.valor).toFixed(2).replace('.', ',');
+    this.horario = this.horario.substr(0, 5);
   }
 
   public cancelService() {

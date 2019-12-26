@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { ChatResolverService } from './resolvers/chat-resolver.service';
+import { AgendaResolverService } from './resolvers/agenda-resolver.service';
 import { ConversasResolverService } from './resolvers/conversas-resolver.service';
 
 const routes: Routes = [
@@ -20,16 +21,22 @@ const routes: Routes = [
   },
   { path: 'intro', loadChildren: './pages/intro/intro.module#IntroPageModule' },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
-  { path: 'agenda', loadChildren: './pages/agenda/agenda.module#AgendaPageModule' },
+  {
+    path: 'agenda',
+    resolve: {
+      agenda: AgendaResolverService
+    },
+    loadChildren: './pages/agenda/agenda.module#AgendaPageModule'
+  },
   { path: 'perfil', loadChildren: './pages/perfil/perfil.module#PerfilPageModule' },
-  { 
+  {
     path: 'home-chat',
     resolve: {
       chats: ChatResolverService
     },
     loadChildren: './pages/home-chat/home-chat.module#HomeChatPageModule'
   },
-  { 
+  {
     path: 'chat/:id/:idsocket',
     resolve: {
       conversas: ConversasResolverService
@@ -54,4 +61,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -1,12 +1,14 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { PopoverController, ModalController } from '@ionic/angular';
 
-import { NOME_DIAS_SEMANA } from './../../constants/constants';
+import { NOME_DIAS_SEMANA, NOME_MESES } from './../../constants/constants';
 
-import { itemDateAgenda, itemAgenda } from 'src/app/models/itemAgenda.model';
+import { servico } from 'src/app/models/servico.model';
 
 import { UserService } from 'src/app/services/user.service';
 import { AgendaService } from 'src/app/services/agenda/agenda.service';
+import { CalendarioService } from 'src/app/services/calendario/calendario.service';
 
 import { CustomMenuComponent } from '../modals/custom-menu/custom-menu.component';
 import { MesAgendaComponent } from 'src/app/components/popovers/mes-agenda/mes-agenda.component';
@@ -21,6 +23,7 @@ import { downTopAnimation } from 'src/app/animations/down-top-animation';
 })
 export class AgendaPage implements OnInit {
 
+  readonly NOME_MESES = NOME_MESES;
   readonly NOME_DIAS_SEMANA = NOME_DIAS_SEMANA;
 
   public slidesConfig = {
@@ -28,42 +31,59 @@ export class AgendaPage implements OnInit {
     spaceBetween: 20
   }
 
-  public agenda: itemDateAgenda[] = [];
-  public agendaFiltrada: itemAgenda[] = [];
+  public agenda: servico[] = [];
+  public agendaFiltrada: any[] = [];
 
-  public currentYear;
-  public nameCurrentMoth: string;
-  public month = [];
+  private dataAtual: Date = new Date();
+  public anoSelecionado: number;
+  private numeroMesSelecionado: number;
+  public nomeMesSelecionado: string;
+  public diasRestanteMesSelecionado: any[] = [];
 
-  public selectedDay: number = null;
+  public diaSelecionado: number = null;
 
   constructor(
+    private route: ActivatedRoute,
     public userService: UserService,
     private modalCtrl: ModalController,
     public agendaService: AgendaService,
     private popoverCtrl: PopoverController,
+    private calendarioService: CalendarioService
   ) {
 
   }
 
   ngOnInit() {
-    this.currentYear = this.agendaService.getYear();
-    this.nameCurrentMoth = this.agendaService.getMonthName(this.agendaService.getMonth());
-    this.month = this.agendaService.constructMonth(this.agendaService.getDate());
-    this.agenda = this.agendaService.getAgenda(this.nameCurrentMoth, this.currentYear);
-    this.checkAgenda();
+    this.configuraDataAtual();
+    if (this.route.snapshot.data.agenda) {
+      this.agenda = this.route.snapshot.data.agenda.data.agendaProfissional;
+    }
+    // this.checkAgenda();
   }
 
-  private setMonth(month: number) {
-    let newDate = new Date(this.currentYear, month, 1);
-    if (month > this.agendaService.getMonth()) {
-      this.nameCurrentMoth = this.agendaService.getMonthName(month);
-      this.month = this.agendaService.constructMonth(newDate);
-    } else if (month === this.agendaService.getMonth()) {
-      this.nameCurrentMoth = this.agendaService.getMonthName(month);
-      this.month = this.agendaService.constructMonth(this.agendaService.getDate());
-    }
+  private configuraDataAtual() {
+    this.anoSelecionado = this.dataAtual.getFullYear();
+    this.numeroMesSelecionado = this.dataAtual.getMonth();
+    this.nomeMesSelecionado = NOME_MESES[this.numeroMesSelecionado];
+    this.diasRestanteMesSelecionado = this.calendarioService.diasRestanteDoMesAtual(this.dataAtual);
+    this.selectDay({ numero: this.dataAtual.getDate() });
   }
+
+  public selectDay(dia) {
+    this.diaSelecionado = dia.numero;
+    this.agendaFiltrada = this.agenda.filter(servico => servico.dia === this.diaSelecionado);
+  }
+
+  /* private setMonth(month: number) {
+    let newDate = new Date(this.anoSelecionado, month, 1);
+    if (month > this.agendaService.getMonth()) {
+      this.nomeMesSelecionado = this.agendaService.getMonthName(month);
+      this.diasRestanteMesSelecionado = this.agendaService.constructMonth(newDate);
+    } else if (month === this.agendaService.getMonth()) {
+      this.nomeMesSelecionado = this.agendaService.getMonthName(month);
+      this.diasRestanteMesSelecionado = this.agendaService.constructMonth(this.agendaService.getDate());
+    }
+  } */
 
   public async presentPopOver(event: Event) {
     let popover = await this.popoverCtrl.create({
@@ -75,12 +95,12 @@ export class AgendaPage implements OnInit {
     popover.present();
 
     popover.onDidDismiss().then(popoverdata => {
-      this.setMonth(popoverdata.data);
+      // this.setMonth(popoverdata.data);
     });
   }
 
-  public checkAgenda() {
-    this.month.forEach(element => {
+  /* public checkAgenda() {
+    this.diasRestanteMesSelecionado.forEach(element => {
       this.agenda.forEach(agenda => {
         if (agenda.day === element.day) {
           element.hasService = true;
@@ -88,20 +108,20 @@ export class AgendaPage implements OnInit {
         }
       })
     });
-  }
+  } */
 
-  public selectDay(day, pos) {
-    this.selectedDay = pos;
-    const tempSelectedDay = this.month[pos];
+  /* public selectDay(day, pos) {
+    this.diaSelecionado = pos;
+    const tempSelectedDay = this.diasRestanteMesSelecionado[pos];
     this.agenda.forEach(element => {
-      if (element.month === this.nameCurrentMoth.toLowerCase() && element.day === tempSelectedDay.day) {
+      if (element.month === this.nomeMesSelecionado.toLowerCase() && element.day === tempSelectedDay.day) {
         this.agendaFiltrada = element.items;
         return;
       } else {
         this.agendaFiltrada = [];
       }
     })
-  }
+  } */
 
   public openMenu() {
     this.modalCtrl.create({ 

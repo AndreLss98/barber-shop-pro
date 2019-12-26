@@ -8,7 +8,7 @@
     <ion-col size="1" *ngIf="isInverted === true" (click)="isInverted = !isInverted">
       <ion-icon name="ios-arrow-back"></ion-icon>
     </ion-col>
-    <ion-col *ngIf="!isInverted">
+    <ion-col class="ion-align-self-baseline" *ngIf="!isInverted">
       <div>{{ nome }}</div>
       <div>{{ horario }}</div>
     </ion-col>
@@ -44,7 +44,7 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <div>{{ servico }}</div>
+            <div *ngFor="let servico of servicos">{{ servico.nome }}</div>
           </ion-col>
         </ion-row>
         <ion-row>

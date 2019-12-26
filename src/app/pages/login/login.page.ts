@@ -36,8 +36,8 @@ export class LoginPage implements OnInit {
   public login(): void {
     if (this.email && this.senha) {
       this.loginService.login(this.email, this.senha).subscribe((response: any) => {
-        if (response.error) {
-          console.error(response.error);
+        if (response.errors) {
+          console.error(response.errors);
         } else {
           this.userService.user = response.data.loginProfissional;
           this.modalCtrl.create({ component: IntroModalPage }).then((modal) => modal.present().then(() => {

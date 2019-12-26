@@ -34,22 +34,22 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <div id="mes">{{ nameCurrentMoth }} <ion-icon (click)="presentPopOver($event)" name="ios-arrow-down"></ion-icon>
+        <div id="mes">{{ nomeMesSelecionado }} <ion-icon (click)="presentPopOver($event)" name="ios-arrow-down"></ion-icon>
         </div>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <div>{{ currentYear }}</div>
+        <div>{{ anoSelecionado }}</div>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-slides [options]="slidesConfig">
-        <ion-slide *ngFor="let day of month; let i = index" (click)="selectDay(day, i)">
+        <ion-slide *ngFor="let dia of diasRestanteMesSelecionado; let i = index" (click)="selectDay(dia, i)">
           <div style="display: flex; flex-direction: column; align-items: center;">
-            <div class="dayWeekend">{{ day.nameDay }}</div>
-            <div class="dayMonth" [class.selected]="selectedDay === i">{{ day.day }}</div>
-            <div class="hasService" *ngIf="day.hasService"></div>
+            <div class="dayWeekend">{{ dia.nomeDiaSemana }}</div>
+            <div class="dayMonth" [class.selected]="diaSelecionado === dia.numero">{{ dia.numero }}</div>
+            <div class="hasService" *ngIf="dia.hasService"></div>
           </div>
         </ion-slide>
       </ion-slides>
@@ -63,8 +63,8 @@
     </ion-row>
     <ion-row *ngFor="let item of agendaFiltrada">
       <ion-col>
-        <item-agenda [local]="item.local" [horario]="item.horario" [servico]="item.servico" [valor]="item.valor"
-          [nome]="item.nome"></item-agenda>
+        <item-agenda [local]="item.endereco.endereco" [horario]="item.horario" [servicos]="item.servicos" [valor]="item.valortotal"
+          [nome]="item.cliente.nome"></item-agenda>
       </ion-col>
     </ion-row>
   </ion-grid>
