@@ -24,7 +24,8 @@ export class AgendaPage implements OnInit {
   readonly NOME_DIAS_SEMANA = NOME_DIAS_SEMANA;
 
   public slidesConfig = {
-    slidesPerView: 7
+    slidesPerView: 7,
+    spaceBetween: 20
   }
 
   public agenda: itemDateAgenda[] = [];
