@@ -56,10 +56,13 @@ div.dayMonth.selected {
     color: white;
 }
 
-div.hasService {
-    background-color: gray;
+div.bullet {
     height: .4em;
     width: .4em;
+}
+
+div.hasService {
+    background-color: gray;
     border-radius: 1em;
 }
 

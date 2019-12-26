@@ -58,7 +58,7 @@ export class AgendaPage implements OnInit {
     if (this.route.snapshot.data.agenda) {
       this.agenda = this.route.snapshot.data.agenda.data.agendaProfissional;
     }
-    // this.checkAgenda();
+    this.checkAgenda();
   }
 
   private configuraDataAtual() {
@@ -99,16 +99,13 @@ export class AgendaPage implements OnInit {
     });
   }
 
-  /* public checkAgenda() {
-    this.diasRestanteMesSelecionado.forEach(element => {
-      this.agenda.forEach(agenda => {
-        if (agenda.day === element.day) {
-          element.hasService = true;
-          return;
-        }
-      })
+  public checkAgenda() {
+    this.diasRestanteMesSelecionado.forEach(dia => {
+      if (this.agenda.find(servico => servico.dia === dia.numero && servico.mes === this.nomeMesSelecionado.toLowerCase())) {
+        dia.hasService = true;
+      }
     });
-  } */
+  }
 
   /* public selectDay(day, pos) {
     this.diaSelecionado = pos;
