@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController, ModalController } from '@ionic/angular';
 
+import { NOME_DIAS_SEMANA } from './../../constants/constants';
+
 import { itemDateAgenda, itemAgenda } from 'src/app/models/itemAgenda.model';
 
+import { UserService } from 'src/app/services/user.service';
 import { AgendaService } from 'src/app/services/agenda/agenda.service';
 
-import { MesAgendaComponent } from 'src/app/components/popovers/mes-agenda/mes-agenda.component';
 import { CustomMenuComponent } from '../modals/custom-menu/custom-menu.component';
+import { MesAgendaComponent } from 'src/app/components/popovers/mes-agenda/mes-agenda.component';
 
 import { topDownAnimation } from 'src/app/animations/top-down-animation';
 import { downTopAnimation } from 'src/app/animations/down-top-animation';
@@ -17,6 +20,8 @@ import { downTopAnimation } from 'src/app/animations/down-top-animation';
   styleUrls: ['./agenda.page.scss'],
 })
 export class AgendaPage implements OnInit {
+
+  readonly NOME_DIAS_SEMANA = NOME_DIAS_SEMANA;
 
   public slidesConfig = {
     slidesPerView: 7
@@ -32,6 +37,7 @@ export class AgendaPage implements OnInit {
   public selectedDay: number = null;
 
   constructor(
+    public userService: UserService,
     private modalCtrl: ModalController,
     public agendaService: AgendaService,
     private popoverCtrl: PopoverController,
@@ -58,10 +64,11 @@ export class AgendaPage implements OnInit {
     }
   }
 
-  public async presentPopOver(ev: Event) {
+  public async presentPopOver(event: Event) {
     let popover = await this.popoverCtrl.create({
       component: MesAgendaComponent,
-      event: ev
+      event,
+      mode: 'ios'
     });
 
     popover.present();

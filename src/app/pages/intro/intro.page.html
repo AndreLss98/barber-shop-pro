@@ -41,26 +41,10 @@
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col>
-            <span class="weekDay">DOM</span>
-          </ion-col>
-          <ion-col>
-            <span class="weekDay">SEG</span>
-          </ion-col>
-          <ion-col>
-            <span class="weekDay">TER</span>
-          </ion-col>
-          <ion-col>
-            <span class="weekDay">QUA</span>
-          </ion-col>
-          <ion-col>
-            <span class="weekDay">QUI</span>
-          </ion-col>
-          <ion-col>
-            <span class="weekDay">SEX</span>
-          </ion-col>
-          <ion-col>
-            <span class="weekDay">SAB</span>
+          <ion-col *ngFor="let dia of NOME_DIAS_SEMANA">
+            <div #ELEMENT class="span-container" (click)="selectDay(ELEMENT)">
+              <span class="weekDay">{{ dia }}</span>
+            </div>
           </ion-col>
         </ion-row>
         <ion-row class="ion-justify-content-center">

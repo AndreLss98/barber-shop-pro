@@ -19,8 +19,10 @@
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-center">
-      <ion-col class="ion-text-center ion-align-self-center" *ngFor="let day of agendaService.getWeekDays()">
-        {{ day }}
+      <ion-col class="ion-text-center ion-align-self-center" *ngFor="let dia of NOME_DIAS_SEMANA; let i = index">
+        <div class="weekDay-container" [class.selected]="userService.user.diasTrabalho[dia.toLowerCase()]" (click)="userService.user.diasTrabalho[dia.toLowerCase()] = !userService.user.diasTrabalho[dia.toLowerCase()]">
+          {{ dia }}
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>

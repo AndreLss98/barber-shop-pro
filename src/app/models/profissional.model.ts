@@ -1,3 +1,13 @@
+interface diasTrabalho {
+    domingo: boolean;
+    segunda: boolean;
+    terca: boolean;
+    quarta: boolean;
+    quinta: boolean;
+    sexta: boolean;
+    sabado: boolean;
+}
+
 export interface telefone {
     ddd: number;
     numero: string;
@@ -23,4 +33,5 @@ export interface profissional {
     media_avaliacao: number;
     telefones: telefone[];
     endereco: endereco;
+    diasTrabalho: diasTrabalho;
 }

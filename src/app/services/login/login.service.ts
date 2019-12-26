@@ -21,6 +21,9 @@ export class LoginService {
     `{
       loginProfissional(email: "${ email }", senha: "${ senha }") {
         idprofissional nome sobrenome
+        diasTrabalho {
+          dom seg ter qua qui sex sab
+        }
       }
     }`;
     return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
