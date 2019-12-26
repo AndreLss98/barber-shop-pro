@@ -37,9 +37,6 @@ export class ChatService {
 
   set chats(chats: chat[]) {
     this._chats = chats;
-    /* this._chats.forEach(chat => {
-      chat.conversas = [];
-    }) */
   }
 
   get currentChat(): chat {
@@ -71,7 +68,7 @@ export class ChatService {
   public afteLogin() {
     this.socket.emit('login-profissional', { idprofissional: this.userService.user.idprofissional });
     this.messageListener = this.socket.fromEvent('private-message').subscribe((message: any) => {
-      this._chats.find(chat => chat.cliente.idcliente === message.idcliente).conversas.push({ idcliente: message.idcliente, idprofissional: this.userService.user.idprofissional, iscliente: true, texto: message.texto });
+      this._chats.find(chat => chat.cliente.idcliente === message.idcliente).conversas.push({ idcliente: message.idcliente, idprofissional: this.userService.user.idprofissional, iscliente: true, texto: message.texto, dthorario: new Date().toString() });
     });
     this.connectionListener = this.socket.fromEvent('new-socket').subscribe((client: any) => {
       this._chats.find(user => user.cliente.idcliente === client.idcliente).cliente.idsocket = client.idsocket;

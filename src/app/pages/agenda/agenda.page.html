@@ -64,7 +64,7 @@
     <ion-row *ngFor="let item of agendaFiltrada">
       <ion-col>
         <item-agenda [local]="item.endereco.endereco" [horario]="item.horario" [servicos]="item.servicos" [valor]="item.valortotal"
-          [nome]="item.cliente.nome"></item-agenda>
+          [cliente]="item.cliente"></item-agenda>
       </ion-col>
     </ion-row>
   </ion-grid>

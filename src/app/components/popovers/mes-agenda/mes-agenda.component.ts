@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 
+import { NOME_MESES } from './../../../constants/constants';
+
 import { AgendaService } from 'src/app/services/agenda/agenda.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { AgendaService } from 'src/app/services/agenda/agenda.service';
 })
 export class MesAgendaComponent implements OnInit {
 
-  public months: any[] = [];
+  readonly NOME_MESES = NOME_MESES;
 
   constructor(
     private agendaService: AgendaService,
@@ -20,7 +22,7 @@ export class MesAgendaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.months = this.agendaService.getMonths();
+    
   }
 
   public closePopover(pos: number) {

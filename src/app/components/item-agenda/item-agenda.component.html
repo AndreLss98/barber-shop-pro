@@ -9,7 +9,7 @@
       <ion-icon name="ios-arrow-back"></ion-icon>
     </ion-col>
     <ion-col class="ion-align-self-baseline" *ngIf="!isInverted">
-      <div>{{ nome }}</div>
+    <div>{{ cliente.nome }} {{ cliente.sobrenome }}</div>
       <div>{{ horario }}</div>
     </ion-col>
     <ion-col id="gridDetails" *ngIf="isInverted">

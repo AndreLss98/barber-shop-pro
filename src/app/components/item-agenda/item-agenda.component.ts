@@ -1,6 +1,8 @@
+import { Router } from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+
+import { cliente } from 'src/app/models/cliente.model';
 
 @Component({
   selector: 'item-agenda',
@@ -13,7 +15,7 @@ export class ItemAgendaComponent implements OnInit {
   @Input() horario: string;
   @Input() servicos: any[];
   @Input() valor: string;
-  @Input() nome: string;
+  @Input() cliente: cliente;
 
   public isInverted: boolean = false;
 
