@@ -8,26 +8,28 @@
         <ion-grid>
           <ion-row>
             <ion-col>
-              <div>{{ nome }}</div>
+            <div class="label">{{ servico.cliente.nome }} {{ servico.cliente.sobrenome }}</div>
             </ion-col>
             <ion-col size="4" class="ion-text-center ion-align-self-end">
-              Valor
+              <div class="label">
+                Valor
+              </div>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <div>{{ local }}</div>
+              <div>{{ servico.endereco.endereco }}</div>
             </ion-col>
-            <ion-col size="4" class="ion-text-center ion-align-self-end">
-              <div>{{ valor? 'R$'+valor: 'cancelado' }}</div>
+            <ion-col size="4" class="ion-text-center ion-align-self-start">
+              <div>{{ servico.cancelado === false? 'R$'+valorFormatado: 'cancelado' }}</div>
             </ion-col>
           </ion-row>
-          <ion-row>
+          <ion-row *ngIf="!servico.cancelado">
             <ion-col>
-              <div>{{ horario }}</div>
+              <div>{{ horarioFormatado }}</div>
             </ion-col>
           </ion-row>
-          <ion-row id="linhaAvaliacao" *ngIf="valor">
+          <ion-row id="linhaAvaliacao" *ngIf="!servico.cancelado">
             <ion-col id="avaliacao">
               <div *ngFor="let star of stars; let i = index" (click)="toggleStars(i+1); qtdStar = i+1">
                 <img src="{{ star.src }}">

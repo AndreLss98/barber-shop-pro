@@ -5,6 +5,7 @@ import { ChatResolverService } from './resolvers/chat-resolver.service';
 import { AgendaResolverService } from './resolvers/agenda-resolver.service';
 import { ConversasResolverService } from './resolvers/conversas-resolver.service';
 import { HistoricoResolverService } from './resolvers/historico-resolver.service';
+import { HistoricoCanceledService } from './resolvers/historico-canceled.service';
 
 const routes: Routes = [
   {
@@ -47,7 +48,8 @@ const routes: Routes = [
   { 
     path: 'historico',
     resolve: {
-      realizados: HistoricoResolverService
+      realizados: HistoricoResolverService,
+      cancelados: HistoricoCanceledService
     },
     loadChildren: './pages/historico/historico.module#HistoricoPageModule'
   },

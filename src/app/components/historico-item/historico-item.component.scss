@@ -35,3 +35,8 @@ ion-button {
 ion-button[disabled] {
     --background: linear-gradient(to right, #d8d7d5, #9b9b9b);
 }
+
+.label {
+    font-weight: 700;
+    color: black;
+}

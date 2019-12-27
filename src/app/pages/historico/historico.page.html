@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <!-- <div id="cabecalho">
+  <div id="cabecalho">
     <div class="aba" (click)="abaSelecionada = 'realizado'">
       <ion-label [class.selecionado]="abaSelecionada === 'realizado'">Realizados</ion-label>
     </div>
@@ -21,13 +21,11 @@
   </div>
 
   <div id="historicoRealizado" *ngIf="abaSelecionada === 'realizado'">
-    <div *ngIf="historicoCancelados && historicoRealizados.length > 0">
-      <div class="itemList" *ngFor="let hist of historicoRealizados">
+    <div *ngIf="historicoService.servicosCancelados && historicoService.servicosRealizados.length > 0">
+      <div class="itemList" *ngFor="let servico of historicoService.servicosRealizados">
         <div>
-          <p>{{ hist.dia }}</p>
-          <div *ngFor="let item of hist.data">
-            <historico-item [nome]="item.barberName" [local]="item.local" [valor]="item.valor" [horario]="item.horas"></historico-item>
-          </div>
+          <p>{{ servico.dia }} {{ servico.mes }} {{ servico.ano }}</p>
+          <historico-item [servico]="servico"></historico-item>
         </div>
       </div>
     </div>
@@ -44,18 +42,15 @@
   </div>
 
   <div id="historicoCancelado" *ngIf="abaSelecionada === 'cancelado'">
-    <div class="itemList" *ngFor="let hist of historicoCancelados">
+    <div class="itemList" *ngFor="let servico of historicoService.servicosCancelados">
       <div>
-        <p>{{ hist.dia }}</p>
-        <div *ngFor="let item of hist.data">
-          <historico-item [nome]="item.barberName" [local]="item.local" [valor]="item.valor" [horario]="item.horas">
-          </historico-item>
-        </div>
+        <p>{{ servico.dia }} {{ servico.mes }} {{ servico.ano }}</p>
+        <historico-item [servico]="servico"></historico-item>
       </div>
     </div>
   </div>
 
-  <div id="listaVazia" *ngIf="((abaSelecionada == 'realizado' && (!historicoRealizados || historicoRealizados.length == 0)) || (abaSelecionada == 'cancelado' && (!historicoCancelados || historicoCancelados.length == 0)))">
+  <div id="listaVazia" *ngIf="((abaSelecionada == 'realizado' && (!historicoService.servicosRealizados || historicoService.servicosRealizados.length == 0)) || (abaSelecionada == 'cancelado' && (!historicoService.servicosCancelados || historicoService.servicosCancelados.length == 0)))">
     <ion-grid>
       <ion-row class="ion-justify-content-center">
         <ion-col class="ion-text-center">
@@ -93,5 +88,5 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </div> -->
+  </div>
 </ion-content>

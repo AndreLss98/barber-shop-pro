@@ -1,5 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { cliente } from 'src/app/models/cliente.model';
+import { endereco } from 'src/app/models/profissional.model';
+import { servico } from 'src/app/models/servico.model';
 
 @Component({
   selector: 'historico-item',
@@ -8,12 +12,11 @@ import { AlertController } from '@ionic/angular';
 })
 export class HistoricoItemComponent implements OnInit {
 
-  @Input() valor: any;
-  @Input() nome: string;
-  @Input() local: string;
-  @Input() horario: string;
-
+  @Input() servico: servico;
+  
   public qtdStar: number = 0;
+  public valorFormatado: string;
+  public horarioFormatado: string;
 
   public stars: Array<{ src: string }> = [
     {
@@ -38,9 +41,8 @@ export class HistoricoItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.valor) {
-      this.valor = Number(this.valor).toFixed(2).replace('.', ',');
-    }
+    this.valorFormatado = Number(this.servico.valortotal).toFixed(2).replace('.', ',');
+    this.horarioFormatado = this.servico.horario.substr(0, 5);
   }
 
   public toggleStars(pos: number) {

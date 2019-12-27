@@ -6,7 +6,7 @@ import { HistoricoService } from '../services/historico/historico.service';
 @Injectable({
   providedIn: 'root'
 })
-export class HistoricoResolverService implements Resolve<any>{
+export class HistoricoCanceledService implements Resolve<any>{
 
   constructor(
     private historicoService: HistoricoService
@@ -15,6 +15,7 @@ export class HistoricoResolverService implements Resolve<any>{
   }
 
   resolve() {
-    return this.historicoService.getRealizados();
+    return this.historicoService.getCancelados();
   }
+
 }
