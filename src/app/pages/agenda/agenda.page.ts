@@ -74,28 +74,30 @@ export class AgendaPage implements OnInit {
     this.agendaFiltrada = this.agenda.filter(servico => servico.dia === this.diaSelecionado);
   }
 
-  /* private setMonth(month: number) {
-    let newDate = new Date(this.anoSelecionado, month, 1);
-    if (month > this.agendaService.getMonth()) {
-      this.nomeMesSelecionado = this.agendaService.getMonthName(month);
-      this.diasRestanteMesSelecionado = this.agendaService.constructMonth(newDate);
-    } else if (month === this.agendaService.getMonth()) {
-      this.nomeMesSelecionado = this.agendaService.getMonthName(month);
-      this.diasRestanteMesSelecionado = this.agendaService.constructMonth(this.agendaService.getDate());
-    }
-  } */
+  private setMonth(numeroMes: number) {
+    const newDate = new Date(this.anoSelecionado, numeroMes, 1);
+    this.nomeMesSelecionado = NOME_MESES[numeroMes];
+    this.diasRestanteMesSelecionado = this.calendarioService.diasRestanteDoMesAtual(newDate);
+    this.selectDay({ numero: 1 });
+  }
 
   public async presentPopOver(event: Event) {
-    let popover = await this.popoverCtrl.create({
+    await this.popoverCtrl.create({
       component: MesAgendaComponent,
       event,
       mode: 'ios'
-    });
-
-    popover.present();
-
-    popover.onDidDismiss().then(popoverdata => {
-      // this.setMonth(popoverdata.data);
+    }).then((popover) => {
+      popover.present();
+      popover.onDidDismiss().then((popoverdata) => {
+        if (popoverdata.data) {
+          if (popoverdata.data === this.numeroMesSelecionado) {
+            this.configuraDataAtual();
+          } else {
+            this.setMonth(popoverdata.data);
+          }
+          this.checkAgenda();
+        }
+      });
     });
   }
 
@@ -106,19 +108,6 @@ export class AgendaPage implements OnInit {
       }
     });
   }
-
-  /* public selectDay(day, pos) {
-    this.diaSelecionado = pos;
-    const tempSelectedDay = this.diasRestanteMesSelecionado[pos];
-    this.agenda.forEach(element => {
-      if (element.month === this.nomeMesSelecionado.toLowerCase() && element.day === tempSelectedDay.day) {
-        this.agendaFiltrada = element.items;
-        return;
-      } else {
-        this.agendaFiltrada = [];
-      }
-    })
-  } */
 
   public openMenu() {
     this.modalCtrl.create({ 
