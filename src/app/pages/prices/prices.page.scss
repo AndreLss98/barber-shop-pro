@@ -61,6 +61,20 @@ span.valor {
     font-weight: 700;
 }
 
+input.valor {
+    color: var(--ion-color-primary);
+    outline: none;
+    border: none;
+    font-size: 2em;
+    font-weight: 700;
+    background-color: transparent;
+    max-width: 80px;
+}
+
+input.valor:after {
+    content: ",00";
+}
+
 #rowBtn {
     margin-top: 25px;
 }

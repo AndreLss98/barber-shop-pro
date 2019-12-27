@@ -19,7 +19,7 @@
         <div class="price">
           <div>
             <span class="cifrao">R$ </span>
-            <span class="valor">30,00</span>
+            <input [(ngModel)]="valorBarba" class="valor" (keyup)="valorBarba = checkInput(valorBarba)" (focus)="valorBarba = removeFloatPart(valorBarba)" (blur)="valorBarba = addFloatPart(valorBarba)" />
           </div>
           <div class="priceTag">
             <ion-icon src="assets/beard_black.svg"></ion-icon>
@@ -37,7 +37,7 @@
         <div class="price">
           <div>
             <span class="cifrao">R$ </span>
-            <span class="valor">30,00</span>
+            <input [(ngModel)]="valorCabelo" class="valor" (keyup)="valorCabelo = checkInput(valorCabelo)" (focus)="valorCabelo = removeFloatPart(valorCabelo)" (blur)="valorCabelo = addFloatPart(valorCabelo)" />
           </div>
           <div class="priceTag">
             <ion-icon src="assets/hair_black.svg"></ion-icon>
@@ -55,7 +55,7 @@
         <div class="price">
           <div>
             <span class="cifrao">R$ </span>
-            <span class="valor">30,00</span>
+            <input [(ngModel)]="valorBigode" class="valor" (keyup)="valorBigode = checkInput(valorBigode)" (focus)="valorBigode = removeFloatPart(valorBigode)" (blur)="valorBigode = addFloatPart(valorBigode)" />
           </div>
           <div class="priceTag">
             <ion-icon src="assets/mustache_black.svg"></ion-icon>
@@ -69,7 +69,7 @@
   <ion-grid>
     <ion-row class="ion-justify-content-center" id="rowBtn">
       <ion-col class="ion-text-center">
-        <ion-button shape="round" color="primary" (click)="savePrices()">Salvar</ion-button>
+        <ion-button shape="round" color="primary" (click)="checkValues()">Salvar</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
