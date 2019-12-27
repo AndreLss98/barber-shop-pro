@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { cliente } from 'src/app/models/cliente.model';
+
 @Component({
   selector: 'chat-item',
   templateUrl: './chat-item.component.html',
@@ -7,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ChatItemComponent implements OnInit {
 
-  @Input() nome: string;
+  @Input() cliente: cliente;
   @Input() ulitmaMensagem: string;
   @Input() timestamp: string = '';
 
