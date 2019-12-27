@@ -4,6 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ChatResolverService } from './resolvers/chat-resolver.service';
 import { AgendaResolverService } from './resolvers/agenda-resolver.service';
 import { ConversasResolverService } from './resolvers/conversas-resolver.service';
+import { HistoricoResolverService } from './resolvers/historico-resolver.service';
 
 const routes: Routes = [
   {
@@ -43,7 +44,13 @@ const routes: Routes = [
     },
     loadChildren: './pages/chat/chat.module#ChatPageModule'
   },
-  { path: 'historico', loadChildren: './pages/historico/historico.module#HistoricoPageModule' },
+  { 
+    path: 'historico',
+    resolve: {
+      realizados: HistoricoResolverService
+    },
+    loadChildren: './pages/historico/historico.module#HistoricoPageModule'
+  },
   { path: 'ganhos', loadChildren: './pages/ganhos/ganhos.module#GanhosPageModule' },
   { path: 'pagamentos', loadChildren: './pages/pagamentos/pagamentos.module#PagamentosPageModule' },
   { path: 'prices', loadChildren: './pages/prices/prices.module#PricesPageModule' },

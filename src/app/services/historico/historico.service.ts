@@ -1,68 +1,39 @@
-import { Observable, of } from 'rxjs';
+import { timeout } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import { Historico } from 'src/app/models/Historico.model';
+import { BASE_URL } from 'src/environments/environment';
+import { HTTP_OPTIONS, TIMEOUT_SIZE } from 'src/app/constants/http-constants';
+
+import { UserService } from '../user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HistoricoService {
 
-  private data: Historico[] = [
-    {
-      dia: 'TER 28 JUL 2019',
-      data: [
-        {
-          barberName: 'Jean Cleber',
-          local: 'Rua Recife QD 05 lt 13',
-          horas: '08:00',
-          valor: 30.0,
-        },
-        {
-          barberName: 'Jean Cleber',
-          local: 'Rua Recife QD 05 lt 13',
-          horas: '10:00',
-          valor: 35.0,
-        }
-      ]
-    },
-    {
-      dia: 'SEG 28 AGO 2019',
-      data: [
-        {
-          barberName: 'Victor Luiz',
-          local: 'Rua São Paulo',
-          horas: '10:30',
-          valor: 30.0,
-        }
-      ]
-    }
-  ];
-
-  private dataCancelados: Historico[] = [
-    {
-      dia: 'TER 26 JUL 2019',
-      data: [
-        {
-          barberName: 'Jean Cleber',
-          local: 'Rua Recife QD 05 lt 13',
-          horas: '',
-          valor: null,
-        }
-      ]
-    }
-  ];
-
-  constructor() {
+  constructor(
+    private http: HttpClient,
+    private userService: UserService
+  ) {
 
   }
 
-  public getHistorico(): Historico[] {
-    return this.data;
+  public getHistorico() {
+    const body =
+    `{
+      profissionalServices(idprofissional: ${this.userService.user.idprofissional}) {
+        idservico
+        dia mes ano horario
+        valortotal nota
+        cliente {
+          nome sobrenome
+        }
+        endereco {
+          endereco
+        }
+      }
+    }`;
+    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
-
-  public getHistoricoCancelado(): Observable<Historico[]> {
-    return of(this.dataCancelados);
-  }
-
 }

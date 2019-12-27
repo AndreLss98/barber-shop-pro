@@ -1,4 +1,4 @@
-export class Historico {
+export class historico {
     dia: string;
     data: {
         barberName: string;

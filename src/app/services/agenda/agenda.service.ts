@@ -38,5 +38,4 @@ export class AgendaService {
     }`;
     return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
-
 }
