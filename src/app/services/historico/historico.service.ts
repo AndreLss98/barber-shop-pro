@@ -15,6 +15,7 @@ export class HistoricoService {
 
   private _servicosRealizados: servico[] = [];
   private _servicosCancelados: servico[] = [];
+  private _servicosAvaliados: number[] = [];
 
   constructor(
     private http: HttpClient,
@@ -29,6 +30,10 @@ export class HistoricoService {
 
   set servicosRealizados(servicos: servico[]) {
     this._servicosRealizados = servicos;
+    this._servicosAvaliados = this._servicosRealizados.map(servico => {
+      if (servico.nota) return servico.nota;
+    });
+    console.log(this._servicosAvaliados);
   }
 
   get servicosCancelados(): servico[] {
@@ -37,6 +42,14 @@ export class HistoricoService {
 
   set servicosCancelados(servicos: servico[]) {
     this._servicosCancelados = servicos;
+  }
+
+  get servicosAvaliados(): number[] {
+    return this._servicosAvaliados;
+  }
+
+  set servicoAvaliados(avaliacoes: number[]) {
+    this._servicosAvaliados = avaliacoes;
   }
 
   public getRealizados() {

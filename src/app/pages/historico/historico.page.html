@@ -33,9 +33,9 @@
 
   <div id="avaliacoes" *ngIf="abaSelecionada === 'avaliacoes'">
     <ion-grid>
-      <ion-row class="ion-justify-content-center" *ngFor="let rating of avaliacoes">
+      <ion-row class="ion-justify-content-center" *ngFor="let avaliacao of historicoService.servicosAvaliados">
         <ion-col size="10">
-          <avaliacao [ava]="rating.score"></avaliacao>
+          <avaliacao [ava]="avaliacao"></avaliacao>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -70,7 +70,7 @@
     </ion-grid>
   </div>
 
-  <div id="listaVaziaAva" *ngIf="(abaSelecionada === 'avaliacoes' && (!avaliacoes || avaliacoes.length === 0))">
+  <div id="listaVaziaAva" *ngIf="(abaSelecionada === 'avaliacoes' && (!historicoService.servicosAvaliados || historicoService.servicosAvaliados.length === 0))">
     <ion-grid>
       <ion-row class="ion-justify-content-center">
         <ion-col size="9" class="ion-text-center">
