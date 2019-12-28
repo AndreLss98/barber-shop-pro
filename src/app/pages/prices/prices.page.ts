@@ -1,6 +1,7 @@
 import { AlertController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
+import { UserService } from 'src/app/services/user.service';
 import { BankService } from 'src/app/services/bank/bank.service';
 
 @Component({
@@ -17,8 +18,9 @@ export class PricesPage implements OnInit {
   public afterContent: string = ',00';
 
   constructor(
+    public userService: UserService,
     private bankService: BankService,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
   ) {
 
   }
@@ -27,6 +29,12 @@ export class PricesPage implements OnInit {
     this.valorBarba += this.afterContent;
     this.valorCabelo += this.afterContent;
     this.valorBigode += this.afterContent;
+
+    if (this.userService.user.valores && this.userService.user.valores.length > 0) {
+      this.valorBarba = this.userService.user.valores.find(valor => valor.idtiposervico === 2).valor + ',00';
+      this.valorCabelo = this.userService.user.valores.find(valor => valor.idtiposervico === 1).valor + ',00';
+      this.valorBigode = this.userService.user.valores.find(valor => valor.idtiposervico === 3).valor + ',00';
+    }
   }
 
   public checkInput(value: string) {
@@ -56,7 +64,7 @@ export class PricesPage implements OnInit {
         if (response.errors) {
           console.log(response.errors);
         } else {  
-  
+          this.userService.updateValores(tempValorBarba, tempValorCabelo, tempValorBigode);
           this.alertSavePrices();
         }
       });

@@ -24,6 +24,9 @@ export class LoginService {
         diasTrabalho {
           dom seg ter qua qui sex sab
         }
+        valores {
+          valor idtiposervico
+        }
       }
     }`;
     return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));

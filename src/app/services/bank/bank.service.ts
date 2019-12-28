@@ -30,6 +30,16 @@ export class BankService {
     this._myBank = myBank;
   }
 
+  public getValues() {
+    const body =
+    `{
+      valores: profissionalServiceValues(idprofissional: ${this.userService.user.idprofissional}) {
+        valor idtiposervico
+      }
+    }`;
+    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+  }
+
   public updateValues(valorBarba: number, valorCabelo: number, valorBigode: number) { 
     const body =
     `mutation {

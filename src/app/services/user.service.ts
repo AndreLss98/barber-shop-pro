@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { profissional } from '../models/profissional.model';
+import { profissional, valorServico } from '../models/profissional.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +19,24 @@ export class UserService {
 
   set user(user: profissional) {
     this._user = user;
+  }
+
+  public updateValores(novoValorBarba, novoValorCabelo, novoValorBigode) {
+    const tempObj: valorServico[] = 
+    [
+      {
+        idtiposervico: 1,
+        valor: novoValorCabelo
+      },
+      {
+        idtiposervico: 2,
+        valor: novoValorBarba
+      },
+      {
+        idtiposervico: 3,
+        valor: novoValorBigode
+      }
+    ];
+    this._user.valores = tempObj;
   }
 }

@@ -20,6 +20,11 @@ export interface endereco {
     pto_referencia: string;
 }
 
+export interface valorServico {
+    idtiposervico: number;
+    valor: number;
+}
+
 export interface profissional {
     idprofissional: number;
     nome: string;
@@ -34,4 +39,5 @@ export interface profissional {
     telefones: telefone[];
     endereco: endereco;
     diasTrabalho: diasTrabalho;
+    valores: valorServico[];
 }
