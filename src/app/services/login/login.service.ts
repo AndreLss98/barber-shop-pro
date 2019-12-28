@@ -20,7 +20,10 @@ export class LoginService {
     const body =
     `{
       loginProfissional(email: "${ email }", senha: "${ senha }") {
-        idprofissional nome sobrenome
+        idprofissional nome sobrenome email
+        telefones {
+          ddd numero
+        }
         diasTrabalho {
           dom seg ter qua qui sex sab
         }

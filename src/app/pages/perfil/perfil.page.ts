@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-perfil',
@@ -11,7 +12,10 @@ export class PerfilPage implements OnInit {
   public isExpendedName: boolean = false;
   public arrowName: string = 'ios-arrow-forward';
 
-  constructor(private route: Router) {
+  constructor(
+    private route: Router,
+    public userService: UserService,
+  ) {
 
   }
 
