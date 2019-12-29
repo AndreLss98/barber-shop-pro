@@ -33,6 +33,9 @@ export class LoginService {
         valores {
           valor idtiposervico
         }
+        contabancaria {
+          idcontabancaria agencia contacorrente banco nome cnpj
+        }
       }
     }`;
     return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));

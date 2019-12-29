@@ -1,8 +1,9 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { BankService } from 'src/app/services/bank/bank.service';
 import { AlertController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-ganhos',
@@ -18,21 +19,26 @@ export class GanhosPage implements OnInit {
 
   constructor(
     private route: Router,
-    public bankService: BankService,
+    public userService: UserService,
     private formBuilder: FormBuilder,
     private alertController: AlertController,
   ) {
     this.bankForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      bank: ['', Validators.required],
-      agency: [null, Validators.required],
-      contaCorrente: [null, Validators.required],
+      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z]{3,}( [a-zA-Z]{2,})+$')]],
+      bank: ['', [Validators.required, Validators.pattern('^[\D]{2,}$')]],
+      agency: ['', [Validators.required, Validators.pattern('^[1234567890]{3,4}$')]],
+      contaCorrente: ['', [Validators.required, Validators.pattern('^[1234567890]{2,10}$')]],
       cpf: [null, Validators.required]
     });
   }
 
   ngOnInit() {
 
+  }
+
+  ionViewWillLeave() {
+    console.log('Estou saindo da tela de ganhos')
+    this.userService.isAccountRegister = false;
   }
 
   public seeAllPayments(): void {
@@ -48,8 +54,8 @@ export class GanhosPage implements OnInit {
         {
           text: 'OK',
           handler: () => {
-            this.bankService.myBank = this.bankForm.value;
-            this.bankService.isCadastro = false;
+            //this.bankService.myBank = this.bankForm.value;
+            //this.bankService.isCadastro = false;
           }
         }
       ]

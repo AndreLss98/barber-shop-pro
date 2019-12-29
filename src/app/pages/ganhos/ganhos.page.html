@@ -10,7 +10,7 @@
 <ion-content>
   <ion-grid>
     <ion-row class="ion-justify-content-between">
-      <ion-col size="5" class="ion-text-start" (click)="typeView = 'saldo'">
+      <ion-col size="5" class="ion-text-start" (click)="typeView = 'saldo'; userService.isAccountRegister = false">
         <span [class.selected]="typeView === 'saldo'">Saldo</span>
       </ion-col>
       <ion-col size="5" class="ion-text-end" (click)="typeView = 'dados'">
@@ -49,29 +49,29 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <agency-data *ngIf="typeView === 'dados' && !bankService.isCadastro"></agency-data>
-  <ion-content id="secondContent" *ngIf="bankService.isCadastro && typeView === 'dados'">
+  <agency-data *ngIf="typeView === 'dados' && !userService.isAccountRegister"></agency-data>
+  <ion-content id="secondContent" *ngIf="userService.isAccountRegister && typeView === 'dados'">
     <form [formGroup]="bankForm">
       <ion-list>
         <ion-item>
           <ion-label position="floating">Nome do titular da conta*</ion-label>
-          <ion-input formControlName="name"></ion-input>
+          <ion-input formControlName="name" maxLength="50"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Banco*</ion-label>
-          <ion-input formControlName="bank"></ion-input>
+          <ion-input formControlName="bank" maxLength="10"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Agência*</ion-label>
-          <ion-input formControlName="agency" type="number"></ion-input>
+          <ion-input formControlName="agency" type="number" (keyup)="formatAgencyValue"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Conta Corrente*</ion-label>
-          <ion-input formControlName="contaCorrente" type="number"></ion-input>
+          <ion-input formControlName="contaCorrente" data-inputmask="'mask': '9999 9999 9999 9999'" type="text"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">CPF/CNPJ do Titular*</ion-label>
-          <ion-input formControlName="cpf" type="number"></ion-input>
+          <ion-input formControlName="cpf" maxLength="18" type="tel"></ion-input>
         </ion-item>
       </ion-list>
       <ion-grid>

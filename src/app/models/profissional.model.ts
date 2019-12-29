@@ -25,6 +25,15 @@ export interface valorServico {
     valor: number;
 }
 
+export interface contaBancaria {
+    idcontabancaria: number;
+    agencia: number;
+    contacorrente: number;
+    banco: string;
+    nome: string;
+    cnpj: string;
+}
+
 export interface profissional {
     idprofissional: number;
     nome: string;
@@ -40,4 +49,5 @@ export interface profissional {
     endereco: endereco;
     diasTrabalho: diasTrabalho;
     valores: valorServico[];
+    contabancaria: contaBancaria;
 }

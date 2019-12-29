@@ -8,6 +8,7 @@ import { profissional, valorServico } from '../models/profissional.model';
 export class UserService {
 
   private _user: profissional;
+  public isAccountRegister: boolean = false;
 
   constructor() {
 

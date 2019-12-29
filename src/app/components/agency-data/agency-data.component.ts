@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, AlertController } from '@ionic/angular';
+
+import { UserService } from 'src/app/services/user.service';
 import { BankService } from 'src/app/services/bank/bank.service';
 
 @Component({
@@ -11,6 +13,8 @@ export class AgencyDataComponent implements OnInit {
 
   constructor(
     public bankService: BankService,
+    public userService: UserService,
+    private alertCtrl: AlertController,
     private actionCtrl: ActionSheetController,
   ) {
 
@@ -21,7 +25,7 @@ export class AgencyDataComponent implements OnInit {
   }
 
   public moreOptions(): void {
-    if (!this.bankService.myBank) {
+    if (!this.userService.user.contabancaria) {
       this.openCadastro();
     } else {
       this.openCadastroOptions();
@@ -35,7 +39,7 @@ export class AgencyDataComponent implements OnInit {
         {
           text: 'Cadastrar',
           handler: () => {
-            this.bankService.isCadastro = true;
+            this.userService.isAccountRegister = true;
           }
         },
         {
@@ -53,14 +57,21 @@ export class AgencyDataComponent implements OnInit {
         {
           text: 'Editar',
           handler: () => {
-            this.bankService.isCadastro = true;
+            this.userService.isAccountRegister = true;
           }
         },
         {
           text: 'Excluir',
           role: 'destructive',
           handler: () => {
-            this.bankService.myBank = null;
+            this.bankService.deleteBankAccount().subscribe((response: any) => {
+              if (response.errors) {
+                console.error(response.errors);
+              } else {
+                this.userService.user.contabancaria = null;
+                this.showAlert('Conta excluída com sucesso!');
+              }
+            });
           }
         },
         {
@@ -71,7 +82,23 @@ export class AgencyDataComponent implements OnInit {
           }
         }
       ]
-    }).then((moda) => moda.present());
+    }).then((modal) => modal.present());
+  }
+
+  public showAlert(message: string) {
+    this.alertCtrl.create({
+      message,
+      mode: 'ios',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          role: 'Cancel'
+        }
+      ]
+    }).then((alert) => {
+      alert.present();
+    });
   }
 
 }

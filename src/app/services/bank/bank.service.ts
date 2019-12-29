@@ -12,7 +12,6 @@ import { UserService } from '../user.service';
 })
 export class BankService {
 
-  public isCadastro: boolean = false;
   private _myBank = null;
 
   constructor(
@@ -30,6 +29,14 @@ export class BankService {
     this._myBank = myBank;
   }
 
+  public registerBankAccount() {
+    const body =
+    `mutation {
+        
+    }`;
+    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+  }
+
   public getValues() {
     const body =
     `{
@@ -44,6 +51,18 @@ export class BankService {
     const body =
     `mutation {
       updateServicesValues(idprofissional: ${this.userService.user.idprofissional}, valorBarba: ${valorBarba}, valorCabelo: ${valorCabelo}, valorBigode: ${valorBigode})
+    }`;
+    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+  }
+
+  public getPayments() {
+    
+  }
+
+  public deleteBankAccount() {
+    const body =
+    `mutation {
+      deleteAccount(idcontabancaria: ${this.userService.user.contabancaria.idcontabancaria})
     }`;
     return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
