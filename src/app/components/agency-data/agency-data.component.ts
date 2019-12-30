@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActionSheetController, AlertController } from '@ionic/angular';
 
 import { UserService } from 'src/app/services/user.service';
@@ -10,6 +10,8 @@ import { BankService } from 'src/app/services/bank/bank.service';
   styleUrls: ['./agency-data.component.scss'],
 })
 export class AgencyDataComponent implements OnInit {
+
+  @Output() deleteAccount = new EventEmitter();
 
   constructor(
     public bankService: BankService,
@@ -54,12 +56,12 @@ export class AgencyDataComponent implements OnInit {
     this.actionCtrl.create({
       mode: 'ios',
       buttons: [
-        {
+        /* {
           text: 'Editar',
           handler: () => {
             this.userService.isAccountRegister = true;
           }
-        },
+        }, */
         {
           text: 'Excluir',
           role: 'destructive',
@@ -69,6 +71,7 @@ export class AgencyDataComponent implements OnInit {
                 console.error(response.errors);
               } else {
                 this.userService.user.contabancaria = null;
+                this.deleteAccount.emit('deleted');
                 this.showAlert('Conta excluída com sucesso!');
               }
             });

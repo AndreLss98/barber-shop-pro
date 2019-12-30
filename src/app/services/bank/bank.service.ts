@@ -29,11 +29,14 @@ export class BankService {
     this._myBank = myBank;
   }
 
-  public registerBankAccount() {
+  public registerBankAccount({agencia, contacorrente, banco, nome, cnpj}) {
     const body =
     `mutation {
-        
+      contabancaria: registerBankAccount(idprofissional: ${this.userService.user.idprofissional}, agencia: ${agencia}, contacorrente: "${contacorrente}", banco: "${banco}", nome: "${nome}", cnpj: "${cnpj}") {
+        idcontabancaria agencia contacorrente banco nome cnpj
+      }
     }`;
+    console.log(body);
     return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 
