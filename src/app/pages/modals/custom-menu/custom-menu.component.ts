@@ -2,6 +2,8 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
+import { UserService } from 'src/app/services/user.service';
+
 @Component({
   selector: 'app-custom-menu',
   templateUrl: './custom-menu.component.html',
@@ -11,7 +13,8 @@ export class CustomMenuComponent implements OnInit {
 
   constructor(
     private route: Router,
-    private modalCtrl: ModalController
+    public userService: UserService,
+    private modalCtrl: ModalController,
   ) {
 
   }
