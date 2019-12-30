@@ -23,7 +23,7 @@ export class LoginService {
     const body =
     `{
       loginProfissional(email: "${ email }", senha: "${ senha }") {
-        idprofissional nome sobrenome email
+        idprofissional nome sobrenome email total_receber
         telefones {
           ddd numero
         }
@@ -35,6 +35,9 @@ export class LoginService {
         }
         contabancaria {
           idcontabancaria agencia contacorrente banco nome cnpj
+        }
+        pagamentos {
+          valor ispagamento dia mes horario
         }
       }
     }`;

@@ -23,12 +23,15 @@
     <ion-row class="ion-justify-content-center">
       <ion-col size="11">
         <div id="saldo">
+          <div style="margin-bottom: 10px">
+            <span>Seu Saldo</span>
+          </div>
           <div>
             <span class="cifrao">R$ </span>
-            <span class="valor">30,00</span>
+            <span class="valor">{{ userService.user.total_receber }},00</span>
           </div>
           <div style="margin-top: 10px">
-            <span>Seu Saldo</span>
+            <ion-button shape="round">Transferir</ion-button>
           </div>
         </div>
       </ion-col>
@@ -43,9 +46,9 @@
         <span>Ver todos</span>
       </ion-col>
     </ion-row>
-    <ion-row class="ion-justify-content-center" *ngFor="let pag of ['a', 'b', 'c']">
+    <ion-row class="ion-justify-content-center" *ngFor="let pagamento of (userService.user.pagamentos.slice(0, 3))">    
       <ion-col size="11" class="ion-text-center">
-        <pagamentos></pagamentos>
+        <pagamentos [pagamento]="pagamento"></pagamentos>
       </ion-col>
     </ion-row>
   </ion-grid>

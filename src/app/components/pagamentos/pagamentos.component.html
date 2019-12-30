@@ -11,19 +11,19 @@
       </ion-row>
       <ion-row>
         <ion-col class="ion-text-center">
-          <span class="descricao">Dinheiro enviado</span>
+          <span class="descricao"> {{ pagamento.ispagamento? 'Dinheiro enviado' : 'Taxa de cancelamento' }}</span>
         </ion-col>
       </ion-row>
     </ion-col>
     <ion-col>
       <ion-row>
         <ion-col class="ion-text-end">
-          <span class="value">R$420</span>
+          <span class="value">R${{ valor }}</span>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col class="ion-text-end">
-          <span class="date">28 JUL - 09:00</span>
+          <span class="date">{{ dia }} {{ nomeMes | uppercase }} - {{ horarioFormatado }} </span>
         </ion-col>
       </ion-row>
     </ion-col>

@@ -9,9 +9,9 @@
 
 <ion-content>
   <ion-grid>
-    <ion-row class="ion-justify-content-center" *ngFor="let pag of ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']">
+    <ion-row class="ion-justify-content-center" *ngFor="let pagamento of userService.user.pagamentos">
       <ion-col size="11" class="ion-text-center">
-        <pagamentos></pagamentos>
+        <pagamentos [pagamento]="pagamento"></pagamentos>
       </ion-col>
     </ion-row>
   </ion-grid>

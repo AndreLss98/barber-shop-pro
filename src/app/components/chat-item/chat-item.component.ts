@@ -13,9 +13,6 @@ export class ChatItemComponent implements OnInit {
   @Input() ulitmaMensagem: string;
   @Input() timestamp: string = '';
 
-  private horas: string;
-  private minutos: string;
-
   public horarioFormatado: string = '';
 
   constructor() {

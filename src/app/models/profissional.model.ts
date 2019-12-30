@@ -1,3 +1,5 @@
+import { pagamento } from './pagamento';
+
 interface diasTrabalho {
     domingo: boolean;
     segunda: boolean;
@@ -50,4 +52,5 @@ export interface profissional {
     diasTrabalho: diasTrabalho;
     valores: valorServico[];
     contabancaria: contaBancaria;
+    pagamentos: pagamento[];
 }
