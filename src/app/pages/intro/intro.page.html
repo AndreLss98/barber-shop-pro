@@ -1,6 +1,5 @@
 <ion-content>
   <ion-slides id="mainSlides" pager>
-
     <ion-slide>
       <ion-grid>
         <ion-row>
@@ -16,35 +15,6 @@
         <ion-row>
           <ion-col>
             <span class="text">Seja bem vindo ao Barber Home</span>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-slide>
-
-    <ion-slide>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <img src="assets/slide_2.svg" />
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <span class="title">Escolha o dia de Trabalho</span>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <span class="text">
-              Basta clicar no dia da semana que deseja estar disponível para trabalhar
-            </span>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col *ngFor="let dia of NOME_DIAS_SEMANA">
-            <div #ELEMENT class="span-container" (click)="selectDay(ELEMENT)">
-              <span class="weekDay">{{ dia }}</span>
-            </div>
           </ion-col>
         </ion-row>
         <ion-row class="ion-justify-content-center">

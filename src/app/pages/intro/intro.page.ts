@@ -26,12 +26,4 @@ export class IntroPage implements OnInit {
     this.route.navigateByUrl('/login');
   }
 
-  public selectDay(obj: HTMLElement) {
-    if (obj.classList.length === 1) {
-      obj.classList.add('selected');
-    } else {
-      obj.classList.remove('selected');
-    }
-  }
-
 }

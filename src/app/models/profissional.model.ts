@@ -1,13 +1,13 @@
 import { pagamento } from './pagamento';
 
 interface diasTrabalho {
-    domingo: boolean;
-    segunda: boolean;
-    terca: boolean;
-    quarta: boolean;
-    quinta: boolean;
-    sexta: boolean;
-    sabado: boolean;
+    dom: boolean;
+    seg: boolean;
+    ter: boolean;
+    qua: boolean;
+    qui: boolean;
+    sex: boolean;
+    sab: boolean;
 }
 
 export interface telefone {
@@ -40,6 +40,7 @@ export interface profissional {
     idprofissional: number;
     nome: string;
     sobrenome: string;
+    senha: string;
     email: string;
     urlImagemperfil: string;
     latitude: number;
@@ -53,4 +54,20 @@ export interface profissional {
     valores: valorServico[];
     contabancaria: contaBancaria;
     pagamentos: pagamento[];
+}
+
+export interface novoUsuario {
+    nome: string;
+    sobrenome: string;
+    email: string;
+    senha: string;
+    ddd: number;
+    numero: string;
+    dom: boolean;
+    seg: boolean;
+    ter: boolean;
+    qua: boolean;
+    qui: boolean;
+    sex: boolean;
+    sab: boolean;
 }

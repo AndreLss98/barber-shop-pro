@@ -1,6 +1,11 @@
+import { timeout } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import { profissional, valorServico } from '../models/profissional.model';
+import { BASE_URL } from 'src/environments/environment';
+import { HTTP_OPTIONS, TIMEOUT_SIZE } from '../constants/http-constants';
+
+import { profissional, valorServico, novoUsuario } from '../models/profissional.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +13,19 @@ import { profissional, valorServico } from '../models/profissional.model';
 export class UserService {
 
   private _user: profissional;
+  private _newUser: novoUsuario = new Object() as novoUsuario;
   public isAccountRegister: boolean = false;
 
-  constructor() {
-
+  constructor(
+    private http: HttpClient
+  ) {
+    this._newUser.dom = false;
+    this._newUser.seg = false;
+    this._newUser.ter = false;
+    this._newUser.qua = false;
+    this._newUser.qui = false;
+    this._newUser.sex = false;
+    this._newUser.sab = false;
   }
 
   get user(): profissional {
@@ -20,6 +34,14 @@ export class UserService {
 
   set user(user: profissional) {
     this._user = user;
+  }
+
+  get newUser(): novoUsuario {
+    return this._newUser;
+  }
+
+  set newUser(user: novoUsuario) {
+    this._newUser = user;
   }
 
   public updateValores(novoValorBarba, novoValorCabelo, novoValorBigode) {
@@ -39,5 +61,17 @@ export class UserService {
       }
     ];
     this._user.valores = tempObj;
+  }
+
+  public sendRegister() {
+    const body =
+    `mutation {
+      registerProfissional(nome: "${this._newUser.nome}", sobrenome: "${this._newUser.sobrenome}", email: "${this._newUser.email}", senha: "${this._newUser.senha}", ddd: ${this._newUser.ddd}, numero: "${this._newUser.numero}",
+      dom: ${this._newUser.dom}, seg: ${this._newUser.seg}, ter: ${this._newUser.ter}, qua: ${this._newUser.qua}, qui: ${this._newUser.qui}, sex: ${this._newUser.sex}, sab: ${this._newUser.sab}) {
+        idprofissional
+      }
+    }`;
+    console.log(body)
+    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 }

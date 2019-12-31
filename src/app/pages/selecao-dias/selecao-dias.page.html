@@ -1,0 +1,41 @@
+<ion-content>
+  <ion-slides pager>
+    <ion-slide>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <img src="assets/slide_2.svg" />
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span class="title">Escolha o dia de Trabalho</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span class="text">
+              Basta clicar no dia da semana que deseja estar disponível para trabalhar
+            </span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col *ngFor="let dia of NOME_DIAS_SEMANA; let i = index">
+            <div #ELEMENT class="span-container" (click)="selectDay(ELEMENT, i)">
+              <span class="weekDay">{{ dia }}</span>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+<ion-footer mode="md">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="9" class="ion-text-center">
+        <ion-button shape="round" fill="outline" (click)="goToDadosPessoais()">Vamos Lá</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

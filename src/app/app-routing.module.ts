@@ -60,8 +60,8 @@ const routes: Routes = [
   { path: 'selecao-documento', loadChildren: './pages/selecao-tipo-documento/selecao-tipo-documento.module#SelecaoTipoDocumentoPageModule' },
   { path: 'fotos-documento', loadChildren: './pages/fotos-documento/fotos-documento.module#FotosDocumentoPageModule' },
   { path: 'selfie', loadChildren: './pages/selfie/selfie.module#SelfiePageModule' },
-  { path: 'rota', loadChildren: './pages/rota/rota.module#RotaPageModule' }
-
+  { path: 'rota', loadChildren: './pages/rota/rota.module#RotaPageModule' },
+  { path: 'selecao-dias', loadChildren: './pages/selecao-dias/selecao-dias.module#SelecaoDiasPageModule' }
 ];
 
 @NgModule({

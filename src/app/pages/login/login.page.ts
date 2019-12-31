@@ -55,7 +55,7 @@ export class LoginPage implements OnInit {
   }
 
   public goToCadastro(): void {
-    this.route.navigateByUrl('cadastro-dados-pessoais');
+    this.route.navigateByUrl('selecao-dias');
   }
 
 }
