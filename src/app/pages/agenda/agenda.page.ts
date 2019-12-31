@@ -1,6 +1,6 @@
-import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { PopoverController, ModalController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PopoverController, ModalController, AlertController } from '@ionic/angular';
 
 import { NOME_DIAS_SEMANA, NOME_MESES } from './../../constants/constants';
 
@@ -44,7 +44,9 @@ export class AgendaPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     public userService: UserService,
+    private alertCtrl: AlertController,
     private modalCtrl: ModalController,
     public agendaService: AgendaService,
     private popoverCtrl: PopoverController,
@@ -58,7 +60,12 @@ export class AgendaPage implements OnInit {
     if (this.route.snapshot.data.agenda) {
       this.agenda = this.route.snapshot.data.agenda.data.agendaProfissional;
     }
-    this.checkAgenda();
+  }
+
+  ionViewDidEnter() {
+    setTimeout(() => {
+      this.checkValues();
+    }, 1500)
   }
 
   private configuraDataAtual() {
@@ -109,12 +116,40 @@ export class AgendaPage implements OnInit {
     });
   }
 
+  public checkValues() {
+    if (this.userService.user.valores.length === 0) {
+      this.showAlertOfValues('Cadastrar valores de serviços agora?');
+    }
+  }
+
   public openMenu() {
     this.modalCtrl.create({ 
       component: CustomMenuComponent,
       enterAnimation: topDownAnimation,
       leaveAnimation: downTopAnimation
     }).then((modal) => modal.present());
+  }
+
+  public showAlertOfValues(message: string) {
+    this.alertCtrl.create({
+      message,
+      mode: 'ios',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'Não',
+          role: 'Cancel'
+        },
+        {
+          text: 'Sim',
+          handler: () => {
+            this.router.navigateByUrl('prices');
+          }
+        }
+      ]
+    }).then((alert) => {
+      alert.present();
+    })
   }
 
 }

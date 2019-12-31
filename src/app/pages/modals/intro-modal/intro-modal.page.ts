@@ -1,8 +1,10 @@
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-intro-modal',
@@ -14,7 +16,9 @@ export class IntroModalPage implements OnInit {
   constructor(
     private route: Router,
     private statusbar: StatusBar,
-    private modalCtrl: ModalController
+    private userService: UserService,
+    private alertCtrl: AlertController,
+    private modalCtrl: ModalController,
   ) {
 
   }
@@ -29,7 +33,9 @@ export class IntroModalPage implements OnInit {
 
   public goToAgenda(): void {
     this.statusbar.show();
-    this.modalCtrl.dismiss();
+    this.modalCtrl.dismiss().then(() => {
+      
+    });
   }
 
 }
