@@ -5,10 +5,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
+import { File } from '@ionic-native/file/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 
@@ -55,10 +57,12 @@ import { environment } from 'src/environments/environment';
     SocketIoModule.forRoot(environment.socketIoConfig)
   ],
   providers: [
+    File,
     Camera,
     Network,
     StatusBar,
     Geolocation,
+    FileTransfer,
     SplashScreen,
     LocationAccuracy,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

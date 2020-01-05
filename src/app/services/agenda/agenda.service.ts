@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { UserService } from '../user.service';
 
-import { BASE_URL } from 'src/environments/environment';
+import { BASE_URL_GRAPHQL } from 'src/environments/environment';
 import { HTTP_OPTIONS, TIMEOUT_SIZE } from 'src/app/constants/http-constants';
 
 @Injectable({
@@ -36,6 +36,6 @@ export class AgendaService {
         }
       }
     }`;
-    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+    return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 }

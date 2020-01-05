@@ -42,7 +42,7 @@ export interface profissional {
     sobrenome: string;
     senha: string;
     email: string;
-    urlImagemperfil: string;
+    imgPerfil: string;
     latitude: number;
     longitude: number;
     divida: number;
@@ -57,12 +57,16 @@ export interface profissional {
 }
 
 export interface novoUsuario {
+    idprofissional: number;
     nome: string;
     sobrenome: string;
     email: string;
     senha: string;
     ddd: number;
     numero: string;
+    imgDocFront: string;
+    imgDocBack: string;
+    selfie: string;
     dom: boolean;
     seg: boolean;
     ter: boolean;

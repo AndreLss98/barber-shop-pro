@@ -8,7 +8,7 @@ import { chat, conversa } from 'src/app/models/chat.model';
 import { Socket } from 'ngx-socket-io';
 
 import { UserService } from '../user.service';
-import { BASE_URL } from 'src/environments/environment';
+import { BASE_URL_GRAPHQL } from 'src/environments/environment';
 import { HTTP_OPTIONS, TIMEOUT_SIZE } from 'src/app/constants/http-constants';
 
 @Injectable({
@@ -87,7 +87,7 @@ export class ChatService {
         }
       }
     }`;
-    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+    return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 
   public getConversas({ idprofissional }, idcliente: number) {
@@ -97,7 +97,7 @@ export class ChatService {
         iscliente texto dthorario
       }
     }`;
-    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+    return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 
   public sendMessage({ idprofissional }, idcliente: number, socket: string, message: string) {
@@ -110,6 +110,6 @@ export class ChatService {
         idprofissional idcliente iscliente dthorario texto
       }
     }`;
-    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+    return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 }

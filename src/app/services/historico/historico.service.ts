@@ -2,7 +2,7 @@ import { timeout } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { BASE_URL } from 'src/environments/environment';
+import { BASE_URL_GRAPHQL } from 'src/environments/environment';
 import { HTTP_OPTIONS, TIMEOUT_SIZE } from 'src/app/constants/http-constants';
 
 import { UserService } from '../user.service';
@@ -67,7 +67,7 @@ export class HistoricoService {
         }
       }
     }`;
-    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+    return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 
   public getCancelados() {
@@ -84,6 +84,6 @@ export class HistoricoService {
       }
     }`;
 
-    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+    return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 }

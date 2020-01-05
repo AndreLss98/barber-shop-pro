@@ -2,7 +2,7 @@ import { timeout } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { BASE_URL } from 'src/environments/environment';
+import { BASE_URL_GRAPHQL } from 'src/environments/environment';
 import { HTTP_OPTIONS, TIMEOUT_SIZE } from 'src/app/constants/http-constants';
 
 import { UserService } from '../user.service';
@@ -37,7 +37,7 @@ export class BankService {
       }
     }`;
     console.log(body);
-    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+    return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 
   public getValues() {
@@ -47,7 +47,7 @@ export class BankService {
         valor idtiposervico
       }
     }`;
-    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+    return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 
   public updateValues(valorBarba: number, valorCabelo: number, valorBigode: number) { 
@@ -55,7 +55,7 @@ export class BankService {
     `mutation {
       updateServicesValues(idprofissional: ${this.userService.user.idprofissional}, valorBarba: ${valorBarba}, valorCabelo: ${valorCabelo}, valorBigode: ${valorBigode})
     }`;
-    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+    return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 
   public getPayments() {
@@ -67,6 +67,6 @@ export class BankService {
     `mutation {
       deleteAccount(idcontabancaria: ${this.userService.user.contabancaria.idcontabancaria})
     }`;
-    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+    return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 }

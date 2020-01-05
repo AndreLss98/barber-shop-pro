@@ -1,8 +1,11 @@
+import { from } from 'rxjs';
 import { timeout } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'; 
 import { HttpClient } from '@angular/common/http';
 
-import { BASE_URL } from 'src/environments/environment';
+import { FileTransfer, FileTransferObject, FileUploadOptions } from '@ionic-native/file-transfer/ngx';
+
+import { BASE_URL_GRAPHQL, BASE_URL } from 'src/environments/environment';
 import { HTTP_OPTIONS, TIMEOUT_SIZE } from '../constants/http-constants';
 
 import { profissional, valorServico, novoUsuario } from '../models/profissional.model';
@@ -16,8 +19,11 @@ export class UserService {
   private _newUser: novoUsuario = new Object() as novoUsuario;
   public isAccountRegister: boolean = false;
 
+  private fileTransfer: FileTransferObject;
+
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private transfer: FileTransfer
   ) {
     this._newUser.dom = false;
     this._newUser.seg = false;
@@ -71,7 +77,17 @@ export class UserService {
         idprofissional
       }
     }`;
-    console.log(body)
-    return this.http.post(BASE_URL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+    console.log(body);
+    return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
+
+  public uploadImg(pathImg: string, endPoint: string) {
+    this.fileTransfer = this.transfer.create();
+    let options: FileUploadOptions = {
+      fileKey: 'file',
+      headers: {idprofissional: this._newUser.idprofissional}
+    }
+    return from(this.fileTransfer.upload(pathImg, `${BASE_URL}/pro/${endPoint}`, options));
+  }
+
 }

@@ -1,7 +1,10 @@
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
+
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-fotos-documento',
@@ -17,6 +20,7 @@ export class FotosDocumentoPage implements OnInit {
     private route: Router,
     private camera: Camera,
     private platform: Platform,
+    private userService: UserService,
   ) {
 
   }
@@ -32,7 +36,10 @@ export class FotosDocumentoPage implements OnInit {
         correctOrientation: true,
         destinationType: this.camera.DestinationType.FILE_URI
       };
-      this.camera.getPicture(CAMERA_OPTIONS).then((photo) => this.isPhotoFront = true);
+      this.camera.getPicture(CAMERA_OPTIONS).then((photo) => {
+        this.userService.newUser.imgDocFront = photo;
+        this.isPhotoFront = true;
+      });
     }
   }
 
@@ -43,7 +50,10 @@ export class FotosDocumentoPage implements OnInit {
         correctOrientation: true,
         destinationType: this.camera.DestinationType.FILE_URI
       };
-      this.camera.getPicture(CAMERA_OPTIONS).then((photo) => this.isPhotoBack = true);
+      this.camera.getPicture(CAMERA_OPTIONS).then((photo) => {
+        this.userService.newUser.imgDocBack = photo;
+        this.isPhotoBack = true;
+      });
     }
   }
 
