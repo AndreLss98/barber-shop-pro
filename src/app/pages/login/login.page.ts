@@ -19,6 +19,9 @@ export class LoginPage implements OnInit {
   public email: string = '';
   public senha: string = '';
 
+  public campoSenhaTipo: string = 'password';
+  public iconeCampoSenha: string = 'assets/icon_hide_senha.svg';
+
   constructor(
     private route: Router,
     private userService: UserService,
@@ -56,6 +59,11 @@ export class LoginPage implements OnInit {
 
   public goToCadastro(): void {
     this.route.navigateByUrl('selecao-dias');
+  }
+
+  public toogleFieldType() {
+    this.campoSenhaTipo === 'password'? this.campoSenhaTipo = 'text' : this.campoSenhaTipo = 'password';
+    this.iconeCampoSenha === 'assets/icon_hide_senha.svg'? this.iconeCampoSenha = 'assets/icon_show_senha.svg' : this.iconeCampoSenha = 'assets/icon_hide_senha.svg';
   }
 
 }
