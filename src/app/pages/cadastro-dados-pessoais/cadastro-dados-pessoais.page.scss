@@ -7,6 +7,7 @@ span.text {
 }
 span.obs {
     color: #666666;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 #form {
@@ -25,8 +26,13 @@ ion-col.btnCol {
     padding: 0;
 }
 
+ion-label {
+    font-family: 'Poppins', sans-serif !important;
+}
+
 ion-input {
     color: white;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 ion-fab-button {
