@@ -39,7 +39,6 @@ export interface contaBancaria {
 export interface profissional {
     idprofissional: number;
     nome: string;
-    sobrenome: string;
     senha: string;
     email: string;
     imgPerfil: string;
@@ -49,7 +48,6 @@ export interface profissional {
     total_receber: number;
     media_avaliacao: number;
     telefones: telefone[];
-    endereco: endereco;
     diasTrabalho: diasTrabalho;
     valores: valorServico[];
     contabancaria: contaBancaria;
@@ -59,9 +57,9 @@ export interface profissional {
 export interface novoUsuario {
     idprofissional: number;
     nome: string;
-    sobrenome: string;
     email: string;
     senha: string;
+    endereco: string;
     ddd: number;
     numero: string;
     imgDocFront: string;

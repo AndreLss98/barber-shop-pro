@@ -20,10 +20,10 @@ export class CadastroDadosPessoaisPage implements OnInit {
   ) {
     this.cadastroForm = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.pattern('^[a-zA-Z]{3,}( [a-zA-Z]{2,})+$')]],
-      sobrenome: [null, [Validators.required, Validators.pattern('^[a-zA-Z]{2,}( [a-zA-Z]{2,})*$')]],
-      email: [null, [Validators.required, Validators.email]],
-      senha: [null, [Validators.required, Validators.pattern('^.{6,}$')]],
-      telefone: [null, [Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required, Validators.pattern('^.{6,}$')]],
+      telefone: [null, [Validators.required]],
+      endereco: ['', [Validators.required]]
     });
   }
 
@@ -43,12 +43,12 @@ export class CadastroDadosPessoaisPage implements OnInit {
 
   public goToDocumentos(): void {
     this.userService.newUser.nome = this.cadastroForm.value.nome;
-    this.userService.newUser.sobrenome = this.cadastroForm.value.sobrenome;
     this.userService.newUser.email = this.cadastroForm.value.email;
     this.userService.newUser.senha = this.cadastroForm.value.senha;
+    this.userService.newUser.endereco = this.cadastroForm.value.endereco;
     this.userService.newUser.ddd = Number(this.cadastroForm.value.telefone.substr(1, 2));
     this.userService.newUser.numero = this.cadastroForm.value.telefone.substr(5);
-    this.route.navigateByUrl('selecao-documento');
+    this.route.navigateByUrl('fotos-documento');
   }
 
 }

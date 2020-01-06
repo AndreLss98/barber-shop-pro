@@ -72,7 +72,7 @@ export class UserService {
   public sendRegister() {
     const body =
     `mutation {
-      registerProfissional(nome: "${this._newUser.nome}", sobrenome: "${this._newUser.sobrenome}", email: "${this._newUser.email}", senha: "${this._newUser.senha}", ddd: ${this._newUser.ddd}, numero: "${this._newUser.numero}",
+      registerProfissional(nome: "${this._newUser.nome}", endereco: "${this._newUser.endereco}", email: "${this._newUser.email}", senha: "${this._newUser.senha}", ddd: ${this._newUser.ddd}, numero: "${this._newUser.numero}",
       dom: ${this._newUser.dom}, seg: ${this._newUser.seg}, ter: ${this._newUser.ter}, qua: ${this._newUser.qua}, qui: ${this._newUser.qui}, sex: ${this._newUser.sex}, sab: ${this._newUser.sab}) {
         idprofissional
       }

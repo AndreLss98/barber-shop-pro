@@ -17,7 +17,7 @@
     <ion-row>
       <ion-col>
         <ion-label class="subHeader">Nome</ion-label>
-        <ion-label>{{ userService.user.nome }} {{ userService.user.sobrenome }}</ion-label>
+        <ion-label>{{ userService.user.nome }}</ion-label>
       </ion-col>
       <ion-col size="1" class="ion-align-self-end" (click)="extendColName()">
         <ion-icon name="{{ arrowName }}"></ion-icon>
@@ -28,7 +28,7 @@
         <ion-icon src="assets/addImage.svg"></ion-icon>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="isExpendedName" class="ion-justify-content-center">
+    <ion-row *ngIf="isExpandedName" class="ion-justify-content-center">
       <ion-col class="ion-text-center">
         <span>Insira a sua foto</span>
       </ion-col>

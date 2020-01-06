@@ -32,10 +32,6 @@ ion-button {
     --background: linear-gradient(152deg, rgba(245,201,112,1) 0%, rgba(215,168,100,1) 75%);
 }
 
-ion-button[disabled] {
-    --background: linear-gradient(to right, #d8d7d5, #9b9b9b);
-}
-
 .label {
     font-weight: 700;
     color: black;

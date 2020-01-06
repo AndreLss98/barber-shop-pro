@@ -5,11 +5,13 @@ ion-content {
 div.square {
     border-radius: 15px;
     box-shadow: 0 0 5px 1px #191919;
+    padding: 1.2em 0;
 }
 
 span.svgLabel {
     font-size: .8em;
     color: white;
+    font-family: 'Poppins', sans-serif;
 }
 
 span.text {
@@ -22,6 +24,7 @@ span.text.aviso {
 
 span.obs {
     color: #666666;
+    font-family: 'Poppins', sans-serif;
 }
 
 div.imgContainer {
@@ -33,4 +36,8 @@ div.checkMark {
     position: absolute;
     top: -5px;
     right: -15px;
+}
+
+ion-button[disabled] {
+    --color: white;
 }
