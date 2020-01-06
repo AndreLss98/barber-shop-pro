@@ -50,6 +50,7 @@ export class SelecaoDiasPage implements OnInit {
 
   public showAlert(message: string) {
     this.alertCtrl.create({
+      header: "Atenção",
       message,
       mode: 'ios',
       backdropDismiss: false,
