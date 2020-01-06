@@ -2,6 +2,18 @@ ion-content {
     --ion-background-color: #313131;
 }
 
+#imgContainer {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+    img {
+        width: 135% !important;
+        max-width: none !important;
+        max-height: none !important;
+    }
+}
+
 ion-footer {
     background-color: #313131;
 }
@@ -46,7 +58,7 @@ div.span-container.selected {
 }
 
 span.weekDay {
-    font-size: .7em;
+    font-size: .5em;
 }
 
 ion-button {

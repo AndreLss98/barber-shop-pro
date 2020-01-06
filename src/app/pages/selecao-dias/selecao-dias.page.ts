@@ -32,7 +32,7 @@ export class SelecaoDiasPage implements OnInit {
     if (this.contadorDiasTrabalho !== 0) {
       this.route.navigateByUrl('cadastro-dados-pessoais');
     } else {
-      this.showAlert('Selecione ao menos um dia da semana');
+      this.showAlert('Escolha ao menos um dia de trabalho.');
     }
   }
 
