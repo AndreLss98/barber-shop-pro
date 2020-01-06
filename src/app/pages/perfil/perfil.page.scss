@@ -35,9 +35,12 @@ ion-content {
         }
         ion-row ion-col ion-label.header {
             color: #80828b !important;
+            font-family: 'Avenir', sans-serif;
         }
         ion-row ion-col ion-label.subHeader {
             color: #D6A763;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
         }
         #exitLabel {
             color: #f24822;

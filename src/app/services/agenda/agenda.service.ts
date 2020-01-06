@@ -32,7 +32,7 @@ export class AgendaService {
           nome
         }
         cliente {
-          nome sobrenome
+          nome
         }
       }
     }`;

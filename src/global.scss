@@ -55,6 +55,11 @@
   font-weight: bold;
 }
 
+@font-face {
+  font-family: 'Avenir';
+  src: ('./assets/fonts/avenir/Avenir.ttc');
+}
+
 a.mapboxgl-ctrl-logo {
   display: none;
 }

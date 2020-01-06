@@ -80,7 +80,7 @@ export class ChatService {
     `{
       profissionalChats(idprofissional: ${idprofissional}) {
         cliente {
-          idcliente nome sobrenome idsocket
+          idcliente nome idsocket
         }
         conversas {
           iscliente texto dthorario

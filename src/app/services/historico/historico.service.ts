@@ -60,7 +60,7 @@ export class HistoricoService {
         dia mes ano horario cancelado
         valortotal nota
         cliente {
-          nome sobrenome
+          nome
         }
         endereco {
           endereco
@@ -76,7 +76,7 @@ export class HistoricoService {
       profissionalCanceledService(idprofissional: ${this.userService.user.idprofissional}) {
         dia mes ano valortotal horario cancelado
         cliente {
-          nome sobrenome
+          nome
         }
         endereco {
           endereco
