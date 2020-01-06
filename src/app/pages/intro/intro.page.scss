@@ -4,6 +4,7 @@ ion-content {
 
 span {
     color: white;
+    font-family: 'Poppins', sans-serif;
 }
 
 ion-slides {
@@ -11,11 +12,14 @@ ion-slides {
 }
 
 span.title {
+    font-size: 21px;
     font-weight: 600;
 }
 
 span.text {
     color: gray;
+    font-size: 15px;
+    font-weight: 300;
 }
 
 div.span-container {
