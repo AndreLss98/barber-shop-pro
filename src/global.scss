@@ -57,14 +57,20 @@
 
 @font-face {
   font-family: 'Avenir';
+  src: ('./assets/fonts/avenir/AvenirLTStd-Book.otf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Avenir';
   src: ('./assets/fonts/avenir/AvenirLTStd-Medium.otf');
   font-weight: normal;
 }
 
 @font-face {
   font-family: 'Avenir';
-  src: ('./assets/fonts/avenir/AvenirLTStd-Book.otf');
-  font-weight: 300;
+  src: ('./assets/fonts/avenir/AvenirLTStd-Roman.otf');
+  font-weight: 600;
 }
 
 a.mapboxgl-ctrl-logo {

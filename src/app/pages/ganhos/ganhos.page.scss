@@ -11,8 +11,10 @@ ion-header {
         ion-back-button {
             --icon-font-size: 24px;
         }
-        ion-title {
-            font-size: 14px;
+        #title {
+            font-size: 1.1em;
+            font-family: 'Poppins', sans-serif;
+            font-weight: normal;
         }
     }
 }
@@ -21,6 +23,8 @@ ion-content {
     --ion-background-color: #313131;
     span {
         color: white;
+        font-family: 'Poppins', sans-serif;
+        font-weight: normal;
     }
 }
 
@@ -33,6 +37,11 @@ ion-content {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     box-shadow: 0 4px 5px .5px #191919;
+    padding-bottom: .5em;
+    span {
+        font-family: 'Avenir', sans-serif;
+        font-weight: 600;
+    }
 }
 
 span.cifrao {

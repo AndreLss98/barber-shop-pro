@@ -5,6 +5,8 @@ ion-content {
     }
     span {
         color: white;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
     }
 }
 div.card {
@@ -19,12 +21,8 @@ div.card {
     ion-icon.full {
         font-size: 13em;
     }
-    span {
-        color: white;
-    }
     span.bankName {
         color: var(--ion-color-primary);
-        font-weight: 600;
     }
     ion-row.data {
         padding: 0 1em;

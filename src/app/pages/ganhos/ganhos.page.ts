@@ -116,4 +116,30 @@ export class GanhosPage implements OnInit {
     }).then((alert) => alert.present());
   }
 
+  public transferMoney() {
+
+  }
+
+  public async showAlertTransfer() {
+    this.alertController.create({
+      header: 'Atenção!',
+      message: 'Deseja transferir o seus ganhos para sua outra conta?',
+      mode: 'ios',
+      buttons: [
+        {
+          text: 'Não',
+          role: 'Cancel'
+        },
+        {
+          text: 'Sim',
+          handler: () => {
+
+          }
+        }
+      ]
+    }).then((alert) => {
+      alert.present();
+    })
+  }
+
 }

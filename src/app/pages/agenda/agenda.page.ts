@@ -28,7 +28,7 @@ export class AgendaPage implements OnInit {
 
   public slidesConfig = {
     slidesPerView: 7,
-    spaceBetween: 20
+    spaceBetween: 18
   }
 
   public agenda: servico[] = [];
@@ -60,6 +60,7 @@ export class AgendaPage implements OnInit {
     if (this.route.snapshot.data.agenda) {
       this.agenda = this.route.snapshot.data.agenda.data.agendaProfissional;
     }
+    this.checkAgenda();
   }
 
   ionViewDidEnter() {

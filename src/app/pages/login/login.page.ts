@@ -42,7 +42,6 @@ export class LoginPage implements OnInit {
         if (response.errors) {
           console.error(response.errors);
         } else {
-          console.log(response)
           this.email = this.senha = '';
           this.userService.user = response.data.loginProfissional;
           this.modalCtrl.create({ component: IntroModalPage }).then((modal) => modal.present().then(() => {

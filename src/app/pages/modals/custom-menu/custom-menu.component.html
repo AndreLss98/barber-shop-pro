@@ -3,8 +3,8 @@
   <ion-grid>
       <ion-row>
         <ion-col>
-          <span>{{ userService.user.nome }}<br></span>
-          <span>({{ userService.user.telefones[0].ddd }}) {{ userService.user.telefones[0].numero }}</span>
+          <span class="pop">{{ userService.user.nome }}<br></span>
+          <span class="pop">({{ userService.user.telefones[0].ddd }}) {{ userService.user.telefones[0].numero }}</span>
         </ion-col>
         <ion-col size="1" (click)="closeMenu()">
           <ion-icon name="close"></ion-icon>
