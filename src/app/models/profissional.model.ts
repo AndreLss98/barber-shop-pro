@@ -1,6 +1,6 @@
 import { pagamento } from './pagamento';
 
-interface diasTrabalho {
+export interface diasTrabalho {
     dom: boolean;
     seg: boolean;
     ter: boolean;

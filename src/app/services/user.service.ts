@@ -80,7 +80,7 @@ export class UserService {
     return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 
-  public uploadImg(imagePath: string, endPoint: string, idprofissional) {
+  public uploadImg(imagePath: string, endPoint: string, idprofissional: number) {
     this.fileTransfer = this.transfer.create();
     let options: FileUploadOptions = {
       fileKey: 'file',

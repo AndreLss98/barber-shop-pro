@@ -20,7 +20,7 @@
     </ion-row>
     <ion-row class="ion-justify-content-center">
       <ion-col class="ion-text-center ion-align-self-center" *ngFor="let dia of NOME_DIAS_SEMANA; let i = index">
-        <div class="weekDay-container" [class.selected]="userService.user.diasTrabalho[dia.toLowerCase()]" (click)="userService.user.diasTrabalho[dia.toLowerCase()] = !userService.user.diasTrabalho[dia.toLowerCase()]">
+        <div class="weekDay-container" [class.selected]="tempDiasTrabalho[dia.toLowerCase()]" (click)="tempDiasTrabalho[dia.toLowerCase()] = !tempDiasTrabalho[dia.toLowerCase()]; emitEvent();">
           {{ dia }}
         </div>
       </ion-col>

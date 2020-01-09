@@ -1,4 +1,5 @@
-import { timeout } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
+import { timeout, debounceTime } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -12,11 +13,13 @@ import { HTTP_OPTIONS, TIMEOUT_SIZE } from 'src/app/constants/http-constants';
 })
 export class AgendaService {
 
+  private changeDayEvent = fromEvent(window, 'change-day');
+
   constructor(
     private http: HttpClient,
-    private userService: UserService
+    private userService: UserService,
   ) {
-
+    
   }
 
   public getAgenda() {
@@ -36,6 +39,14 @@ export class AgendaService {
         }
       }
     }`;
+    return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+  }
+
+  public updateDiasTrabalho({ dom, seg, ter, qua, qui, sex, sab }) {
+    const body =
+    `mutation {
+      updateDayService(idprofissional: ${this.userService.user.idprofissional}, dom: ${dom}, seg: ${seg}, ter: ${ter}, qua: ${qua}, qui: ${qui}, sex: ${sex}, sab: ${sab})
+    }`
     return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 }

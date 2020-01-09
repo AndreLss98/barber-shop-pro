@@ -5,6 +5,7 @@ import { PopoverController, ModalController, AlertController } from '@ionic/angu
 import { NOME_DIAS_SEMANA, NOME_MESES } from './../../constants/constants';
 
 import { servico } from 'src/app/models/servico.model';
+import { diasTrabalho } from 'src/app/models/profissional.model';
 
 import { UserService } from 'src/app/services/user.service';
 import { AgendaService } from 'src/app/services/agenda/agenda.service';
@@ -31,6 +32,8 @@ export class AgendaPage implements OnInit {
     spaceBetween: 18
   }
 
+  private timeoutInstance;
+
   public agenda: servico[] = [];
   public agendaFiltrada: any[] = [];
 
@@ -42,21 +45,32 @@ export class AgendaPage implements OnInit {
 
   public diaSelecionado: number = null;
 
+  public tempDiasTrabalho: diasTrabalho = {
+    dom: false,
+    seg: false,
+    ter: false,
+    qua: false,
+    qui: false,
+    sex: false,
+    sab: false
+  };
+
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
+    private route: ActivatedRoute,
     public userService: UserService,
     private alertCtrl: AlertController,
     private modalCtrl: ModalController,
     public agendaService: AgendaService,
     private popoverCtrl: PopoverController,
-    private calendarioService: CalendarioService
+    private calendarioService: CalendarioService,
   ) {
 
   }
 
   ngOnInit() {
     this.configuraDataAtual();
+    this.syncWorkDays();
     if (this.route.snapshot.data.agenda) {
       this.agenda = this.route.snapshot.data.agenda.data.agendaProfissional;
     }
@@ -151,6 +165,52 @@ export class AgendaPage implements OnInit {
     }).then((alert) => {
       alert.present();
     })
+  }
+
+  public emitEvent() {
+    clearTimeout(this.timeoutInstance);
+    this.timeoutInstance = setTimeout(() => {
+      this.showAlertUpdateDays();
+    }, 1000);
+  }
+
+  private showAlertUpdateDays() {
+    this.alertCtrl.create({
+      header: 'Atenção',
+      message: 'Deseja alterar os dias de trabalho?',
+      mode: 'ios',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'Não',
+          role: 'cancel',
+          handler: () => {
+            this.syncWorkDays();
+          }
+        },
+        {
+          text: 'Sim',
+          role: 'destructive',
+          handler: () => {
+            this.updateDays();
+          }
+        }
+      ]
+    }).then((alert) => alert.present());
+  }
+
+  private updateDays() {
+    this.agendaService.updateDiasTrabalho(this.tempDiasTrabalho).subscribe((response: any) => {
+      if (response.errors) {
+        console.error(response.errors);
+      } else {
+        this.userService.user.diasTrabalho = {...this.tempDiasTrabalho};
+      }
+    }, (error) => console.log(error));
+  }
+
+  private syncWorkDays() {
+    this.tempDiasTrabalho = {...this.userService.user.diasTrabalho};
   }
 
 }
