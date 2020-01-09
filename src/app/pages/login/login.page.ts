@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 import { UserService } from 'src/app/services/user.service';
@@ -28,6 +28,7 @@ export class LoginPage implements OnInit {
     private chatService: ChatService,
     private modalCtrl: ModalController,
     private loginService: LoginService,
+    private loadingCtrl: LoadingController,
   ) {
 
   }
@@ -36,9 +37,11 @@ export class LoginPage implements OnInit {
 
   }
 
-  public login(): void {
+  public async login() {
     if (this.email && this.senha) {
-      this.loginService.login(this.email, this.senha).subscribe((response: any) => {
+      await this.showLoading();
+      this.loginService.login(this.email, this.senha).subscribe(async (response: any) => {
+        await this.cloaseLoading();
         if (response.errors) {
           console.error(response.errors);
         } else {
@@ -48,7 +51,11 @@ export class LoginPage implements OnInit {
             this.chatService.afteLogin();
           }));
         }
-      });      
+      }, (error) => {
+        console.error(error)
+      }, () => {
+        this.cloaseLoading();
+      });
     }
   }
 
@@ -63,6 +70,18 @@ export class LoginPage implements OnInit {
   public toogleFieldType() {
     this.campoSenhaTipo === 'password'? this.campoSenhaTipo = 'text' : this.campoSenhaTipo = 'password';
     this.iconeCampoSenha === 'assets/icon_hide_senha.svg'? this.iconeCampoSenha = 'assets/icon_show_senha.svg' : this.iconeCampoSenha = 'assets/icon_hide_senha.svg';
+  }
+
+  private async showLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'logando...',
+      mode: 'md'
+    });
+    await loading.present();
+  }
+
+  private async cloaseLoading() {
+    await this.loadingCtrl.dismiss();
   }
 
 }

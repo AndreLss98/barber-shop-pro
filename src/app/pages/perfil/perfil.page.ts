@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { UserService } from 'src/app/services/user.service';
 import { LoginService } from 'src/app/services/login/login.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ActionSheetController, LoadingController } from '@ionic/angular';
+import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-perfil',
@@ -26,9 +27,12 @@ export class PerfilPage implements OnInit {
 
   constructor(
     private route: Router,
+    private camera: Camera,
     public userService: UserService,
     private loginService: LoginService,
     private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
+    private actionSheetCtrl: ActionSheetController,
   ) {
 
   }
@@ -91,4 +95,60 @@ export class PerfilPage implements OnInit {
     }).then((alert) => alert.present());
   }
 
+  public selectPerfilImg() {
+    this.actionSheetCtrl.create({
+      header: 'Selecione a fonte da imagem',
+      mode: 'ios',
+      buttons: [
+        {
+          text: 'Carregar da galeria',
+          handler: () => {
+            this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+          }
+        },
+        {
+          text: 'Usar a camêra',
+          handler: () => {
+            this.takePicture(this.camera.PictureSourceType.CAMERA);
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        }
+      ]
+    }).then((action) => action.present());
+  }
+
+  private takePicture(sourceType: PictureSourceType) {
+    const CAMERA_OPTIONS: CameraOptions = {
+      sourceType,
+      quality: 100,
+      saveToPhotoAlbum: false,
+      correctOrientation: true,
+      destinationType: this.camera.DestinationType.FILE_URI,
+    }
+
+    this.camera.getPicture(CAMERA_OPTIONS).then(async (imagePath) => {
+      await this.showLoading();
+      this.userService.uploadImg(imagePath, 'imgPerfil', this.userService.user.idprofissional).subscribe((response) => {
+        console.log(response);
+        this.cloaseLoading();
+      }, (error) => {
+        console.error(error);
+      });
+    });
+  }
+
+  private async showLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Enviando...',
+      mode: 'md',
+    });
+    await loading.present();
+  }
+
+  private async cloaseLoading() {
+    await this.loadingCtrl.dismiss();
+  }
 }

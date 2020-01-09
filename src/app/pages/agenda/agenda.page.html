@@ -44,7 +44,7 @@
     </ion-row>
     <ion-row>
       <ion-slides [options]="slidesConfig">
-        <ion-slide *ngFor="let dia of diasRestanteMesSelecionado; let i = index" (click)="selectDay(dia, i)">
+        <ion-slide *ngFor="let dia of diasRestanteMesSelecionado; let i = index" (click)="selectDay(dia)">
           <div style="display: flex; flex-direction: column; align-items: center;">
             <div class="dayWeekend">{{ dia.nomeDiaSemana }}</div>
             <div class="dayMonth" [class.selected]="diaSelecionado === dia.numero">{{ dia.numero }}</div>

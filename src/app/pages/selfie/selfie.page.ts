@@ -51,11 +51,11 @@ export class SelfiePage implements OnInit {
         this.closeLoading();
         console.error(response.errors);
       } else {
-        this.userService.newUser.idprofissional = response.data.registerProfissional.idprofissional;
+        const idprofissional = response.data.registerProfissional.idprofissional;
         const { imgDocFront, imgDocBack, selfie } = this.userService.newUser;
-        this.userService.uploadImg(imgDocFront, 'imgDocFront').subscribe((response: any) => {
-          this.userService.uploadImg(imgDocBack, 'imgDocBack').subscribe((response: any) => {
-            this.userService.uploadImg(selfie, 'imgSelfie').subscribe((response: any) => {
+        this.userService.uploadImg(imgDocFront, 'imgDocFront', idprofissional).subscribe((response: any) => {
+          this.userService.uploadImg(imgDocBack, 'imgDocBack', idprofissional).subscribe((response: any) => {
+            this.userService.uploadImg(selfie, 'imgSelfie', idprofissional).subscribe((response: any) => {
               this.closeLoading();
               this.modalCtrl.create({ component: CadastroSucessoComponent }).then((modal) => {
                 modal.present();

@@ -97,8 +97,8 @@ export class AgendaPage implements OnInit {
     }).then((popover) => {
       popover.present();
       popover.onDidDismiss().then((popoverdata) => {
-        if (popoverdata.data) {
-          if (popoverdata.data === this.numeroMesSelecionado) {
+        if (popoverdata.data !== undefined) {
+          if (popoverdata.data === this.dataAtual.getMonth()) {
             this.configuraDataAtual();
           } else {
             this.setMonth(popoverdata.data);

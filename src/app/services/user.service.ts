@@ -77,17 +77,17 @@ export class UserService {
         idprofissional
       }
     }`;
-    console.log(body);
     return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 
-  public uploadImg(pathImg: string, endPoint: string) {
+  public uploadImg(imagePath: string, endPoint: string, idprofissional) {
     this.fileTransfer = this.transfer.create();
     let options: FileUploadOptions = {
       fileKey: 'file',
-      headers: {idprofissional: this._newUser.idprofissional}
+      headers: {idprofissional: idprofissional},
+      chunkedMode: false
     }
-    return from(this.fileTransfer.upload(pathImg, `${BASE_URL}/pro/${endPoint}`, options));
+    return from(this.fileTransfer.upload(imagePath, `${BASE_URL}/pro/${endPoint}`, options));
   }
 
 }
