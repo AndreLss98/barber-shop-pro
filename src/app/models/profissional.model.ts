@@ -41,7 +41,7 @@ export interface profissional {
     nome: string;
     senha: string;
     email: string;
-    imgPerfil: string;
+    imgperfil: string;
     latitude: number;
     longitude: number;
     divida: number;

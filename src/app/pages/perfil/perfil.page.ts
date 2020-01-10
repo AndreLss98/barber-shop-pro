@@ -1,10 +1,13 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { AlertController, ActionSheetController, LoadingController } from '@ionic/angular';
+
+import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
+
+import { BASE_URL } from './../../../environments/environment';
 
 import { UserService } from 'src/app/services/user.service';
 import { LoginService } from 'src/app/services/login/login.service';
-import { AlertController, ActionSheetController, LoadingController } from '@ionic/angular';
-import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-perfil',
@@ -12,6 +15,8 @@ import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/n
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
+
+  readonly BASE_URL = BASE_URL;
 
   private downArrow: string = 'ios-arrow-down';
   private forwardArrow: string = 'ios-arrow-forward';
@@ -131,10 +136,12 @@ export class PerfilPage implements OnInit {
 
     this.camera.getPicture(CAMERA_OPTIONS).then(async (imagePath) => {
       await this.showLoading();
-      this.userService.uploadImg(imagePath, 'imgPerfil', this.userService.user.idprofissional).subscribe((response) => {
-        console.log(response);
+      this.userService.uploadImg(imagePath, 'imgPerfil', this.userService.user.idprofissional).subscribe((res) => {
+        const tempResponse = JSON.parse(res.response);
+        this.userService.user.imgperfil = tempResponse.filename;
         this.cloaseLoading();
       }, (error) => {
+        this.cloaseLoading();
         console.error(error);
       });
     });
