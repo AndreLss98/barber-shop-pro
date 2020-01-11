@@ -5,6 +5,7 @@ import mapbox from 'mapbox-gl';
 import { GpsService } from '../gps/gps.service';
 
 import { MAPBOX_TOKEN, MAP_STYLE, MAPBOX_SERVICE_BASE_URL } from '../../../environments/environment';
+import { endereco } from 'src/app/models/profissional.model';
 
 const CUSTOM_LOCATION = [-16.663067, -49.262920]
 
@@ -15,9 +16,12 @@ export class MapService {
 
   private _map: mapbox.Map;
   private _mapElement: HTMLDivElement;
+  
   private _myPositionMarker: mapbox.Marker;
   private _myPositionMarkerElement: HTMLDivElement;
+  
   private _clientPosition: mapbox.Marker;
+  private _currentClientAddress: endereco;
 
   constructor(
     private http: HttpClient,
@@ -43,6 +47,14 @@ export class MapService {
     this._map = mapService;
   }
 
+  get currentClientAddress(): endereco {
+    return this._currentClientAddress;
+  }
+
+  set currentClientAddress(address: endereco) {
+    this._currentClientAddress = address;
+  }
+
   private generateMapContainer() {
     this._mapElement = document.createElement('div');
     this._mapElement.id = 'map';
@@ -58,7 +70,7 @@ export class MapService {
     this.createRouteSource();
   }
 
-  public initializeMapMarkers() {
+  public initializeMapMarkers(serviceLocation: number[]) {
     this._myPositionMarkerElement =  document.createElement('div');
     this._myPositionMarkerElement.id = 'myMarker';
     let img = document.createElement('div');
@@ -73,15 +85,15 @@ export class MapService {
     }
 
     if (!this._clientPosition) {
-      this._clientPosition = new mapbox.Marker({ color: '#DC143C' }).setLngLat([CUSTOM_LOCATION[1], CUSTOM_LOCATION[0]]);
+      this._clientPosition = new mapbox.Marker({ color: '#DC143C' }).setLngLat([serviceLocation[0], serviceLocation[1]]);
       this._clientPosition.addTo(this._map);
     } else {
-      this._clientPosition.setLngLat([CUSTOM_LOCATION[1], CUSTOM_LOCATION[0]]);
+      this._clientPosition.setLngLat([serviceLocation[0], serviceLocation[1]]);
     }
   }
 
-  public initializeRoute() {
-    this.getRoute(this.gpsService.myPosition).subscribe((response: any) => {
+  public initializeRoute(servicePosition: number[]) {
+    this.getRoute(this.gpsService.myPosition, servicePosition).subscribe((response: any) => {
       let geojson = {
         type: 'Feature',
         properties: {},
@@ -155,8 +167,13 @@ export class MapService {
     this._map.resize();
   }
 
-  public getRoute({ coords }) {
-    const SERVICE = `directions/v5/mapbox/driving/${coords.longitude},${coords.latitude};-49.262920,-16.663067?steps=true&geometries=geojson&access_token=${MAPBOX_TOKEN}`;
-    return this.http.get(`${MAPBOX_SERVICE_BASE_URL}${SERVICE}`);
+  public getServiceLocation(address: endereco) {
+    const service = `geocoding/v5/mapbox.places/${address.endereco} ${address.numero} ${address.complemento}.json?types=address&access_token=${MAPBOX_TOKEN}`;
+    return this.http.get(`${MAPBOX_SERVICE_BASE_URL}${service}`);
+  }
+
+  public getRoute({ coords }, location: number[]) {
+    const service = `directions/v5/mapbox/driving/${coords.longitude},${coords.latitude};${location[0]},${location[1]}?steps=true&geometries=geojson&access_token=${MAPBOX_TOKEN}`;
+    return this.http.get(`${MAPBOX_SERVICE_BASE_URL}${service}`);
   }
 }

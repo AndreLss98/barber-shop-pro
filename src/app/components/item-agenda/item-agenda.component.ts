@@ -3,6 +3,9 @@ import { ActionSheetController } from '@ionic/angular';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { cliente } from 'src/app/models/cliente.model';
+import { endereco } from 'src/app/models/profissional.model';
+
+import { MapService } from 'src/app/services/map/map.service';
 
 @Component({
   selector: 'item-agenda',
@@ -11,7 +14,7 @@ import { cliente } from 'src/app/models/cliente.model';
 })
 export class ItemAgendaComponent implements OnInit {
 
-  @Input() local: string;
+  @Input() local: endereco;
   @Input() horario: string;
   @Input() servicos: any[];
   @Input() valor: string;
@@ -22,6 +25,7 @@ export class ItemAgendaComponent implements OnInit {
 
   constructor(
     private route: Router,
+    private mapService: MapService,
     private actionSheetCtrl: ActionSheetController
   ) {
 
@@ -58,6 +62,7 @@ export class ItemAgendaComponent implements OnInit {
   }
 
   public initializeService() {
+    this.mapService.currentClientAddress = this.local;
     this.route.navigateByUrl('rota');
   }
 

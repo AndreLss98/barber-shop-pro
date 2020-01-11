@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+
+import { downTopAnimation } from 'src/app/animations/down-top-animation';
+import { topDownAnimation } from 'src/app/animations/top-down-animation';
+
+import { endereco } from 'src/app/models/profissional.model';
 
 import { MapService } from 'src/app/services/map/map.service';
+
 import { CustomMenuComponent } from '../modals/custom-menu/custom-menu.component';
-import { topDownAnimation } from 'src/app/animations/top-down-animation';
-import { downTopAnimation } from 'src/app/animations/down-top-animation';
 import { NotificacaoAgendaComponent } from '../modals/notificacao-agenda/notificacao-agenda.component';
 
 @Component({
@@ -16,8 +21,10 @@ export class RotaPage implements OnInit {
 
 
   private content: HTMLElement;
+  private currentAddres: endereco;
 
   constructor(
+    private route: ActivatedRoute,
     private mapService: MapService,
     private modalCtrl: ModalController
   ) {
@@ -28,8 +35,13 @@ export class RotaPage implements OnInit {
     this.content = document.getElementById('content');
     this.content.appendChild(this.mapService.mapElement);
     this.mapService.configMap();
-    this.mapService.initializeMapMarkers();
-    this.mapService.initializeRoute();
+    if (this.route.snapshot.data['endereco']) {
+      this.currentAddres = this.route.snapshot.data['endereco'];
+      this.mapService.getServiceLocation(this.currentAddres).subscribe((location: any) => {
+        this.mapService.initializeMapMarkers(location.features[0].center);
+        this.mapService.initializeRoute(location.features[0].center);
+      })
+    }
   }
 
   ionViewDidEnter() {

@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { ChatResolverService } from './resolvers/chat-resolver.service';
 import { AgendaResolverService } from './resolvers/agenda-resolver.service';
+import { RouterResolverService } from './resolvers/router-resolver.service';
 import { ConversasResolverService } from './resolvers/conversas-resolver.service';
 import { HistoricoResolverService } from './resolvers/historico-resolver.service';
 import { HistoricoCanceledService } from './resolvers/historico-canceled.service';
@@ -60,7 +61,13 @@ const routes: Routes = [
   { path: 'selecao-documento', loadChildren: './pages/selecao-tipo-documento/selecao-tipo-documento.module#SelecaoTipoDocumentoPageModule' },
   { path: 'fotos-documento', loadChildren: './pages/fotos-documento/fotos-documento.module#FotosDocumentoPageModule' },
   { path: 'selfie', loadChildren: './pages/selfie/selfie.module#SelfiePageModule' },
-  { path: 'rota', loadChildren: './pages/rota/rota.module#RotaPageModule' },
+  {
+    path: 'rota',
+    resolve: {
+      endereco: RouterResolverService
+    },
+    loadChildren: './pages/rota/rota.module#RotaPageModule'
+  },
   { path: 'selecao-dias', loadChildren: './pages/selecao-dias/selecao-dias.module#SelecaoDiasPageModule' }
 ];
 
