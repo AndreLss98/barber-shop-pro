@@ -127,6 +127,8 @@ export class AgendaPage implements OnInit {
     this.diasRestanteMesSelecionado.forEach(dia => {
       if (this.agenda.find(servico => servico.dia === dia.numero && servico.mes === this.nomeMesSelecionado.toLowerCase())) {
         dia.hasService = true;
+      } else {
+        dia.hasService = false;
       }
     });
   }
@@ -211,6 +213,18 @@ export class AgendaPage implements OnInit {
 
   private syncWorkDays() {
     this.tempDiasTrabalho = {...this.userService.user.diasTrabalho};
+  }
+
+  public onCancelService(idservico: number) {
+    this.agendaService.cancelService(idservico).subscribe((response: any) => {
+      if (response.errors) {
+        console.error(response.errors);
+      } else {
+        this.agenda = this.agenda.filter(item => item.idservico !== idservico);
+        this.agendaFiltrada = this.agendaFiltrada.filter(item => item.idservico !== idservico);
+        this.checkAgenda();
+      }
+    })
   }
 
 }

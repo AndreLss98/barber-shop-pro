@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { cliente } from 'src/app/models/cliente.model';
 
@@ -16,6 +16,7 @@ export class ItemAgendaComponent implements OnInit {
   @Input() servicos: any[];
   @Input() valor: string;
   @Input() cliente: cliente;
+  @Output() cancelService = new EventEmitter();
 
   public isInverted: boolean = false;
 
@@ -31,7 +32,7 @@ export class ItemAgendaComponent implements OnInit {
     this.horario = this.horario.substr(0, 5);
   }
 
-  public cancelService() {
+  public showAlertOnCancel() {
     this.actionSheetCtrl.create({
       header: 'Deseja realmente cancelar o agendamento? Será cobrado uma taxa de cancelamento em seu cartão!',
       buttons: [
@@ -40,7 +41,10 @@ export class ItemAgendaComponent implements OnInit {
         },
         {
           text: 'Sim',
-          role: 'destructive'
+          role: 'destructive',
+          handler: () => {
+            this.cancelService.emit('canceled');
+          }
         },
         {
           text: 'Cancelar',

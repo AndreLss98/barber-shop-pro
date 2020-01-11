@@ -49,4 +49,12 @@ export class AgendaService {
     }`
     return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
+
+  public cancelService(idservico: number) {
+    const body =
+    `mutation {
+      profissionalCancelService(idprofissional: ${this.userService.user.idprofissional}, idservico: ${idservico})
+    }`;
+    return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+  }
 }
