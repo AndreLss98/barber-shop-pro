@@ -5,7 +5,6 @@ import { ModalController, LoadingController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { LoginService } from 'src/app/services/login/login.service';
-import { AgendaService } from 'src/app/services/agenda/agenda.service';
 
 import { IntroModalPage } from '../modals/intro-modal/intro-modal.page';
 import { RecuperarSenhaPage } from '../modals/recuperar-senha/recuperar-senha.page';
@@ -29,7 +28,6 @@ export class LoginPage implements OnInit {
     private chatService: ChatService,
     private modalCtrl: ModalController,
     private loginService: LoginService,
-    private agendaService: AgendaService,
     private loadingCtrl: LoadingController,
   ) {
 
@@ -51,7 +49,6 @@ export class LoginPage implements OnInit {
           this.userService.user = response.data.loginProfissional;
           this.modalCtrl.create({ component: IntroModalPage }).then((modal) => modal.present().then(() => {
             this.chatService.afteLogin();
-            this.agendaService.startListenAgenda();
           }));
         }
       }, (error) => {

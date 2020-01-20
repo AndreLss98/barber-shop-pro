@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { AvisoAgendamentoComponent } from '../aviso-agendamento/aviso-agendamento.component';
+import { Component, OnInit } from '@angular/core';
+
 import { AgendaService } from 'src/app/services/agenda/agenda.service';
+
+import { AvisoAgendamentoComponent } from '../aviso-agendamento/aviso-agendamento.component';
 
 @Component({
   selector: 'app-notificacao-agenda',
@@ -29,8 +31,14 @@ export class NotificacaoAgendaComponent implements OnInit {
   }
 
   public confirmAgenda() {
-    this.modalCtrl.dismiss().then(() => {
-      this.modalCtrl.create(({ component: AvisoAgendamentoComponent, componentProps: { endereco: this.endereco } })).then((modal) => modal.present());
+    this.agendaService.acceptService(this.idservico).subscribe((response: any) => {
+      if (response.errors) {
+        console.error(response.errors);
+      } else {
+        this.modalCtrl.dismiss().then(() => {
+          this.modalCtrl.create(({ component: AvisoAgendamentoComponent, componentProps: { endereco: this.endereco } })).then((modal) => modal.present());
+        });
+      }
     });
   }
 

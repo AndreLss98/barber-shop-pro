@@ -1,5 +1,5 @@
 import { timeout } from 'rxjs/operators';
-import { from } from 'rxjs';
+import { from, Subscription } from 'rxjs';
 import { Injectable } from '@angular/core'; 
 import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
