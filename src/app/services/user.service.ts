@@ -1,12 +1,14 @@
-import { from } from 'rxjs';
 import { timeout } from 'rxjs/operators';
+import { from } from 'rxjs';
 import { Injectable } from '@angular/core'; 
+import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 
+import { Socket } from 'ngx-socket-io';
 import { FileTransfer, FileTransferObject, FileUploadOptions } from '@ionic-native/file-transfer/ngx';
 
-import { BASE_URL_GRAPHQL, BASE_URL } from 'src/environments/environment';
 import { HTTP_OPTIONS, TIMEOUT_SIZE } from '../constants/http-constants';
+import { BASE_URL_GRAPHQL, BASE_URL } from 'src/environments/environment';
 
 import { profissional, valorServico, novoUsuario } from '../models/profissional.model';
 
@@ -22,8 +24,10 @@ export class UserService {
   private fileTransfer: FileTransferObject;
 
   constructor(
+    private socket: Socket,
     private http: HttpClient,
-    private transfer: FileTransfer
+    private transfer: FileTransfer,
+    private modalCtrl: ModalController
   ) {
     this._newUser.dom = false;
     this._newUser.seg = false;
@@ -89,5 +93,4 @@ export class UserService {
     }
     return from(this.fileTransfer.upload(imagePath, `${BASE_URL}/pro/${endPoint}`, options));
   }
-
 }

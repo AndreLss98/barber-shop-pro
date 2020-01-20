@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AvisoAgendamentoComponent implements OnInit {
 
+  public endereco: string;
+
   constructor(
     private modalCtrl: ModalController
   ) {
