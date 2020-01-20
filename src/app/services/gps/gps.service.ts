@@ -1,31 +1,27 @@
+import { Observable } from 'rxjs';
 import { Platform } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 
-import { Geolocation, GeolocationOptions, Geoposition } from '@ionic-native/geolocation/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
-import { Observable } from 'rxjs';
-import { MapService } from '../map/map.service';
+import { Geolocation, GeolocationOptions, Geoposition } from '@ionic-native/geolocation/ngx';
+import { debounceTime } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GpsService {
 
-  private watchPositionSubscriber: Observable<Geoposition>;
   private _myPosition: Geoposition;
+  private watchPositionSubscriber: Observable<Geoposition>;
 
   constructor(
     private platform: Platform,
     private geolocation: Geolocation,
     private locationAccuracy: LocationAccuracy
   ) {
-    const GPS_OPTIONS: GeolocationOptions = {
-      enableHighAccuracy: true
-    }
-
-    this.geolocation.getCurrentPosition(GPS_OPTIONS).then((position: Geoposition) => {
+    this.geolocation.getCurrentPosition({ enableHighAccuracy: true }).then((position: Geoposition) => {
       this._myPosition = position;
-    })
+    });
   }
 
   get myPosition(): Geoposition {
@@ -51,7 +47,7 @@ export class GpsService {
       enableHighAccuracy: true
     }
     this.watchPositionSubscriber = this.geolocation.watchPosition(GPS_OPTIONS);
-    this.watchPositionSubscriber.subscribe((position: Geoposition) => {
+    this.watchPositionSubscriber.pipe(debounceTime(2000)).subscribe((position: Geoposition) => {
       this.myPosition = position;
     });
   }

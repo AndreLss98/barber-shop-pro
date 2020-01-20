@@ -49,6 +49,9 @@ export class LoginPage implements OnInit {
           this.userService.user = response.data.loginProfissional;
           this.modalCtrl.create({ component: IntroModalPage }).then((modal) => modal.present().then(() => {
             this.chatService.afteLogin();
+            this.userService.updateLocation().subscribe((response: any) => {
+              console.log(response);
+            }, (error) => console.log(error));
           }));
         }
       }, (error) => {

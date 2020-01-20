@@ -32,11 +32,11 @@ export class AppComponent {
     private route: Router,
     private platform: Platform,
     private statusBar: StatusBar,
+    private mapService: MapService,
     private gpsService: GpsService,
     private network: NetworkService,
     private menuCtrl: MenuController,
-    private splashScreen: SplashScreen,
-    private mapService: MapService
+    private splashScreen: SplashScreen
   ) {
     this.initializeApp();
   }
