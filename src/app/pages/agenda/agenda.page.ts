@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PopoverController, ModalController, AlertController } from '@ionic/angular';
+import { PopoverController, ModalController, AlertController, Events } from '@ionic/angular';
 
 import { NOME_DIAS_SEMANA, NOME_MESES } from './../../constants/constants';
 
@@ -56,6 +56,7 @@ export class AgendaPage implements OnInit {
   };
 
   constructor(
+    private events: Events,
     private router: Router,
     private route: ActivatedRoute,
     public userService: UserService,
@@ -65,7 +66,9 @@ export class AgendaPage implements OnInit {
     private popoverCtrl: PopoverController,
     private calendarioService: CalendarioService,
   ) {
-
+    events.subscribe('reload-agenda', () => {
+      this.reloadAgenda();
+    })
   }
 
   ngOnInit() {
@@ -75,6 +78,17 @@ export class AgendaPage implements OnInit {
       this.agenda = this.route.snapshot.data.agenda.data.agendaProfissional;
     }
     this.checkAgenda();
+  }
+
+  private reloadAgenda() {
+    this.agendaService.getAgenda().subscribe((response: any) => {
+      if (response.errors) {
+        console.error(response.errors);
+      } else {
+        this.agenda = response.data.agendaProfissional;
+        this.checkAgenda();
+      }
+    }, (error) => console.error(error));
   }
 
   ionViewDidEnter() {

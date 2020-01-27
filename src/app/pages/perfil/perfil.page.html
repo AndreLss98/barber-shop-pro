@@ -28,7 +28,7 @@
     <ion-row *ngIf="isExpandedName" class="ion-justify-content-center">
       <ion-col id="extendedName">
         <ion-icon *ngIf="!userService.user.imgperfil" src="assets/addImage.svg" (click)="selectPerfilImg()"></ion-icon>
-        <div id="imgContainer">
+        <div id="imgContainer" *ngIf="userService.user.imgperfil">
           <div (click)="selectPerfilImg()">
             <img *ngIf="userService.user.imgperfil" [src]="BASE_URL + '/uploads/' + userService.user.imgperfil" />
           </div>

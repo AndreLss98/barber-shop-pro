@@ -1,10 +1,15 @@
+import { Observable } from 'rxjs';
+import { timeout } from 'rxjs/operators';
 import { Platform } from '@ionic/angular';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import { Geolocation, GeolocationOptions, Geoposition } from '@ionic-native/geolocation/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
-import { Observable } from 'rxjs';
-import { MapService } from '../map/map.service';
+import { Geolocation, GeolocationOptions, Geoposition } from '@ionic-native/geolocation/ngx';
+
+import { BASE_URL_GRAPHQL } from 'src/environments/environment';
+import { HTTP_OPTIONS, TIMEOUT_SIZE } from 'src/app/constants/http-constants';
+import { UserService } from '../user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +20,11 @@ export class GpsService {
   private _myPosition: Geoposition;
 
   constructor(
+    private http: HttpClient,
     private platform: Platform,
+    private userService: UserService,
     private geolocation: Geolocation,
-    private locationAccuracy: LocationAccuracy
+    private locationAccuracy: LocationAccuracy,
   ) {
     const GPS_OPTIONS: GeolocationOptions = {
       enableHighAccuracy: true
@@ -54,5 +61,17 @@ export class GpsService {
     this.watchPositionSubscriber.subscribe((position: Geoposition) => {
       this.myPosition = position;
     });
+  }
+
+  public updateLocation() {
+    this.geolocation.getCurrentPosition().then(({coords}) => {
+      const body =
+      `mutation {
+        updateProfissionalPosition(idprofissional: ${this.userService.user.idprofissional}, latitude: ${coords.latitude}, longitude: ${coords.longitude})
+      }`;
+      this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE)).subscribe((response: any) => {
+        console.log(response);
+      });
+    })
   }
 }
