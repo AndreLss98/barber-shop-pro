@@ -21,7 +21,6 @@ export class ChatService {
   private _currentChat: chat = new Object() as chat;
 
   private messageListener: Subscription;
-  private connectionListener: Subscription;
 
   constructor(
     private socket: Socket,
@@ -68,19 +67,16 @@ export class ChatService {
   public afteLogin() {
     this.socket.emit('login-profissional', { idprofissional: this.userService.user.idprofissional });
     this.messageListener = this.socket.fromEvent('private-message').subscribe((message: any) => {
-      this._chats.find(chat => chat.cliente.idcliente === message.idcliente).conversas.push({ idcliente: message.idcliente, idprofissional: this.userService.user.idprofissional, iscliente: true, texto: message.texto, dthorario: new Date().toString() });
-    });
-    this.connectionListener = this.socket.fromEvent('new-socket').subscribe((client: any) => {
-      this._chats.find(user => user.cliente.idcliente === client.idcliente).cliente.idsocket = client.idsocket;
+      this._chats.find(chat => chat.cliente.idcliente === message.idcliente).conversas.push({ idcliente: message.idcliente, idprofissional: this.userService.user.idprofissional, iscliente: true, texto: message.texto, dthorario: message.dthorario });
     });
   }
 
   public getChats({ idprofissional }) {
-    const body = 
+    const body =
     `{
       profissionalChats(idprofissional: ${idprofissional}) {
         cliente {
-          idcliente nome idsocket
+          idcliente nome
         }
         conversas {
           iscliente texto dthorario
@@ -100,16 +96,17 @@ export class ChatService {
     return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 
-  public sendMessage({ idprofissional }, idcliente: number, socket: string, message: string) {
-    if (socket) {
-      this.socket.emit('profissional-send-private-message', { idsocket: socket, idprofissional, texto: message });
-    }
-    const body = 
+  public sendMessage({ idprofissional }, idcliente: number, texto: string) {
+    const body =
     `mutation {
-      sendMessage(idcliente: ${idcliente}, idprofissional: ${idprofissional}, iscliente: false, texto: "${message}") {
+      sendMessage(idcliente: ${idcliente}, idprofissional: ${idprofissional}, iscliente: false, texto: "${texto}") {
         idprofissional idcliente iscliente dthorario texto
       }
     }`;
     return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+  }
+
+  public sendMessageViaSocket(message: any) {
+    this.socket.emit('profissional-send-private-message', message);
   }
 }

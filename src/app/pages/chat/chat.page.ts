@@ -17,8 +17,8 @@ export class ChatPage implements OnInit {
 
   @ViewChild(IonContent, { static: false }) content: IonContent;
 
-  private idcliente: number;
   public currentChat: chat;
+  private idcliente: number;
   public message: string = '';
 
   constructor(
@@ -34,11 +34,8 @@ export class ChatPage implements OnInit {
   ngOnInit() {
     this.idcliente = +this.route.snapshot.params.id;
     this.currentChat = this.chatService.getCurrentChat(this.idcliente);
-    /* if (this.route.snapshot.data['conversas']) {
-      this.chatService.setConversas(this.route.snapshot.data['conversas'].data.conversas, this.idcliente);
-    } */
     this.updateScreen();
-    this.socket.fromEvent('private-message').subscribe((message) => { this.updateScreen() });
+    this.socket.fromEvent('private-message').subscribe(() => { this.updateScreen() });
   }
 
   public deleteChat(): void {
@@ -64,10 +61,11 @@ export class ChatPage implements OnInit {
     if (this.message) {
       const tempMessage = this.message;
       this.message = '';
-      this.chatService.sendMessage(this.userService.user, this.idcliente, this.chatService.currentChat.cliente.idsocket, tempMessage).subscribe((response: any) => {
+      this.chatService.sendMessage(this.userService.user, this.idcliente, tempMessage).subscribe((response: any) => {
         if (response.error) {
-          console.log(response.error);
+          console.error(response.error);
         } else {
+          this.chatService.sendMessageViaSocket(response.data.sendMessage);
           this.currentChat.conversas.push(response.data.sendMessage);
           this.updateScreen();
         }

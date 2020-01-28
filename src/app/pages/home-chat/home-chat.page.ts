@@ -26,7 +26,7 @@ export class HomeChatPage implements OnInit {
   }
 
   public viewChat(pos: number) {
-    this.router.navigateByUrl(`chat/${this.chatService.chats[pos].cliente.idcliente}/${this.chatService.chats[pos].cliente.idsocket}`);
+    this.router.navigateByUrl(`chat/${this.chatService.chats[pos].cliente.idcliente}`);
   }
 
 }

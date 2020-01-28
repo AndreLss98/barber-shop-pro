@@ -40,7 +40,7 @@ const routes: Routes = [
     loadChildren: './pages/home-chat/home-chat.module#HomeChatPageModule'
   },
   {
-    path: 'chat/:id/:idsocket',
+    path: 'chat/:id',
     resolve: {
       conversas: ConversasResolverService
     },
