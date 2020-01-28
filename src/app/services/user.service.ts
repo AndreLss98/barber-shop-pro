@@ -1,5 +1,5 @@
 import { timeout } from 'rxjs/operators';
-import { from } from 'rxjs';
+import { from, Subscription } from 'rxjs';
 import { Injectable } from '@angular/core'; 
 import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
@@ -11,6 +11,7 @@ import { HTTP_OPTIONS, TIMEOUT_SIZE } from '../constants/http-constants';
 import { BASE_URL_GRAPHQL, BASE_URL } from 'src/environments/environment';
 
 import { profissional, valorServico, novoUsuario } from '../models/profissional.model';
+import { GpsService } from './gps/gps.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,9 @@ export class UserService {
   constructor(
     private socket: Socket,
     private http: HttpClient,
+    private gpsService: GpsService,
     private transfer: FileTransfer,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
   ) {
     this._newUser.dom = false;
     this._newUser.seg = false;
@@ -92,5 +94,13 @@ export class UserService {
       chunkedMode: false
     }
     return from(this.fileTransfer.upload(imagePath, `${BASE_URL}/pro/${endPoint}`, options));
+  }
+
+  public updateLocation() {
+    const body =
+    `mutation {
+      updateProfissionalPosition(idprofissional: ${this.user.idprofissional}, latitude: ${this.gpsService.myPosition.coords.latitude}, longitude: ${this.gpsService.myPosition.coords.longitude})
+    }`;
+    return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 }

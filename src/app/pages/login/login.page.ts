@@ -9,7 +9,6 @@ import { UserService } from 'src/app/services/user.service';
 import { GpsService } from 'src/app/services/gps/gps.service';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { LoginService } from 'src/app/services/login/login.service';
-import { AgendaService } from 'src/app/services/agenda/agenda.service';
 
 import { IntroModalPage } from '../modals/intro-modal/intro-modal.page';
 import { RecuperarSenhaPage } from '../modals/recuperar-senha/recuperar-senha.page';
@@ -39,7 +38,6 @@ export class LoginPage implements OnInit {
     private chatService: ChatService,
     private modalCtrl: ModalController,
     private loginService: LoginService,
-    private agendaService: AgendaService,
     private loadingCtrl: LoadingController,
   ) {
 
@@ -66,9 +64,8 @@ export class LoginPage implements OnInit {
           }));
         }
       }, (error) => {
-        console.error(error)
-      }, () => {
         this.cloaseLoading();
+        console.error(error);
       });
     }
   }

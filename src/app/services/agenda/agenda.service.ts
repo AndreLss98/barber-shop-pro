@@ -1,6 +1,5 @@
 import { timeout} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 
 import { BASE_URL_GRAPHQL } from 'src/environments/environment';
@@ -15,8 +14,7 @@ export class AgendaService {
 
   constructor(
     private http: HttpClient,
-    private userService: UserService,
-    private modalCtrl: ModalController
+    private userService: UserService
   ) {
     
   }
