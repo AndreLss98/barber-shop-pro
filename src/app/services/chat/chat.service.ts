@@ -1,7 +1,6 @@
 import { Subscription } from 'rxjs';
 import { timeout } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 
 import { chat, conversa } from 'src/app/models/chat.model';
@@ -11,8 +10,6 @@ import { Socket } from 'ngx-socket-io';
 import { UserService } from '../user.service';
 import { BASE_URL_GRAPHQL } from 'src/environments/environment';
 import { HTTP_OPTIONS, TIMEOUT_SIZE } from 'src/app/constants/http-constants';
-
-import { NotificacaoAgendaComponent } from 'src/app/pages/modals/notificacao-agenda/notificacao-agenda.component';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +27,6 @@ export class ChatService {
     private socket: Socket,
     private http: HttpClient,
     private userService: UserService,
-    private modalCtrl: ModalController
   ) {
 
   }
@@ -72,11 +68,8 @@ export class ChatService {
   public afteLogin() {
     this.socket.emit('login-profissional', { idprofissional: this.userService.user.idprofissional });
     this.messageListener = this.socket.fromEvent('private-message').subscribe((message: any) => {
+      console.log(message);
       this._chats.find(chat => chat.cliente.idcliente === message.idcliente).conversas.push({ idcliente: message.idcliente, idprofissional: this.userService.user.idprofissional, iscliente: true, texto: message.texto, dthorario: message.dthorario });
-    });
-
-    this.requestListener = this.socket.fromEvent('new-request').subscribe((request: any) => {
-      this.modalCtrl.create({component: NotificacaoAgendaComponent, componentProps: {nome: request.nome, dia: request.dia, mes: request.mes, horario: request.horario, endereco: request.endereco, idservico: request.idservico}}).then((modal) => modal.present());
     });
   }
 
