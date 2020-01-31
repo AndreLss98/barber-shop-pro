@@ -3,6 +3,10 @@ import { AlertController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+
+import { APP_ID, REDIRECT_URI } from './../../../environments/environment';
+
 import { UserService } from 'src/app/services/user.service';
 import { BankService } from 'src/app/services/bank/bank.service';
 
@@ -23,6 +27,7 @@ export class GanhosPage implements OnInit {
     public userService: UserService,
     private bankService: BankService,
     private formBuilder: FormBuilder,
+    private inappbrowser: InAppBrowser,
     private alertController: AlertController,
   ) {
     this.bankForm = this.formBuilder.group({
@@ -94,7 +99,6 @@ export class GanhosPage implements OnInit {
         console.error(response);
       } else {
         this.userService.user.contabancaria = response.data.contabancaria;
-        console.log(this.userService.user.contabancaria);
         this.showAlert();
       }
     });
@@ -140,6 +144,10 @@ export class GanhosPage implements OnInit {
     }).then((alert) => {
       alert.present();
     })
+  }
+
+  public openAuthME() {
+    const browser = this.inappbrowser.create(`https://auth.mercadopago.com.br/authorization?client_id=${APP_ID}&response_type=code&platform_id=mp&redirect_uri=${REDIRECT_URI}?user_id=${this.userService.user.idprofissional}`);
   }
 
 }

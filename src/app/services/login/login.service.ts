@@ -49,6 +49,7 @@ export class LoginService {
     `mutation {
       updateProfissionalPassword(idprofissional: ${this.userService.user.idprofissional}, senha: "${senha}")
     }`;
+    console.log(BASE_URL_GRAPHQL);
     return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 }

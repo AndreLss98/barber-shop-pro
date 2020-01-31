@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
+import { environment } from 'src/environments/environment';
+
 import { File } from '@ionic-native/file/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { Network } from '@ionic-native/network/ngx';
@@ -12,11 +14,12 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 
 import { AppComponent } from './app.component';
+import { SocketIoModule } from 'ngx-socket-io';
 import { AppRoutingModule } from './app-routing.module';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { IntroModalPage } from './pages/modals/intro-modal/intro-modal.page';
 import { RecuperarSenhaPage } from './pages/modals/recuperar-senha/recuperar-senha.page';
@@ -26,7 +29,6 @@ import { CustomMenuComponent } from './pages/modals/custom-menu/custom-menu.comp
 import { ConnectionStatusComponent } from './pages/modals/connection-status/connection-status.component';
 import { AvisoAgendamentoComponent } from './pages/modals/aviso-agendamento/aviso-agendamento.component';
 import { NotificacaoAgendaComponent } from './pages/modals/notificacao-agenda/notificacao-agenda.component';
-import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,7 @@ import { environment } from 'src/environments/environment';
     StatusBar,
     Geolocation,
     FileTransfer,
+    InAppBrowser,
     SplashScreen,
     LocationAccuracy,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
