@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
-import { APP_ID, REDIRECT_URI } from './../../../environments/environment';
+import { APP_ID, REDIRECT_URI, URL_CADASTRO_MP } from './../../constants/constants';
 
 import { UserService } from 'src/app/services/user.service';
 import { BankService } from 'src/app/services/bank/bank.service';
@@ -16,6 +16,8 @@ import { BankService } from 'src/app/services/bank/bank.service';
   styleUrls: ['./ganhos.page.scss'],
 })
 export class GanhosPage implements OnInit {
+
+  readonly URL_CADASTRO_MP = URL_CADASTRO_MP;
 
   public bankForm: FormGroup;
 
@@ -146,7 +148,7 @@ export class GanhosPage implements OnInit {
     })
   }
 
-  public openAuthME() {
+  public openAuthMP() {
     const browser = this.inappbrowser.create(`https://auth.mercadopago.com.br/authorization?client_id=${APP_ID}&response_type=code&platform_id=mp&redirect_uri=${REDIRECT_URI}?user_id=${this.userService.user.idprofissional}`);
   }
 
