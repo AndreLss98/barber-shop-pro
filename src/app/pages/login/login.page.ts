@@ -57,6 +57,7 @@ export class LoginPage implements OnInit {
         } else {
           this.email = this.senha = '';
           this.userService.user = response.data.loginProfissional;
+          localStorage.setItem('user', JSON.stringify(response.data.loginProfissional));
           this.modalCtrl.create({ component: IntroModalPage }).then((modal) => modal.present().then(() => {
             this.chatService.afteLogin();
             this.gpsService.updateLocation();

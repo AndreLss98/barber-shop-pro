@@ -5,9 +5,10 @@ import { Component } from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
-import { NetworkService } from './services/network/network.service';
-import { GpsService } from './services/gps/gps.service';
+import { UserService } from './services/user.service';
 import { MapService } from './services/map/map.service';
+import { GpsService } from './services/gps/gps.service';
+import { NetworkService } from './services/network/network.service';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,8 @@ export class AppComponent {
     }
   ];
 
+  private isVisualizedIntro: boolean = false;
+
   constructor(
     private route: Router,
     private platform: Platform,
@@ -35,14 +38,26 @@ export class AppComponent {
     private mapService: MapService,
     private gpsService: GpsService,
     private network: NetworkService,
+    private userService: UserService,
     private menuCtrl: MenuController,
-    private splashScreen: SplashScreen
+    private splashScreen: SplashScreen,
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+      try {
+        this.userService.user = JSON.parse(localStorage.getItem('user'));
+        this.isVisualizedIntro = JSON.parse(localStorage.getItem('intro'));
+        if (this.isVisualizedIntro && !this.userService.user) {
+          this.route.navigateByUrl('/login');
+        } else if (this.userService.user) {
+          this.route.navigateByUrl('/agenda');
+        }
+      } catch (error) {
+        console.log(error);
+      }
       this.statusBar.styleDefault();
       if (this.platform.is('android')) {
         this.statusBar.backgroundColorByHexString('#313131');

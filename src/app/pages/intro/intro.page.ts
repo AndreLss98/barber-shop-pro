@@ -23,6 +23,7 @@ export class IntroPage implements OnInit {
   }
 
   public goToLogin(): void {
+    localStorage.setItem('intro', 'true');
     this.route.navigateByUrl('/login');
   }
 

@@ -76,6 +76,7 @@ export class AgendaPage implements OnInit {
     this.syncWorkDays();
     if (this.route.snapshot.data.agenda) {
       this.agenda = this.route.snapshot.data.agenda.data.agendaProfissional;
+      console.log('Agenda: ', this.agenda);
     }
     this.checkAgenda();
   }
