@@ -42,7 +42,7 @@ export class GpsService {
   }
 
   public requestFullPermission() {
-    if (this.platform.is('android') || this.platform.is('ios') && document.URL.startsWith('http://localhost:81')) {
+    if (this.platform.is('android') || this.platform.is('ios') && !document.URL.startsWith('http://localhost:81')) {
       this.locationAccuracy.canRequest().then(() => {
         this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(() => {
           this.initializeWatchPosition();

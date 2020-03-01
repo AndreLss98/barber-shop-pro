@@ -8,7 +8,7 @@ import { Socket } from 'ngx-socket-io';
 import { FileTransfer, FileTransferObject, FileUploadOptions } from '@ionic-native/file-transfer/ngx';
 
 import { HTTP_OPTIONS, TIMEOUT_SIZE } from '../constants/http-constants';
-import { BASE_URL_GRAPHQL, BASE_URL } from 'src/environments/environment';
+import { BASE_URL_GRAPHQL, BASE_URL, SERVER_URL } from 'src/environments/environment';
 
 import { profissional, valorServico, novoUsuario } from '../models/profissional.model';
 
@@ -88,9 +88,10 @@ export class UserService {
     this.fileTransfer = this.transfer.create();
     let options: FileUploadOptions = {
       fileKey: 'file',
-      headers: {idprofissional: idprofissional},
-      chunkedMode: false
+      headers: {idprofissional},
+      chunkedMode: false,
+      httpMethod: 'POST'
     }
-    return from(this.fileTransfer.upload(imagePath, `${BASE_URL}/pro/${endPoint}`, options));
+    return from(this.fileTransfer.upload(imagePath, `${BASE_URL}/pro/${endPoint}`, options, true));
   }
 }

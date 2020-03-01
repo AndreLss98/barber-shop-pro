@@ -142,6 +142,7 @@ export class PerfilPage implements OnInit {
       this.userService.uploadImg(imagePath, 'imgPerfil', this.userService.user.idprofissional).subscribe((res) => {
         const tempResponse = JSON.parse(res.response);
         this.userService.user.imgperfil = tempResponse.filename;
+        localStorage.setItem('user', JSON.stringify(this.userService.user));
         this.cloaseLoading();
       }, (error) => {
         this.cloaseLoading();
