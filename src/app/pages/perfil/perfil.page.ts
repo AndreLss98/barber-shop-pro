@@ -5,6 +5,7 @@ import { AlertController, ActionSheetController, LoadingController } from '@ioni
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 
 import { BASE_URL } from '../../../environments/environment';
+import { profissional } from 'src/app/models/profissional.model';
 
 import { UserService } from 'src/app/services/user.service';
 import { LoginService } from 'src/app/services/login/login.service';
@@ -48,6 +49,8 @@ export class PerfilPage implements OnInit {
 
   public logout() {
     this.route.navigateByUrl('login');
+    localStorage.removeItem('user');
+    this.userService.user = new Object() as profissional;
   }
 
   public extendColName() {
