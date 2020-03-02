@@ -1,11 +1,12 @@
 import { timeout} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { BASE_URL_GRAPHQL } from 'src/environments/environment';
+import { BASE_URL_GRAPHQL, BASE_URL } from 'src/environments/environment';
 import { HTTP_OPTIONS, TIMEOUT_SIZE } from 'src/app/constants/http-constants';
 
 import { UserService } from '../user.service';
+import { servico } from 'src/app/models/servico.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AgendaService {
     const body =
     `{
       agendaProfissional(idprofissional: ${this.userService.user.idprofissional}) {
-        dia mes ano valortotal horario
+        dia mes ano valortotal horario paymentid
         idservico
         endereco {
           endereco numero complemento pto_referencia
@@ -55,11 +56,11 @@ export class AgendaService {
     return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 
-  public cancelService(idservico: number) {
-    const body =
-    `mutation {
-      profissionalCancelService(idprofissional: ${this.userService.user.idprofissional}, idservico: ${idservico})
-    }`;
-    return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
+  public cancelService(paymentid, idservico, idprofissional) {
+    let params = new HttpParams()
+    .set('idpagamento', paymentid)
+    .set('idservico', idservico.toString())
+    .set('idprofissional', idprofissional.toString());
+    return this.http.post(BASE_URL + '/cancel-service', null, {params}).pipe(timeout(TIMEOUT_SIZE));
   }
 }

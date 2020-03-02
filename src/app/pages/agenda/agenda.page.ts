@@ -75,8 +75,10 @@ export class AgendaPage implements OnInit {
     this.configuraDataAtual();
     this.syncWorkDays();
     if (this.route.snapshot.data.agenda) {
-      this.agenda = this.route.snapshot.data.agenda.data.agendaProfissional;
+      const tempAgenda: servico[] = this.route.snapshot.data.agenda.data.agendaProfissional;
+      this.agenda = tempAgenda.filter(servico => servico.aceito);
       console.log('Agenda: ', this.agenda);
+      console.log('Temp: ', tempAgenda);
     }
     this.checkAgenda();
   }
@@ -231,7 +233,7 @@ export class AgendaPage implements OnInit {
   }
 
   public onCancelService(idservico: number) {
-    this.agendaService.cancelService(idservico).subscribe((response: any) => {
+    /* this.agendaService.cancelService(idservico).subscribe((response: any) => {
       if (response.errors) {
         console.error(response.errors);
       } else {
@@ -239,7 +241,21 @@ export class AgendaPage implements OnInit {
         this.agendaFiltrada = this.agendaFiltrada.filter(item => item.idservico !== idservico);
         this.checkAgenda();
       }
-    })
+    }) */
+  }
+
+  private cancelOldServices(servicos: servico[]) {
+    if (!servicos || servicos.length === 0) {
+      return;
+    } else {
+      const oldservice = servicos[servicos.length - 1];
+      this.agendaService.cancelService(oldservice.paymentid, oldservice.idservico, oldservice.idprofissional).subscribe((response: any) => {
+        servicos.pop();
+        this.cancelOldServices(servicos);
+      }, (error) => {
+        console.log(error);
+      });
+    }
   }
 
 }
