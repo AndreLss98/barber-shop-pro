@@ -33,7 +33,7 @@ export class AgendaService {
           nome
         }
         cliente {
-          nome
+          imgperfil nome
         }
       }
     }`;
@@ -56,11 +56,11 @@ export class AgendaService {
     return this.http.post(BASE_URL_GRAPHQL, body, HTTP_OPTIONS).pipe(timeout(TIMEOUT_SIZE));
   }
 
-  public cancelService(paymentid, idservico, idprofissional) {
+  public cancelService(paymentid, idservico) {
     let params = new HttpParams()
     .set('idpagamento', paymentid)
     .set('idservico', idservico.toString())
-    .set('idprofissional', idprofissional.toString());
+    .set('idprofissional', this.userService.user.idprofissional.toString());
     return this.http.post(BASE_URL + '/cancel-service', null, {params}).pipe(timeout(TIMEOUT_SIZE));
   }
 }

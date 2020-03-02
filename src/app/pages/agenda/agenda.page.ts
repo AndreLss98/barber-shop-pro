@@ -16,6 +16,7 @@ import { MesAgendaComponent } from 'src/app/components/popovers/mes-agenda/mes-a
 
 import { topDownAnimation } from 'src/app/animations/top-down-animation';
 import { downTopAnimation } from 'src/app/animations/down-top-animation';
+import { NotificacaoAgendaComponent } from '../modals/notificacao-agenda/notificacao-agenda.component';
 
 @Component({
   selector: 'app-agenda',
@@ -76,11 +77,22 @@ export class AgendaPage implements OnInit {
     this.syncWorkDays();
     if (this.route.snapshot.data.agenda) {
       const tempAgenda: servico[] = this.route.snapshot.data.agenda.data.agendaProfissional;
-      this.agenda = tempAgenda.filter(servico => servico.aceito);
-      console.log('Agenda: ', this.agenda);
-      console.log('Temp: ', tempAgenda);
+      this.agenda = tempAgenda.filter(servico => {
+        if (servico.aceito && this.processDate(servico) >= this.dataAtual) return servico;
+      });
+      let notAcceptedServices = tempAgenda.filter(servico => {
+        if (!servico.aceito && this.processDate(servico) >= this.dataAtual) return servico;
+      })
+      console.log('Not accepted services: ', notAcceptedServices);
+      let oldServices = tempAgenda.filter(servico => this.processDate(servico) < this.dataAtual);
+      this.cancelOldServices(oldServices);
+      this.showOldNotifications(notAcceptedServices);
     }
     this.checkAgenda();
+  }
+
+  private processDate(servico: servico) {
+    return new Date(servico.ano, NOME_MESES.findIndex(mes => mes.toLowerCase() === servico.mes), servico.dia);
   }
 
   private reloadAgenda() {
@@ -157,7 +169,7 @@ export class AgendaPage implements OnInit {
   }
 
   public openMenu() {
-    this.modalCtrl.create({ 
+    this.modalCtrl.create({
       component: CustomMenuComponent,
       enterAnimation: topDownAnimation,
       leaveAnimation: downTopAnimation
@@ -223,17 +235,17 @@ export class AgendaPage implements OnInit {
       if (response.errors) {
         console.error(response.errors);
       } else {
-        this.userService.user.diasTrabalho = {...this.tempDiasTrabalho};
+        this.userService.user.diasTrabalho = { ...this.tempDiasTrabalho };
       }
     }, (error) => console.log(error));
   }
 
   private syncWorkDays() {
-    this.tempDiasTrabalho = {...this.userService.user.diasTrabalho};
+    this.tempDiasTrabalho = { ...this.userService.user.diasTrabalho };
   }
 
-  public onCancelService(idservico: number) {
-    /* this.agendaService.cancelService(idservico).subscribe((response: any) => {
+  public onCancelService(idservico: number, paymentid: string) {
+    this.agendaService.cancelService(paymentid, idservico).subscribe((response: any) => {
       if (response.errors) {
         console.error(response.errors);
       } else {
@@ -241,7 +253,7 @@ export class AgendaPage implements OnInit {
         this.agendaFiltrada = this.agendaFiltrada.filter(item => item.idservico !== idservico);
         this.checkAgenda();
       }
-    }) */
+    })
   }
 
   private cancelOldServices(servicos: servico[]) {
@@ -249,12 +261,37 @@ export class AgendaPage implements OnInit {
       return;
     } else {
       const oldservice = servicos[servicos.length - 1];
-      this.agendaService.cancelService(oldservice.paymentid, oldservice.idservico, oldservice.idprofissional).subscribe((response: any) => {
+      this.agendaService.cancelService(oldservice.paymentid, oldservice.idservico).subscribe((response: any) => {
         servicos.pop();
         this.cancelOldServices(servicos);
       }, (error) => {
         console.log(error);
       });
+    }
+  }
+
+  private showOldNotifications(servicos: servico[]) {
+    if (!servicos || servicos.length === 0) {
+      return;
+    } else {
+      const tempService = servicos[servicos.length - 1];
+      this.modalCtrl.create({ component: NotificacaoAgendaComponent, componentProps: {
+        nome: tempService.cliente.nome,
+        dia: tempService.dia,
+        mes: tempService.mes,
+        horario: tempService.horario,
+        endereco: tempService.endereco.endereco,
+        imgPerfil: tempService.cliente.imgperfil,
+        idservico: tempService.idservico,
+        paymentid: tempService.paymentid
+      } }).then((modal) => {
+        modal.present().then(() => {
+          modal.onDidDismiss().then(() => {
+            servicos.pop();
+            this.showOldNotifications(servicos);
+          })
+        })
+      })
     }
   }
 
