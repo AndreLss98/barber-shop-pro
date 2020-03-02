@@ -24,6 +24,7 @@ export class NotificacaoAgendaComponent implements OnInit {
   public idservico: number;
   public imgPerfil: string;
   public paymentid: string;
+  public servicos: any[] = [];
 
   constructor(
     private events: Events,
@@ -34,7 +35,7 @@ export class NotificacaoAgendaComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.horario = this.horario.substr(0, 5);
   }
 
   public confirmAgenda() {

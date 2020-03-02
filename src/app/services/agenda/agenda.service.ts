@@ -24,7 +24,7 @@ export class AgendaService {
     const body =
     `{
       agendaProfissional(idprofissional: ${this.userService.user.idprofissional}) {
-        dia mes ano valortotal horario paymentid
+        dia mes ano valortotal horario paymentid aceito
         idservico
         endereco {
           endereco numero complemento pto_referencia

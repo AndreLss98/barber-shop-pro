@@ -77,13 +77,17 @@ export class AgendaPage implements OnInit {
     this.syncWorkDays();
     if (this.route.snapshot.data.agenda) {
       const tempAgenda: servico[] = this.route.snapshot.data.agenda.data.agendaProfissional;
+      
       this.agenda = tempAgenda.filter(servico => {
-        if (servico.aceito && this.processDate(servico) >= this.dataAtual) return servico;
+        if (servico.aceito === true && this.processDate(servico) >= this.dataAtual) return servico;
       });
       let notAcceptedServices = tempAgenda.filter(servico => {
         if (!servico.aceito && this.processDate(servico) >= this.dataAtual) return servico;
       })
+      console.log('Temp agenda:', tempAgenda)
       console.log('Not accepted services: ', notAcceptedServices);
+      console.log('Current agenda: ', this.agenda);
+
       let oldServices = tempAgenda.filter(servico => this.processDate(servico) < this.dataAtual);
       this.cancelOldServices(oldServices);
       this.showOldNotifications(notAcceptedServices);
@@ -283,7 +287,8 @@ export class AgendaPage implements OnInit {
         endereco: tempService.endereco.endereco,
         imgPerfil: tempService.cliente.imgperfil,
         idservico: tempService.idservico,
-        paymentid: tempService.paymentid
+        paymentid: tempService.paymentid,
+        servicos: tempService.servicos
       } }).then((modal) => {
         modal.present().then(() => {
           modal.onDidDismiss().then(() => {

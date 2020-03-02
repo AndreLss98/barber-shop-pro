@@ -3,6 +3,7 @@ import { ActionSheetController } from '@ionic/angular';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { cliente } from 'src/app/models/cliente.model';
+import { BASE_URL } from '../../../environments/environment';
 import { endereco } from 'src/app/models/profissional.model';
 
 import { MapService } from 'src/app/services/map/map.service';
@@ -13,6 +14,8 @@ import { MapService } from 'src/app/services/map/map.service';
   styleUrls: ['./item-agenda.component.scss'],
 })
 export class ItemAgendaComponent implements OnInit {
+
+  readonly BASE_URL = BASE_URL;
 
   @Input() local: endereco;
   @Input() horario: string;
