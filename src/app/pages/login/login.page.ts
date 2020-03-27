@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ModalController, LoadingController } from '@ionic/angular';
+import { ModalController, LoadingController, AlertController } from '@ionic/angular';
 
 import { Socket } from 'ngx-socket-io';
 
@@ -13,6 +13,7 @@ import { LoginService } from 'src/app/services/login/login.service';
 import { IntroModalPage } from '../modals/intro-modal/intro-modal.page';
 import { RecuperarSenhaPage } from '../modals/recuperar-senha/recuperar-senha.page';
 
+import { ConnectionStatusComponent } from 'src/app/pages/modals/connection-status/connection-status.component';
 import { NotificacaoAgendaComponent } from 'src/app/pages/modals/notificacao-agenda/notificacao-agenda.component';
 
 @Component({
@@ -38,6 +39,7 @@ export class LoginPage implements OnInit {
     private chatService: ChatService,
     private modalCtrl: ModalController,
     private loginService: LoginService,
+    private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
   ) {
 
@@ -53,7 +55,9 @@ export class LoginPage implements OnInit {
       this.loginService.login(this.email, this.senha).subscribe(async (response: any) => {
         await this.cloaseLoading();
         if (response.errors) {
-          console.error(response.errors);
+          console.log(response.errors);
+          const error = JSON.parse(response.errors[0].message);
+          this.showAlert(error.message);
         } else {
           this.email = this.senha = '';
           this.userService.user = response.data.loginProfissional;
@@ -64,11 +68,18 @@ export class LoginPage implements OnInit {
             this.startListenAgenda();
           }));
         }
-      }, (error) => {
+      }, (errors) => {
         this.cloaseLoading();
-        console.error(error);
+        console.error(errors);
+        if (errors.name === 'TimeoutError' || errors.name === 'HttpErrorResponse') {
+          this.connectionError();
+        }
       });
     }
+  }
+
+  private connectionError(): void {
+    this.modalCtrl.create({ component: ConnectionStatusComponent }).then((modal) => modal.present());
   }
 
   public recuperarSenha() {
@@ -109,6 +120,22 @@ export class LoginPage implements OnInit {
         idservico: request.idservico
       }}).then((modal) => modal.present());
     });
+  }
+
+  public showAlert(message: string) {
+    this.alertCtrl.create({
+      mode: 'ios',
+      message,
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {}
+        }
+      ]
+    }).then((alert) => {
+      alert.present();
+    })
   }
 
 }
