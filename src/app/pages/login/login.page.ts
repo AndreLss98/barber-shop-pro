@@ -109,7 +109,6 @@ export class LoginPage implements OnInit {
 
   public startListenAgenda() {
     this.notifyListen = this.socket.fromEvent('new-request').subscribe((request: any) => {
-      console.log(request);
       this.modalCtrl.create({component: NotificacaoAgendaComponent, componentProps: {
         nome: request.nome,
         dia: request.dia,
@@ -117,7 +116,8 @@ export class LoginPage implements OnInit {
         horario: request.horario,
         endereco: request.endereco.endereco,
         imgPerfil: request.imgperfil,
-        idservico: request.idservico
+        idservico: request.idservico,
+        pamentid: request.paymentid
       }}).then((modal) => modal.present());
     });
   }

@@ -23,6 +23,8 @@ export class NotificacaoAgendaComponent implements OnInit {
   public endereco: string;
   public idservico: number;
   public imgPerfil: string;
+  public paymentid: string;
+  public servicos: any[] = [];
 
   constructor(
     private events: Events,
@@ -33,7 +35,7 @@ export class NotificacaoAgendaComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.horario = this.horario.substr(0, 5);
   }
 
   public confirmAgenda() {
@@ -50,13 +52,13 @@ export class NotificacaoAgendaComponent implements OnInit {
   }
 
   public cancelAgenda() {
-    /* this.agendaService.cancelService(this.idservico).subscribe((response: any) => {
+    this.agendaService.cancelService(this.paymentid, this.idservico).subscribe((response: any) => {
       if (response.errors) {
         console.error(response.errors);
       } else {
         this.modalCtrl.dismiss();
       }
-    }); */
+    });
   }
 
 }
