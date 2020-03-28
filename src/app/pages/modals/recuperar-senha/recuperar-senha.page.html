@@ -11,7 +11,7 @@
     </ion-row>
     <form [formGroup]="formGroup" (ngSubmit)="sendEmail()" novalidate>
       <ion-row id="rowInput">
-        <ion-icon class="inputIcon" name="close-circle"></ion-icon>
+        <ion-icon class="inputIcon" name="close-circle" (click)="clearEmailInput()"></ion-icon>
         <input #inputEmail formControlName="email" type="email" />
       </ion-row>
       <ion-row>

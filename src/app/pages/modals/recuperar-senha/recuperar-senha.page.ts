@@ -65,4 +65,10 @@ export class RecuperarSenhaPage implements OnInit {
     }).then((alert) => alert.present());
   }
 
+  public clearEmailInput() {
+    this.formGroup.patchValue({
+      email: ''
+    })
+  }
+
 }
