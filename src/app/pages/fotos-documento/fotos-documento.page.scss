@@ -9,22 +9,24 @@ div.square {
 }
 
 span.svgLabel {
-    font-size: .8em;
+    font-size: .65em;
     color: white;
     font-family: 'Poppins', sans-serif;
 }
 
 span.text {
     color: var(--ion-color-primary);
+    font-size: .9em;
 }
 
 span.text.aviso {
-    font-size: .9em;
+    font-size: .8em;
 }
 
 span.obs {
     color: #666666;
     font-family: 'Poppins', sans-serif;
+    font-size: .8em;
 }
 
 div.imgContainer {

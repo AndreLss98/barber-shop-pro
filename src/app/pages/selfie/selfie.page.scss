@@ -4,10 +4,12 @@ ion-content {
 
 span.text {
     color: var(--ion-color-primary);
+    font-size: .9em;
 }
 
-span.obs {
+div.obs {
     color: #666666;
+    line-height: 1;
     font-size: .8em;
     font-family: 'Poppins', sans-serif;
 }
