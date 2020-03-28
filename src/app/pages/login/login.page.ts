@@ -15,6 +15,7 @@ import { RecuperarSenhaPage } from '../modals/recuperar-senha/recuperar-senha.pa
 
 import { ConnectionStatusComponent } from 'src/app/pages/modals/connection-status/connection-status.component';
 import { NotificacaoAgendaComponent } from 'src/app/pages/modals/notificacao-agenda/notificacao-agenda.component';
+import { UserUnauthorizedComponent } from '../modals/user-unauthorized/user-unauthorized.component';
 
 @Component({
   selector: 'app-login',
@@ -57,7 +58,11 @@ export class LoginPage implements OnInit {
         if (response.errors) {
           console.log(response.errors);
           const error = JSON.parse(response.errors[0].message);
-          this.showAlert(error.message);
+          if (error.statusCode === 401) {
+            this.modalCtrl.create({ component: UserUnauthorizedComponent }).then((modal) => modal.present());
+          } else {
+            this.showAlert(error.message);
+          }
         } else {
           this.email = this.senha = '';
           this.userService.user = response.data.loginProfissional;

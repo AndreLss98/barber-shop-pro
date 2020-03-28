@@ -28,6 +28,7 @@ import { InfoComponent } from './pages/modals/info/info.component';
 import { CustomMenuComponent } from './pages/modals/custom-menu/custom-menu.component';
 import { ConnectionStatusComponent } from './pages/modals/connection-status/connection-status.component';
 import { AvisoAgendamentoComponent } from './pages/modals/aviso-agendamento/aviso-agendamento.component';
+import { UserUnauthorizedComponent } from './pages/modals/user-unauthorized/user-unauthorized.component';
 import { NotificacaoAgendaComponent } from './pages/modals/notificacao-agenda/notificacao-agenda.component';
 
 @NgModule({
@@ -39,7 +40,8 @@ import { NotificacaoAgendaComponent } from './pages/modals/notificacao-agenda/no
     CustomMenuComponent,
     AvisoAgendamentoComponent,
     ConnectionStatusComponent,
-    NotificacaoAgendaComponent
+    UserUnauthorizedComponent,
+    NotificacaoAgendaComponent,
   ],
   entryComponents: [
     InfoComponent,
@@ -48,7 +50,8 @@ import { NotificacaoAgendaComponent } from './pages/modals/notificacao-agenda/no
     CustomMenuComponent,
     AvisoAgendamentoComponent,
     ConnectionStatusComponent,
-    NotificacaoAgendaComponent
+    UserUnauthorizedComponent,
+    NotificacaoAgendaComponent,
   ],
   imports: [
     BrowserModule,
