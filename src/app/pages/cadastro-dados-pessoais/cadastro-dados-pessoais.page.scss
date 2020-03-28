@@ -4,10 +4,12 @@ ion-content {
 
 span.text {
     color: var(--ion-color-primary);
+    font-size: .9em;
 }
 span.obs {
     color: #666666;
     font-family: 'Poppins', sans-serif !important;
+    font-size: .8em;
 }
 
 #form {
@@ -28,6 +30,7 @@ ion-col.btnCol {
 
 ion-label {
     font-family: 'Poppins', sans-serif !important;
+    font-size: .7em !important;
 }
 
 ion-input {
