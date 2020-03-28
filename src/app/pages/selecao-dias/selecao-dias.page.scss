@@ -34,12 +34,13 @@ ion-slides {
 span.title {
     font-weight: bold;
     font-style: normal;
-    font-size: 21px;
+    font-size: 17px;
 }
 
-span.text {
+div.text {
     font-weight: 300;
-    font-size: 15px;
+    font-size: 13px;
+    line-height: 1;
     color: gray;
 }
 
