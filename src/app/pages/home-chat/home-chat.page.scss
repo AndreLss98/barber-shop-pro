@@ -28,11 +28,16 @@ ion-content {
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    img {
+        height: 6em;
+    }
     span.title {
         color: white;
         font-weight: 800;
+        font-size: .9em;
     }
     span.message {
         color: #dedede;
+        font-size: .8em;
     }
 }
