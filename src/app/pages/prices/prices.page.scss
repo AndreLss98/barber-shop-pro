@@ -57,7 +57,7 @@ span.cifrao {
 
 span.valor {
     color: var(--ion-color-primary) !important;
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: 700;
 }
 
@@ -65,10 +65,10 @@ input.valor {
     color: var(--ion-color-primary);
     outline: none;
     border: none;
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: 700;
     background-color: transparent;
-    max-width: 80px;
+    max-width: 85px;
 }
 
 input.valor:after {

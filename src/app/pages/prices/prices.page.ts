@@ -39,7 +39,7 @@ export class PricesPage implements OnInit {
 
   public checkInput(value: string) {
     if (value) {
-      value = value.replace(/[^1234567890]$/g, '');
+      value = value.replace(/[a-z A-Z]/g, '');
     }
     return value;
   }
