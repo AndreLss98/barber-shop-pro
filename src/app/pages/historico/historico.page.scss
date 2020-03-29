@@ -28,6 +28,9 @@ ion-content {
         div {
             width: 35%;
         }
+        ion-label {
+            font-size: .8em;
+        }
     }
     div.aba {
         text-align: center;
@@ -46,12 +49,19 @@ ion-content {
     }
 
     #listaVazia {
-        height: 100%;
+        height: 90%;
         display: flex;
         align-items: center;
+        img {
+            height: 6em;
+        }
+        span {
+            font-size: .8em;
+        }
         span.title {
             color: white;
             font-weight: 800;
+            font-size: .9em;
         }
     }
 
@@ -59,9 +69,16 @@ ion-content {
         height: 100%;
         display: flex;
         align-items: center;
+        img {
+            height: 6em;
+        }
+        span {
+            font-size: .8em;
+        }
         span.title {
             color: white;
             font-weight: 800;
+            font-size: .9em;
         }
     }
 }

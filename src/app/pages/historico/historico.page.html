@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="agenda"></ion-back-button>
     </ion-buttons>
-    <ion-title>Histórico</ion-title>
+    <ion-title class="ion-text-center">Histórico</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -53,7 +53,7 @@
   <div id="listaVazia" *ngIf="((abaSelecionada == 'realizado' && (!historicoService.servicosRealizados || historicoService.servicosRealizados.length == 0)) || (abaSelecionada == 'cancelado' && (!historicoService.servicosCancelados || historicoService.servicosCancelados.length == 0)))">
     <ion-grid>
       <ion-row class="ion-justify-content-center">
-        <ion-col class="ion-text-center">
+        <ion-col class="ion-text-center ion-align-self-center">
           <img src="assets/NoHistory.svg" />
         </ion-col>
       </ion-row>
@@ -73,7 +73,7 @@
   <div id="listaVaziaAva" *ngIf="(abaSelecionada === 'avaliacoes' && (!historicoService.servicosAvaliados || historicoService.servicosAvaliados.length === 0))">
     <ion-grid>
       <ion-row class="ion-justify-content-center">
-        <ion-col size="9" class="ion-text-center">
+        <ion-col size="9" class="ion-text-center ion-align-self-center">
           <img src="assets/NoAva.svg" />
         </ion-col>
       </ion-row>
