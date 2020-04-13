@@ -19,7 +19,7 @@ export class CadastroDadosPessoaisPage implements OnInit {
     private formBuilder: FormBuilder,
   ) {
     this.cadastroForm = this.formBuilder.group({
-      nome: [null, [Validators.required, Validators.pattern('^[a-zA-Z]{3,}( [a-zA-Z]{2,})+$')]],
+      nome: [null, [Validators.required, Validators.pattern(/^([a-zA-Zà-úÀ-Ú]{3,})(\s[a-zA-Zà-úÀ-Ú]{2,})+/)]],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.pattern('^.{6,}$')]],
       telefone: [null, [Validators.required]],
