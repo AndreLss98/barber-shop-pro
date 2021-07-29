@@ -2,17 +2,17 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const SERVER_URL = 'https://barber.labnube.com.br';
+export const SERVER_URL = 'http://localhost';
 
 export const environment = {
   production: false,
   socketIoConfig: {
-    url: 'http://barber.labnube.com.br:21187',
+    url: `${SERVER_URL}:8081`,
     options: {}
   }
 };
 
-export const BASE_URL = `${SERVER_URL}:21185`;
+export const BASE_URL = `${SERVER_URL}:8080`;
 export const BASE_URL_GRAPHQL = `${BASE_URL}/api`;
 export const MAPBOX_SERVICE_BASE_URL = 'https://api.mapbox.com/';
 export const MAP_STYLE = 'mapbox://styles/dionim/cjzwtgft014k41csdy9xmjcyq';

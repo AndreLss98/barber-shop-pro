@@ -1,5 +1,7 @@
 {
   "name": "barber-man",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

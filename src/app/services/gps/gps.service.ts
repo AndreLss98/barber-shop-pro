@@ -6,7 +6,7 @@ import { debounceTime } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
-import { Geolocation, GeolocationOptions, Geoposition } from '@ionic-native/geolocation/ngx';
+import { Geolocation, GeolocationOptions, Geoposition, PositionError } from '@ionic-native/geolocation/ngx';
 
 import { BASE_URL_GRAPHQL } from 'src/environments/environment';
 import { HTTP_OPTIONS, TIMEOUT_SIZE } from 'src/app/constants/http-constants';
@@ -19,7 +19,7 @@ import { UserService } from '../user.service';
 export class GpsService {
 
   private _myPosition: Geoposition;
-  private watchPositionSubscriber: Observable<Geoposition>;
+  private watchPositionSubscriber: Observable<Geoposition | PositionError>;
 
   constructor(
     private http: HttpClient,
